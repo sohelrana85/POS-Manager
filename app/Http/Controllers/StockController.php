@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Stock;
 use Exception;
@@ -70,8 +71,10 @@ class StockController extends Controller
     public function get_all_stock(){
 
         $stock = Stock::all();
-        return response()->json([
-            'stock' => $stock
-        ]);
+        $stock->map(function($stock){
+
+           $stock->product = Product::where('id', $stock->product_name)->select('product_name','product_code')->first();
+        });
+        return $stock;
     }
 }

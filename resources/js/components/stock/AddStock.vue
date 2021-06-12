@@ -3,9 +3,9 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					<table id="example" class="" style="width: 100%">
+					<table id="example" class="cell-border hover stripe" style="width: 100%">
 						<thead>
-							<tr style="background: #016dc8; color: white">
+							<tr>
 								<th>sl</th>
 								<th>Memo No</th>
 								<th>Supplier</th>
@@ -186,6 +186,7 @@ export default {
 	computed: {},
 	mounted() {
 		this.allPurchaseData();
+		this.jqeuryrun();
 	},
 	methods: {
 		allPurchaseData() {
@@ -218,6 +219,11 @@ export default {
 					});
 				}
 			});
+		},
+		jqeuryrun() {
+			$(document).ready(function() {
+				$("#example").DataTable();
+			});
 		}
 	}
 };
@@ -226,5 +232,12 @@ export default {
 <style scoped>
 .btn {
 	padding: 3px 10px;
+}
+thead tr {
+	background: #016dc8;
+	color: white;
+}
+tbody {
+	font-weight: 400;
 }
 </style>

@@ -139,7 +139,7 @@
     <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
     {{-- <script src="{{ asset('material') }}/js/plugins/bootstrap-tagsinput.js"></script> --}}
     <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="{{ asset('material') }}/js/plugins/jasny-bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('material') }}/js/plugins/jasny-bootstrap.min.js"></script> --}}
     <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
     {{-- <script src="{{ asset('material') }}/js/plugins/fullcalendar.min.js"></script> --}}
     <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->

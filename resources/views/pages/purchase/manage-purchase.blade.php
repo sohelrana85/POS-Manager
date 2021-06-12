@@ -1,6 +1,9 @@
 @extends('layouts.app', ['activePage' => 'manage-purchase', 'titlePage' => __('Manage Purchase')])
 
 @section('content')
+@push('css')
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+@endpush
 <div class="content pt-0" id="app">
     <div class="container-fluid">
 		<div class="row justify-content-center">

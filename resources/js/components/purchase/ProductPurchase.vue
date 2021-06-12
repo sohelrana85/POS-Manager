@@ -87,7 +87,7 @@
 							</div> -->
 						</div>
 
-						<div class="form-row mt-5">
+						<div class="form-row mt-3">
 							<div class="form-group col-md-6">
 								<label for="product_name">Product Name *</label>
 								<select class="form-control" v-model="form.product_name">

@@ -1,6 +1,9 @@
 @extends('layouts.app', ['activePage' => 'manage-stock', 'titlePage' => __('Manage Stock')])
 
 @section('content')
+@push('css')
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+@endpush
 <div class="content pt-0" id="app">
     <div class="container-fluid">
 		<div class="row justify-content-center">
@@ -24,17 +27,4 @@
 	</div>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
-
-@push('js')
-{{-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> --}}
-<script src="{{asset('material')}}/js/jquery.dataTables.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable( {
-            "scrollX": true
-        } );
-    } );
-</script>
-@endpush
 @endsection

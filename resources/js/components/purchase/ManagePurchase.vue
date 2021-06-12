@@ -1,9 +1,9 @@
 <template>
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<div class="card">
+			<div class="card mt-0">
 				<div class="card-body">
-					<table id="example" class="" style="width: 100%">
+					<table id="example" class="cell-border hover stripe" style="width: 100%">
 						<thead>
 							<tr style="background: #016dc8; color: white">
 								<th>sl</th>
@@ -218,26 +218,7 @@
 import axios from "axios";
 export default {
 	data: () => ({
-		form: new Form({
-			// memo_no: "",
-			// memo_date: "",
-			// warehouse: "",
-			// supplier: "",
-			// purchase_status: "",
-			// product_name: "",
-			// product_qty: "",
-			// free_qty: "",
-			// unit_price: "",
-			// total_price: "",
-			// order_tax: "",
-			// order_discount: "",
-			// shipping_cost: "",
-			// payment_status: "",
-			// paid_amount: "",
-			// due_amount: "",
-			// payment_type: "",
-			// account: ""
-		}),
+		form: new Form({}),
 		AllPurchases: "",
 		viewState: false,
 		PurchaseData: ""
@@ -245,6 +226,7 @@ export default {
 	computed: {},
 	mounted() {
 		this.allPurchaseData();
+		this.jqeuryrun();
 	},
 	methods: {
 		allPurchaseData() {
@@ -297,15 +279,23 @@ export default {
 					});
 				}
 			});
+		},
+		jqeuryrun() {
+			$(document).ready(function() {
+				$("#example").DataTable();
+			});
 		}
 	}
 };
 </script>
 
 <style scoped>
+tbody {
+	font-weight: 400;
+}
 .stockadded td {
 	/* background: #ddd !important; */
-	color: #b3b3b3;
+	color: #30c100;
 }
 .modal th {
 	font-weight: 500;
