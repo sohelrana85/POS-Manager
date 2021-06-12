@@ -1,0 +1,98 @@
+[
+    {
+        "id": "1",
+        "user_id": "1",
+        "name": "Cooking",
+        "status": "1",
+        "created_at": "2021-05-31 08:53:42",
+        "updated_at": "2021-05-31 08:53:42"
+    },
+    {
+        "id": "2",
+        "user_id": "1",
+        "name": "Beverages",
+        "status": "1",
+        "created_at": "2021-05-31 08:53:46",
+        "updated_at": "2021-05-31 08:53:46"
+    },
+    {
+        "id": "5",
+        "user_id": "1",
+        "name": "Fruits and Vegetables",
+        "status": "1",
+        "created_at": "2021-06-07 10:21:51",
+        "updated_at": "2021-06-07 10:21:51"
+    },
+    {
+        "id": "6",
+        "user_id": "1",
+        "name": "Meat and Fish",
+        "status": "1",
+        "created_at": "2021-06-07 10:21:57",
+        "updated_at": "2021-06-07 10:21:57"
+    },
+    {
+        "id": "7",
+        "user_id": "1",
+        "name": "Home and Cleaning",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:06",
+        "updated_at": "2021-06-07 10:22:06"
+    },
+    {
+        "id": "8",
+        "user_id": "1",
+        "name": "Pest Control",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:14",
+        "updated_at": "2021-06-07 10:22:14"
+    },
+    {
+        "id": "9",
+        "user_id": "1",
+        "name": "Office Products",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:19",
+        "updated_at": "2021-06-07 10:22:19"
+    },
+    {
+        "id": "10",
+        "user_id": "1",
+        "name": "Beauty Products",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:25",
+        "updated_at": "2021-06-07 10:22:25"
+    },
+    {
+        "id": "11",
+        "user_id": "1",
+        "name": "Health Products",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:31",
+        "updated_at": "2021-06-07 10:22:31"
+    },
+    {
+        "id": "12",
+        "user_id": "1",
+        "name": "Pet care",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:36",
+        "updated_at": "2021-06-07 10:22:36"
+    },
+    {
+        "id": "13",
+        "user_id": "1",
+        "name": "Home Appliances",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:44",
+        "updated_at": "2021-06-07 10:22:44"
+    },
+    {
+        "id": "14",
+        "user_id": "1",
+        "name": "Baby Care",
+        "status": "1",
+        "created_at": "2021-06-07 10:22:50",
+        "updated_at": "2021-06-07 10:22:50"
+    }
+]
