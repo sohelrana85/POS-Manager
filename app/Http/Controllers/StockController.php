@@ -77,4 +77,8 @@ class StockController extends Controller
         });
         return $stock;
     }
+
+    public function search_data(Request $request){
+        return $request->all();
+    }
 }

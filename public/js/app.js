@@ -8565,6 +8565,12 @@ __webpack_require__.r(__webpack_exports__);
       $(document).ready(function () {
         $("#example").DataTable();
       });
+    },
+    nFormate: function nFormate(value) {
+      return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "BDT"
+      });
     }
   }
 });
@@ -14173,7 +14179,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ntbody[data-v-716705f9] {\n\tfont-weight: 400;\n}\n.stockadded td[data-v-716705f9] {\n\t/* background: #ddd !important; */\n\tcolor: #30c100;\n}\n.modal th[data-v-716705f9] {\n\tfont-weight: 500;\n\twidth: 110px;\n}\n.modal tr[data-v-716705f9] {\n\tpadding: 5px 0px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ntbody[data-v-716705f9] {\n\tfont-weight: 400;\n}\n.modal th[data-v-716705f9] {\n\tfont-weight: 500;\n\twidth: 110px;\n}\n.modal tr[data-v-716705f9] {\n\tpadding: 5px 0px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52976,7 +52982,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(purchase.product.product_name))]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "text-center fw-bold" }, [
+                      _c("td", { staticClass: "text-center" }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t\t\t" +
                             _vm._s(purchase.product_qty + purchase.free_qty) +
@@ -52984,11 +52990,11 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "text-center fw-bold" }, [
+                      _c("td", { staticClass: "text-center" }, [
                         _vm._v(_vm._s(purchase.unit_price))
                       ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "text-center fw-bold" }, [
+                      _c("td", { staticClass: "text-center" }, [
                         _vm._v(_vm._s(purchase.total_price))
                       ]),
                       _vm._v(" "),
@@ -53010,11 +53016,12 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", { staticClass: "text-center" }, [
-                        _c("i", {
-                          staticClass: "btn btn-sm btn-warning fa fa-edit",
-                          class: purchase.status == 1 ? "disabled" : "",
-                          staticStyle: { padding: "3px 11px" }
-                        }),
+                        purchase.status == 0
+                          ? _c("i", {
+                              staticClass: "btn btn-sm btn-warning fa fa-edit",
+                              staticStyle: { padding: "3px 11px" }
+                            })
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("i", {
                           staticClass: "btn btn-sm btn-info fa fa-eye",
@@ -57625,7 +57632,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [_vm._v(_vm._s(_vm.sumTotalQty))]),
                   _vm._v(" "),
-                  _c("th", [_vm._v(_vm._s(_vm.sumTotalValue))])
+                  _c("th", [_vm._v(_vm._s(_vm.nFormate(_vm.sumTotalValue)))])
                 ])
               ])
             ]

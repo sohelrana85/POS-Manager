@@ -44,11 +44,11 @@
 								<td>{{ purchase.product.product_name }}</td>
 								<!-- <td>{{ purchase.product_qty }}</td> -->
 								<!-- <td>{{ purchase.free_qty }}</td> -->
-								<td class="text-center fw-bold">
+								<td class="text-center">
 									{{ purchase.product_qty + purchase.free_qty }}
 								</td>
-								<td class="text-center fw-bold">{{ purchase.unit_price }}</td>
-								<td class="text-center fw-bold">{{ purchase.total_price }}</td>
+								<td class="text-center">{{ purchase.unit_price }}</td>
+								<td class="text-center">{{ purchase.total_price }}</td>
 								<!-- <td>{{ purchase.order_tax }}</td> -->
 								<!-- <td>{{ purchase.order_discount }}</td> -->
 								<!-- <td>{{ purchase.shipping_cost }}</td> -->
@@ -60,7 +60,7 @@
 								<td class="text-center">
 									<i
 										class="btn btn-sm btn-warning fa fa-edit"
-										:class="purchase.status == 1 ? 'disabled' : ''"
+										v-if="purchase.status == 0"
 										style="padding: 3px 11px"
 									></i>
 									<i
@@ -292,10 +292,6 @@ export default {
 <style scoped>
 tbody {
 	font-weight: 400;
-}
-.stockadded td {
-	/* background: #ddd !important; */
-	color: #30c100;
 }
 .modal th {
 	font-weight: 500;

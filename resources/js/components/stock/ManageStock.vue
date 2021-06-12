@@ -26,7 +26,7 @@
 							<tr class="text-end">
 								<th colspan="3">Total =</th>
 								<th>{{ sumTotalQty }}</th>
-								<th>{{ sumTotalValue }}</th>
+								<th>{{ nFormate(sumTotalValue) }}</th>
 							</tr>
 						</tfoot>
 					</table>
@@ -67,6 +67,12 @@ export default {
 		jqeuryrun() {
 			$(document).ready(function() {
 				$("#example").DataTable();
+			});
+		},
+		nFormate(value) {
+			return value.toLocaleString("en-US", {
+				style: "currency",
+				currency: "BDT"
 			});
 		}
 	}
