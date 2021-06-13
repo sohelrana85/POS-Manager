@@ -226,7 +226,6 @@ export default {
 	computed: {},
 	mounted() {
 		this.allPurchaseData();
-		this.jqeuryrun();
 	},
 	methods: {
 		allPurchaseData() {
@@ -279,12 +278,12 @@ export default {
 					});
 				}
 			});
-		},
-		jqeuryrun() {
-			$(document).ready(function() {
-				$("#example").DataTable();
-			});
 		}
+		// jqeuryrun() {
+		// 	$(document).ready(function() {
+		// 		$("#example").DataTable();
+		// 	});
+		// }
 	}
 };
 </script>

@@ -6050,7 +6050,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   mounted: function mounted() {
     this.allPurchaseData();
-    this.jqeuryrun();
   },
   methods: {
     allPurchaseData: function allPurchaseData() {
@@ -6107,12 +6106,12 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-    },
-    jqeuryrun: function jqeuryrun() {
-      $(document).ready(function () {
-        $("#example").DataTable();
-      });
-    }
+    } // jqeuryrun() {
+    // 	$(document).ready(function() {
+    // 		$("#example").DataTable();
+    // 	});
+    // }
+
   }
 });
 
@@ -8542,7 +8541,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   mounted: function mounted() {
     this.allStockData();
-    this.jqeuryrun();
   },
   methods: {
     allStockData: function allStockData() {
@@ -8559,11 +8557,6 @@ __webpack_require__.r(__webpack_exports__);
           _this.sumTotalQty = Number($qty);
           _this.sumTotalValue = Number($value);
         });
-      });
-    },
-    jqeuryrun: function jqeuryrun() {
-      $(document).ready(function () {
-        $("#example").DataTable();
       });
     },
     nFormate: function nFormate(value) {

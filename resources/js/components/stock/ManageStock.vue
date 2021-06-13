@@ -47,7 +47,6 @@ export default {
 	computed: {},
 	mounted() {
 		this.allStockData();
-		this.jqeuryrun();
 	},
 	methods: {
 		allStockData() {
@@ -62,11 +61,6 @@ export default {
 					this.sumTotalQty = Number($qty);
 					this.sumTotalValue = Number($value);
 				});
-			});
-		},
-		jqeuryrun() {
-			$(document).ready(function() {
-				$("#example").DataTable();
 			});
 		},
 		nFormate(value) {
