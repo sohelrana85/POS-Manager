@@ -70,6 +70,14 @@ Vue.component(
     "ManageStock",
     require("./components/stock/ManageStock.vue").default
 );
+Vue.component(
+    "ProductSell",
+    require("./components/sell/ProductSell.vue").default
+);
+Vue.component(
+    "ManageSell",
+    require("./components/sell/ManageSell.vue").default
+);
 
 const app = new Vue({
     el: "#app",

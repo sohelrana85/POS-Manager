@@ -167,26 +167,32 @@
             </li>
 
 
-            <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'product-sell'|| $activePage == 'manage-sell') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#sell" aria-expanded="false">
                     <i class="fas fa-shopping-cart"></i>
                     <p>Sell
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'sell-product')  ? ' show' : '' }}" id="sell">
+                <div class="collapse {{ ($activePage == 'product-sell' || $activePage == 'manage-sell')  ? ' show' : '' }}" id="sell">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('sell.product') }}">
+                        <li class="nav-item{{ $activePage == 'product-sell' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('product.sell') }}">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Sell Product</span>
+                                <span class="sidebar-normal">Product Sell</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'manage-sell' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('manage.sell') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Manage Sell</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-            <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
+            {{-- <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#expense" aria-expanded="false">
                     <i class="fas fa-dollar-sign"></i>
                     <p>Expense
@@ -271,7 +277,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
             <hr>
 

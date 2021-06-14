@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\BankAccount;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\PackageSize;
 use App\Models\PaymentStatus;
 use App\Models\PaymentType;
 use App\Models\Product;
+use App\Models\ProductSell;
 use App\Models\PurchaseStatus;
-use App\Models\PurchaseType;
 use App\Models\Supplier;
 use App\Models\UnitType;
 use App\Models\Warehouse;
@@ -90,6 +91,22 @@ class HelperController extends Controller
         $bank_account = BankAccount::all();
         return response()->json([
             'bank_accounts' => $bank_account
+        ]);
+    }
+
+    //get last invoice no
+    public function get_last_invoice_no(){
+        $last_invoice_no = ProductSell::all()->pluck('invoice_no')->last();
+        return response()->json([
+            'last_invoice_no' => $last_invoice_no
+        ]);
+    }
+
+    //Get Customers
+    public function get_customers() {
+        $customers = Customer::select('id','name')->get();
+        return response()->json([
+            'customers' => $customers
         ]);
     }
 }

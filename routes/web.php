@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Helper\HelperController;
 use App\Http\Controllers\PackageSizeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductSellController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseTypeController;
 use App\Http\Controllers\StockController;
@@ -108,8 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('Purchase')->group(function(){
         Route::get('Product-Purchase', function(){ return view('pages.purchase.product-purchase'); })->name('product.purchase');
         Route::get('Manage-Purchase', function(){ return view('pages.purchase.manage-purchase'); })->name('manage.purchase');
+        Route::get('print-barcode', function(){ return view('pages.product.print-barcode'); })->name('print.barcode');
         Route::resource('/Purchase', PurchaseController::class);
-
 
     });
     #Stock
@@ -121,11 +122,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('Get-All-Stock', [StockController::class, 'get_all_stock']);
     });
 
-        Route::get('print-barcode', function(){ return view('pages.product.print-barcode'); })->name('print.barcode');
-
     #sell
     Route::prefix('Product')->group(function(){
-        Route::get('Sell-Product', function(){ return view('pages.sell.sell-product'); })->name('sell.product');
+        Route::get('Product-Sell', function(){ return view('pages.sell.product-sell'); })->name('product.sell');
+        Route::get('Manage-Sell', function(){ return view('pages.sell.manage-sell'); })->name('manage.sell');
+        Route::resource('Sell', ProductSellController::class);
 
     });
 
@@ -143,6 +144,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getPurchaseType', [HelperController::class, 'get_purchase_type']);
     Route::get('/getProducts', [HelperController::class, 'get_products']);
     Route::get('/getBankAccounts', [HelperController::class, 'get_bank_account']);
+    //sell product
+    Route::get('/Get-Last-Invoice-No', [HelperController::class, 'get_last_invoice_no']);
+    Route::get('/getCustomers', [HelperController::class, 'get_customers']);
+    Route::get('/Product-Search/{value}', [HelperController::class, 'product_search']);
 
 });
 
