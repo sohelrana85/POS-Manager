@@ -192,32 +192,38 @@
                 </div>
             </li>
 
-            {{-- <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'add-type' || $activePage == 'manage-expense' || $activePage == 'expense-statement') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#expense" aria-expanded="false">
                     <i class="fas fa-dollar-sign"></i>
                     <p>Expense
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'sell-product')  ? ' show' : '' }}" id="expense">
+                <div class="collapse {{ ($activePage == 'manage-type' || $activePage == 'manage-expense' || $activePage == 'expense-statement')  ? ' show' : '' }}" id="expense">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
+                        <li class="nav-item{{ $activePage == 'manage-type' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{route('manage.type')}}">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Add Expense</span>
+                                <span class="sidebar-normal">Manage Type</span>
                             </a>
                         </li>
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
+                        <li class="nav-item{{ $activePage == 'manage-expense' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{route('manage.expense')}}">
                                 <i class="fas fa-minus"></i>
                                 <span class="sidebar-normal">Manage Expense</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'expense-statement' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{route('expense.statement')}}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Expense Statement</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-            <li class="nav-item {{ ($activePage == 'bank-account') ? ' active' : '' }}">
+            {{-- <li class="nav-item {{ ($activePage == 'bank-account') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#bank" aria-expanded="false">
                     <i class="fas fa-university"></i>
                     <p>Bank

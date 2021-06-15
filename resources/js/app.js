@@ -78,6 +78,14 @@ Vue.component(
     "ManageSell",
     require("./components/sell/ManageSell.vue").default
 );
+Vue.component(
+    "ManageType",
+    require("./components/expense/ManageType.vue").default
+);
+Vue.component(
+    "ManageExpense",
+    require("./components/expense/ManageExpense.vue").default
+);
 
 const app = new Vue({
     el: "#app",

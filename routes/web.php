@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\Helper\HelperController;
 use App\Http\Controllers\PackageSizeController;
 use App\Http\Controllers\ProductController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\PurchaseTypeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitTypeController;
+use App\Models\ExpenseType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -127,6 +129,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('Product-Sell', function(){ return view('pages.sell.product-sell'); })->name('product.sell');
         Route::get('Manage-Sell', function(){ return view('pages.sell.manage-sell'); })->name('manage.sell');
         Route::resource('Sell', ProductSellController::class);
+
+    });
+    #expense
+    Route::prefix('Expense')->group(function(){
+        Route::get('Manage-Type', function(){ return view('pages.expense.manage-type'); })->name('manage.type');
+        Route::resource('Type', ExpenseTypeController::class);
+
+        Route::get('Manage-Expense', function(){ return view('pages.expense.manage-expense'); })->name('manage.expense');
+        Route::get('Expense-Statement', function(){ return view('pages.expense.expense-statement'); })->name('expense.statement');
+        // Route::resource('Expense', ProductSellController::class);
 
     });
 

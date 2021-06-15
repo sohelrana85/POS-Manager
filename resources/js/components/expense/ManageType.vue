@@ -11,29 +11,28 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Manage Package Size</h4>
+						<h4 class="card-title m-0 pt-2">Manage Type</h4>
 						<button @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
+						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
 						<table class="table table-bordered table-striped table-hover">
 							<thead>
 								<tr class="">
 									<th>Sl</th>
-									<th>Unit Name</th>
-									<th>Package Name</th>
+									<th>Type Name</th>
 									<th>status</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="(packageSize, index) in allPackageSize.data" :key="index">
-									<td>{{ packageSize.id }}</td>
-									<td>{{ packageSize.unit_types.name }}</td>
-									<td>{{ packageSize.name }}</td>
-									<td>{{ packageSize.status ? "Active" : "Inactive" }}</td>
+								<tr v-for="(expenseType, index) in allExpenseType.data" :key="index">
+									<td>{{ expenseType.id }}</td>
+									<td>{{ expenseType.expense_type }}</td>
+									<td>{{ expenseType.status ? "Active" : "Inactive" }}</td>
 									<td class="td-actions">
 										<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
@@ -42,7 +41,7 @@
 											type="button"
 											class="btn btn-success"
 											@click="
-												editPackageSize(packageSize);
+												editExpenseType(expenseType);
 												updateModal = true;
 											"
 										>
@@ -51,7 +50,7 @@
 										<button
 											type="button"
 											class="btn btn-danger"
-											@click="deletePackageSize(packageSize.id)"
+											@click="deleteExpenseType(expenseType.id)"
 										>
 											<i class="material-icons">close</i>
 										</button>
@@ -62,47 +61,33 @@
 						<pagination
 							align="right"
 							:limit="2"
-							:data="allPackageSize"
-							@pagination-change-page="getPackageSizes"
+							:data="allExpenseType"
+							@pagination-change-page="getExpenseTypes"
 						></pagination>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Add packageSize model -->
+		<!-- Add Type model -->
 		<div v-if="addModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Package Size</h5>
+							<h5 class="modal-title">Add Expense Type</h5>
 						</div>
 						<div class="modal-body">
-							<form @submit.prevent="savePackageSize" class="m-0">
-								<div class="form-group mb-3">
-									<label for="name">Select Unit Type</label>
-									<select name="unit_type" class="form-control" v-model="form.unit_type">
-										<option value="">Select Unit Type</option>
-										<option
-											v-for="(item, index) in unitTypes"
-											:key="index"
-											:value="item.id"
-										>
-											{{ item.name }}
-										</option>
-									</select>
-									<HasError :form="form" field="unit_type" />
-								</div>
+							<form @submit.prevent="addExpenseType" class="m-0">
 								<div class="form-group">
-									<label for="name">Package Name</label>
+									<label for="expense_name">Expense Type</label>
 									<input
 										type="text"
 										class="form-control"
-										id="name"
-										v-model="form.name"
+										id="expense_name"
+										v-model="form.expense_name"
 									/>
-									<HasError :form="form" field="name" />
+									<HasError :form="form" field="expense_name" />
 								</div>
 
 								<div class="form-group">
@@ -144,7 +129,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save packageSize
+										Save Type
 									</button>
 								</div>
 							</form>
@@ -154,39 +139,25 @@
 			</div>
 		</div>
 
-		<!-- Edit packageSize model -->
+		<!-- Edit Type model -->
 		<div v-if="updateModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Package Size</h5>
+							<h5 class="modal-title">Update Expense Type</h5>
 						</div>
 						<div class="modal-body">
-							<form @submit.prevent="updatePackageSize" class="m-0">
-								<div class="form-group mb-3">
-									<label for="name">Select Unit Type</label>
-									<select name="unit_type" class="form-control" v-model="form.unit_type">
-										<option value="">Select Unit Type</option>
-										<option
-											v-for="(item, index) in unitTypes"
-											:key="index"
-											:value="item.id"
-										>
-											{{ item.name }}
-										</option>
-									</select>
-									<HasError :form="form" field="unit_type" />
-								</div>
+							<form @submit.prevent="updateExpenseType" class="m-0">
 								<div class="form-group">
-									<label for="name">Package Name</label>
+									<label for="expense_name">Expense Type</label>
 									<input
 										type="text"
 										class="form-control"
-										id="name"
-										v-model="form.name"
+										id="expense_name"
+										v-model="form.expense_name"
 									/>
-									<HasError :form="form" field="name" />
+									<HasError :form="form" field="expense_name" />
 								</div>
 								<div class="form-group">
 									<label>Status</label>
@@ -242,41 +213,38 @@
 
 <script>
 export default {
-	name: "packageSize",
+	name: "unitType",
 	data: () => ({
 		form: new Form({
 			id: "",
-			unit_type: "",
-			name: "",
+			expense_name: "",
 			status: ""
 		}),
 		addModal: false,
 		updateModal: false,
-		allPackageSize: {},
-		unitTypes: []
+		allExpenseType: {}
 	}),
 	mounted() {
-		this.loadUnitTypes();
-		this.getPackageSizes();
+		this.getExpenseTypes();
 	},
 	methods: {
-		getPackageSizes(page = 1) {
-			axios.get("Package-Sizes?page=" + page).then(response => {
-				this.allPackageSize = response.data;
+		getExpenseTypes(page = 1) {
+			axios.get("Type?page=" + page).then(response => {
+				this.allExpenseType = response.data;
 			});
 		},
-		savePackageSize() {
-			this.form.post("Package-Sizes").then(res => {
+		addExpenseType() {
+			this.form.post("Type").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
-					this.getPackageSizes(this.allPackageSize.current_page);
+					this.getExpenseTypes(this.allExpenseType.current_page);
 				} else {
 					toastr.error(res.data.message);
 				}
 			});
 		},
-		deletePackageSize(id) {
+		deleteExpenseType(id) {
 			Swal.fire({
 				title: "Are you sure?",
 				text: "You won't be able to revert this!",
@@ -287,10 +255,10 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("Package-Sizes/" + id).then(res => {
+					axios.delete("Type/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
-							this.getPackageSizes(this.allPackageSize.current_page);
+							this.getExpenseTypes(this.allExpenseType.current_page);
 						} else {
 							toastr.error(res.data.message);
 						}
@@ -298,34 +266,28 @@ export default {
 				}
 			});
 		},
-		editPackageSize(packageSize) {
-			this.form.id = packageSize.id;
-			this.form.name = packageSize.name;
-			this.form.unit_type = packageSize.unit_id;
-			this.form.status = packageSize.status;
+		editExpenseType(expenseType) {
+			this.form.id = expenseType.id;
+			this.form.expense_name = expenseType.expense_type;
+			this.form.status = expenseType.status;
 		},
-		updatePackageSize() {
-			this.form.put("Package-Sizes/" + this.form.id).then(res => {
+		updateExpenseType() {
+			this.form.put("Type/" + this.form.id).then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
 					this.updateModal = false;
-					this.getPackageSizes(this.allPackageSize.current_page);
+					this.getExpenseTypes(this.allExpenseType.current_page);
 				} else {
 					toastr.error(res.data.message);
 				}
 			});
 		},
 		clearForm() {
-			(this.form.name = ""), (this.form.unit_type = ""), (this.form.status = "");
+			(this.form.expense_name = ""), (this.form.status = "");
 		},
 		clearError() {
 			this.form.errors.errors = "";
-		},
-		loadUnitTypes() {
-			axios.get("Unit-Type-Names").then(result => {
-				this.unitTypes = result.data.UnitType;
-			});
 		}
 	}
 };
@@ -345,5 +307,8 @@ thead {
 	background: #0088ff;
 	color: white;
 	/* font-weight: 600; */
+}
+input {
+	padding-left: 4px;
 }
 </style>
