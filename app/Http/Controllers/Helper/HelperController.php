@@ -7,6 +7,7 @@ use App\Models\BankAccount;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\ExpenseType;
 use App\Models\PackageSize;
 use App\Models\PaymentStatus;
 use App\Models\PaymentType;
@@ -107,6 +108,13 @@ class HelperController extends Controller
         $customers = Customer::select('id','name')->get();
         return response()->json([
             'customers' => $customers
+        ]);
+    }
+    //Get Expense Types
+    public function get_expense_type() {
+        $expense_type = ExpenseType::select('id','expense_type')->get();
+        return response()->json([
+            'expense_type' => $expense_type
         ]);
     }
 }

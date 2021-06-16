@@ -19,9 +19,10 @@ class CreateExpensesTable extends Migration
             $table->date('date');
             $table->unsignedBigInteger('expense_type');
             $table->enum('payment_status', ['Paid','Partial','Due']);
-            $table->unsignedBigInteger('payment_type');
-            $table->unsignedBigInteger('bank_account');
-            $table->decimal('amount',8,2);
+            $table->decimal('paid_amount',8,2)->nullable();
+            $table->decimal('due_amount',8,2)->nullable();
+            $table->unsignedBigInteger('payment_type')->nullable();
+            $table->unsignedBigInteger('bank_account')->nullable();
             $table->longText('remarks');
             $table->timestamps();
 

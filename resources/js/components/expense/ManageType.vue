@@ -213,7 +213,7 @@
 
 <script>
 export default {
-	name: "unitType",
+	name: "ManageType",
 	data: () => ({
 		form: new Form({
 			id: "",

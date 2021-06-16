@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ExpenseTypeController;
 use App\Http\Controllers\Helper\HelperController;
 use App\Http\Controllers\PackageSizeController;
@@ -137,8 +138,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('Type', ExpenseTypeController::class);
 
         Route::get('Manage-Expense', function(){ return view('pages.expense.manage-expense'); })->name('manage.expense');
+        Route::resource('Expense', ExpenseController::class);
         Route::get('Expense-Statement', function(){ return view('pages.expense.expense-statement'); })->name('expense.statement');
-        // Route::resource('Expense', ProductSellController::class);
 
     });
 
@@ -151,15 +152,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getWarehouse', [HelperController::class, 'get_warehouse']);
     Route::get('/getSuppliers', [HelperController::class, 'get_suppliers']);
     Route::get('/getPurchaseStatus', [HelperController::class, 'get_purchase_status']);
-    // Route::get('/getPaymentStatus', [HelperController::class, 'get_payment_status']);
+    #Route::get('/getPaymentStatus', [HelperController::class, 'get_payment_status']);
     Route::get('/getPaymentType', [HelperController::class, 'get_payment_type']);
     Route::get('/getPurchaseType', [HelperController::class, 'get_purchase_type']);
     Route::get('/getProducts', [HelperController::class, 'get_products']);
     Route::get('/getBankAccounts', [HelperController::class, 'get_bank_account']);
-    //sell product
+    #sell product
     Route::get('/Get-Last-Invoice-No', [HelperController::class, 'get_last_invoice_no']);
     Route::get('/getCustomers', [HelperController::class, 'get_customers']);
     Route::get('/Product-Search/{value}', [HelperController::class, 'product_search']);
+    Route::get('/Product-Search/{value}', [HelperController::class, 'product_search']);
+    #Expense
+    Route::get('/getExpenseType', [HelperController::class, 'get_expense_type']);
 
 });
 
