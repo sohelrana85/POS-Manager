@@ -1,0 +1,74 @@
+[
+    {
+        "id": "1",
+        "user_id": "1",
+        "business_name": "ACI Salt Ltd",
+        "name": "Sohel Rana",
+        "phone": "01700000001",
+        "email": "acisaltltd@gmail.com",
+        "address": "Mirpur, dhaka",
+        "status": "1",
+        "created_at": "2021-06-09 10:18:00",
+        "updated_at": "2021-06-09 10:18:00"
+    },
+    {
+        "id": "2",
+        "user_id": "1",
+        "business_name": "Modhumoti Salt Industris limited",
+        "name": "Abdullah",
+        "phone": "01700000002",
+        "email": "modhumoti@gmail.com",
+        "address": "Rampura, Dhaka, 61 Omor Ali Lane",
+        "status": "1",
+        "created_at": "2021-06-09 10:18:12",
+        "updated_at": "2021-06-09 10:18:12"
+    },
+    {
+        "id": "3",
+        "user_id": "1",
+        "business_name": "Karim Rice Agency",
+        "name": "Mr Karim",
+        "phone": "01700000003",
+        "email": "karim@gmail.com",
+        "address": "Mogbazar, Dhaka",
+        "status": "1",
+        "created_at": "2021-06-10 10:43:07",
+        "updated_at": "2021-06-10 10:43:07"
+    },
+    {
+        "id": "4",
+        "user_id": "1",
+        "business_name": "Ahmed Food And Beverage",
+        "name": "Ahmed Bulbul",
+        "phone": "01700000004",
+        "email": "ahmed@gmail.com",
+        "address": "Rampura, Dhaka, 61 Omor Ali Lane",
+        "status": "1",
+        "created_at": "2021-06-10 10:43:41",
+        "updated_at": "2021-06-10 10:43:41"
+    },
+    {
+        "id": "5",
+        "user_id": "1",
+        "business_name": "Shafiq Bread House",
+        "name": "Mr. Shafiqul Alam",
+        "phone": "01700000005",
+        "email": "shafiq@gmail.com",
+        "address": "Mirpur, dhaka",
+        "status": "1",
+        "created_at": "2021-06-10 10:44:22",
+        "updated_at": "2021-06-10 10:44:22"
+    },
+    {
+        "id": "6",
+        "user_id": "1",
+        "business_name": "Pran Food Industries",
+        "name": "Pran Food Industries",
+        "phone": "01700000006",
+        "email": "pran@gmail.com",
+        "address": "Middle Badda, Dhaka",
+        "status": "1",
+        "created_at": "2021-06-11 06:42:24",
+        "updated_at": "2021-06-11 06:42:24"
+    }
+]

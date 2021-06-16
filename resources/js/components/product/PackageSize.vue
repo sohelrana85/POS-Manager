@@ -323,8 +323,8 @@ export default {
 			this.form.errors.errors = "";
 		},
 		loadUnitTypes() {
-			axios.get("Unit-Type-Names").then(result => {
-				this.unitTypes = result.data.UnitType;
+			axios.get("/getUnitType").then(result => {
+				this.unitTypes = result.data.unit_type;
 			});
 		}
 	}

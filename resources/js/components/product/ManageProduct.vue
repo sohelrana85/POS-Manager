@@ -13,7 +13,7 @@
 						<th>Size</th>
 						<th>Price</th>
 						<th>VAT</th>
-						<th>Status</th>
+						<!-- <th>Status</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -34,9 +34,9 @@
 							{{ product.unit_selling_price }}
 						</td>
 						<td>{{ product.vat }}</td>
-						<td>
+						<!-- <td>
 							{{ product.status == 1 ? "Active" : "Inactive" }}
-						</td>
+						</td> -->
 						<td class="td-actions">
 							<!-- <button type="button" class="btn btn-info">
 							<i class="material-icons">person</i>

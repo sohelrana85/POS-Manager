@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call([PaymentStatusSeeder::class]);
         $this->call([WarehouseSeeder::class]);
         $this->call([ExpenseTypeSeeder::class]);
+        $this->call([SupplierSeeder::class]);
     }
 }

@@ -67,14 +67,14 @@
 
 @push('js')
 <script>
-    $('#navbarDropdownProfile').click(function(){
-        $('#prob').toggleClass('show');
-        $('#alert').removeClass('show');
-    })
-    $('#navbarDropdownMenuLink').click(function(){
-        $('#alert').toggleClass('show');
-        $('#prob').removeClass('show');
-    })
+    // $('#navbarDropdownProfile').click(function(){
+    //     $('#prob').toggleClass('show');
+    //     $('#alert').removeClass('show');
+    // })
+    // $('#navbarDropdownMenuLink').click(function(){
+    //     $('#alert').toggleClass('show');
+    //     $('#prob').removeClass('show');
+    // })
 </script>
 
 @endpush

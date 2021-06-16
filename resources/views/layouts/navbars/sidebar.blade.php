@@ -7,7 +7,7 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-                <a style="padding: 5px 18px;" class="nav-link" href="{{ route('home') }}">
+                <a style="padding: 5px 10px;" class="nav-link" href="{{ route('home') }}">
                     <i class="material-icons">dashboard</i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
@@ -162,7 +162,7 @@
                         <li class="nav-item{{ $activePage == 'add-stock' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('add.stock') }}">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Add Stock</span>
+                                <span class="sidebar-normal">Add To Stock</span>
                             </a>
                         </li>
                         <li class="nav-item{{ $activePage == 'manage-stock' ? ' active' : '' }}">

@@ -14888,7 +14888,7 @@ color: white;
 }
 
 .main-panel>.content {
-  margin-top: 70px;
+  margin-top: 50px;
   padding: 30px 15px;
   min-height: calc(100vh - 123px);
 }
@@ -18863,6 +18863,3 @@ Copyright (c) 2015 Daniel Eden
     margin-bottom: 0;
     list-style: none;
 }
-
-
-/*# sourceMappingURL=dashboard-free.css.map */

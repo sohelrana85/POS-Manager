@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UnitType;
+use App\Models\PaymentType;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UnitTypeController extends Controller
+class PaymentTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class UnitTypeController extends Controller
      */
     public function index()
     {
-        return UnitType::paginate(10);
+        return PaymentType::paginate(10);
     }
 
     /**
@@ -37,26 +37,25 @@ class UnitTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->id;
         $request->validate([
-            'name'   => 'required|unique:unit_types,name,' .$id,
+            'name'   => 'required|unique:payment_types',
             'status' => 'required|in:1,0',
         ]);
 
         try {
-            UnitType::create([
+            PaymentType::create([
                 'user_id' => Auth::id(),
                 'name'    => $request->name,
                 'status'  => $request->status,
             ]);
             return response()->json([
                 'status'  => '1',
-                'message' => 'Unit Save Success'
+                'message' => 'Data Save Success'
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => '0',
-                'message' => 'Unit Save Failed'
+                'message' => 'Data Save Failed'
             ]);
         }
     }
@@ -98,20 +97,20 @@ class UnitTypeController extends Controller
         ]);
 
         try {
-            $unit_type = UnitType::find($id);
+            $data = PaymentType::find($id);
 
-            $unit_type->name   = $request->name;
-            $unit_type->status = $request->status;
-            $unit_type->update();
+            $data->name   = $request->name;
+            $data->status = $request->status;
+            $data->update();
 
             return response()->json([
                 'status'  => '1',
-                'message' => 'Unit Update Success'
+                'message' => 'Data Update Success'
             ]);
         } catch (Exception $e) {
             return response()->json([
                 'status' => '0',
-                'message' => 'Unit Update Failed'
+                'message' => 'Date Update Failed'
             ]);
         }
     }
@@ -124,12 +123,11 @@ class UnitTypeController extends Controller
      */
     public function destroy($id)
     {
-        UnitType::find($id)->delete();
+        PaymentType::find($id)->delete();
 
         return response()->json([
             'status' => '1',
             'message' => 'Item Delete successfully'
         ]);
     }
-
 }

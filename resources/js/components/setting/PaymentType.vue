@@ -11,36 +11,37 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Manage Payment Types</h4>
+						<h4 class="card-title m-0 pt-2">Manage Payment Type</h4>
 						<button @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
+						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table">
+						<table class="table table-bordered table-striped table-hover">
 							<thead>
 								<tr class="">
-									<th class="text-center">#</th>
-									<th>Name</th>
+									<th>Sl</th>
+									<th>Unit Name</th>
 									<th>status</th>
-									<th class="text-right">Actions</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="(purchaseType, index) in allPurchaseType.data" :key="index">
-									<td class="text-center">{{ purchaseType.id }}</td>
-									<td>{{ purchaseType.name }}</td>
-									<td>{{ purchaseType.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions text-right">
-										<button type="button" class="btn btn-info">
+								<tr v-for="(pType, index) in allPaymentType.data" :key="index">
+									<td>{{ pType.id }}</td>
+									<td>{{ pType.name }}</td>
+									<td>{{ pType.status ? "Active" : "Inactive" }}</td>
+									<td class="td-actions">
+										<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
-										</button>
+										</button> -->
 										<button
 											type="button"
 											class="btn btn-success"
 											@click="
-												editPurchaseType(purchaseType);
+												editPaymentType(pType);
 												updateModal = true;
 											"
 										>
@@ -49,7 +50,7 @@
 										<button
 											type="button"
 											class="btn btn-danger"
-											@click="deletePurchaseType(purchaseType.id)"
+											@click="deletePaymentType(pType.id)"
 										>
 											<i class="material-icons">close</i>
 										</button>
@@ -60,26 +61,26 @@
 						<pagination
 							align="right"
 							:limit="2"
-							:data="allPurchaseType"
-							@pagination-change-page="getPurchaseTypes"
+							:data="allUnitType"
+							@pagination-change-page="getUnitTypes"
 						></pagination>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Add purchaseType model -->
+		<!-- Add unitType model -->
 		<div v-if="addModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Payment Types</h5>
+							<h5 class="modal-title">Add Payment Type</h5>
 						</div>
 						<div class="modal-body">
-							<form @submit.prevent="savepurchaseType" class="m-0">
+							<form @submit.prevent="savePaymentType" class="m-0">
 								<div class="form-group">
-									<label for="name">Payment Type Name</label>
+									<label for="name">Payment Type</label>
 									<input
 										type="text"
 										class="form-control"
@@ -138,18 +139,18 @@
 			</div>
 		</div>
 
-		<!-- Edit purchaseType model -->
+		<!-- Edit unitType model -->
 		<div v-if="updateModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Purchase Types</h5>
+							<h5 class="modal-title">Update Payment Type</h5>
 						</div>
 						<div class="modal-body">
-							<form @submit.prevent="updatepurchaseType" class="m-0">
+							<form @submit.prevent="updatePaymentType" class="m-0">
 								<div class="form-group">
-									<label for="name">Purchase Type Name</label>
+									<label for="name">Payment Type</label>
 									<input
 										type="text"
 										class="form-control"
@@ -212,7 +213,7 @@
 
 <script>
 export default {
-	name: "purchaseType",
+	name: "unitType",
 	data: () => ({
 		form: new Form({
 			id: "",
@@ -221,29 +222,29 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allPurchaseType: {}
+		allPaymentType: {}
 	}),
 	mounted() {
-		this.getPurchaseTypes();
+		this.getPaymentTypes();
 	},
 	methods: {
-		getPurchaseTypes(page = 1) {
-			axios.get("Purchase-Types?page=" + page).then(response => {
-				this.allPurchaseType = response.data;
+		getPaymentTypes(page = 1) {
+			axios.get("pType?page=" + page).then(response => {
+				this.allPaymentType = response.data;
 			});
 		},
-		savepurchaseType() {
-			this.form.post("Purchase-Types").then(res => {
+		savePaymentType() {
+			this.form.post("pType").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
-					this.getPurchaseTypes(this.allPurchaseType.current_page);
+					this.getPaymentTypes(this.allPaymentType.current_page);
 				} else {
 					toastr.error(res.data.message);
 				}
 			});
 		},
-		deletePurchaseType(id) {
+		deletePaymentType(id) {
 			Swal.fire({
 				title: "Are you sure?",
 				text: "You won't be able to revert this!",
@@ -254,10 +255,10 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("Purchase-Types/" + id).then(res => {
+					axios.delete("pType/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
-							this.getPurchaseTypes(this.allPurchaseType.current_page);
+							this.getPaymentTypes(this.allPaymentType.current_page);
 						} else {
 							toastr.error(res.data.message);
 						}
@@ -265,18 +266,18 @@ export default {
 				}
 			});
 		},
-		editPurchaseType(purchaseType) {
-			this.form.id = purchaseType.id;
-			this.form.name = purchaseType.name;
-			this.form.status = purchaseType.status;
+		editPaymentType(data) {
+			this.form.id = data.id;
+			this.form.name = data.name;
+			this.form.status = data.status;
 		},
-		updatepurchaseType() {
-			this.form.put("Purchase-Types/" + this.form.id).then(res => {
+		updatePaymentType() {
+			this.form.put("pType/" + this.form.id).then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
 					this.updateModal = false;
-					this.getPurchaseTypes(this.allPurchaseType.current_page);
+					this.getPaymentTypes(this.allPaymentType.current_page);
 				} else {
 					toastr.error(res.data.message);
 				}
@@ -291,3 +292,20 @@ export default {
 	}
 };
 </script>
+<style scoped>
+thead tr th {
+	padding: 5px;
+}
+tbody tr td {
+	padding: 3px;
+}
+table {
+	text-align: center;
+	font-weight: normal;
+}
+thead {
+	background: #0088ff;
+	color: white;
+	/* font-weight: 600; */
+}
+</style>

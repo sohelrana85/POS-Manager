@@ -3,24 +3,21 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-    </div>
-    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
+                            {{-- <i class="material-icons">content_copy</i> --}}
+                            <i class="fas fa-money-bill-alt"></i>
                         </div>
-                        <p class="card-category">Used Space</p>
-                        <h3 class="card-title">49/50
-                            <small>GB</small>
-                        </h3>
+                        <p class="card-category">Total Purchase</p>
+                        <h3 class="card-title">&#2547; {{ $purchase_total }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="#pablo">Get More Space...</a>
+                            <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
+                            <a href="{{route('manage.purchase')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -29,14 +26,16 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            {{-- <i class="material-icons">store</i> --}}
+                            <i class="fas fa-shopping-cart"></i>
                         </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
+                        <p class="card-category">Total Sell</p>
+                        <h3 class="card-title">&#2547; {{$sell_total}}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
+                            <a href="{{route('manage.sell')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -47,12 +46,13 @@
                         <div class="card-icon">
                             <i class="material-icons">info_outline</i>
                         </div>
-                        <p class="card-category">Fixed Issues</p>
-                        <h3 class="card-title">75</h3>
+                        <p class="card-category">Purchase Due</p>
+                        <h3 class="card-title">&#2547; {{$due_total}}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
+                            <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
+                            <a href="{{route('manage.purchase')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -61,14 +61,16 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
-                            <i class="fab fa-twitter"></i>
+                            {{-- <i class="fab fa-twitter"></i> --}}
+                            <i class="fas fa-file-invoice-dollar"></i>
                         </div>
-                        <p class="card-category">Followers</p>
-                        <h3 class="card-title">+245</h3>
+                        <p class="card-category">Invoice Due</p>
+                        <h3 class="card-title">&#2547; {{ $sell_due}}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
+                            <a href="{{route('manage.sell')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -424,7 +426,7 @@
 <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+    //   md.initDashboardPageCharts();
     });
 </script>
 @endpush
