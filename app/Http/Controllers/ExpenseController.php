@@ -17,8 +17,16 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('expense','pType','bAccount')->select('id','date','expense_type','payment_status','paid_amount','due_amount','payment_type','bank_account','remarks');
-        return DataTables($expenses)->make(true);
+        //server side processing
+
+        // $expenses = Expense::with('expense','pType','bAccount')->select('id','date','expense_type','payment_status','paid_amount','due_amount','payment_type','bank_account','remarks');
+        // return DataTables($expenses)->make(true);
+
+        $expenses = Expense::with('expense','pType','bAccount')->select('id','date','expense_type','payment_status','paid_amount','due_amount','payment_type','bank_account','remarks')->get();
+        return response()->json([
+            'expenses' => $expenses
+        ]);
+
     }
 
     /**

@@ -21,7 +21,7 @@
 					<div class="card-body">
 						<table class="table table-bordered table-striped table-hover">
 							<thead>
-								<tr class="">
+								<tr>
 									<th>Sl</th>
 									<th>Name</th>
 									<th>status</th>

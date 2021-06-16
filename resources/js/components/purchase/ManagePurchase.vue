@@ -5,7 +5,7 @@
 				<div class="card-body">
 					<table id="example" class="cell-border hover stripe" style="width: 100%">
 						<thead>
-							<tr style="background: #016dc8; color: white">
+							<tr>
 								<th>sl</th>
 								<th>Memo No</th>
 								<!-- <th>Memo Date</th> -->
@@ -53,21 +53,35 @@
 								<!-- <td>{{ purchase.order_discount }}</td> -->
 								<!-- <td>{{ purchase.shipping_cost }}</td> -->
 								<td class="text-center">
-									<span class="badge p-1" :class="badgeState(purchase.payment_status)">
+									<span :class="badgeState(purchase.payment_status)">
 										{{ purchase.payment_status }}
 									</span>
 								</td>
 								<td class="text-center">
-									<i
+									<!-- <i
 										class="btn btn-sm btn-warning fa fa-edit"
 										v-if="purchase.status == 0"
 										style="padding: 3px 11px"
-									></i>
-									<i
+									></i> -->
+									<!-- <i
 										@click="viewPurchase(purchase)"
 										class="btn btn-sm btn-info fa fa-eye"
 										style="padding: 3px 11px"
-									></i>
+									></i> -->
+									<button
+										@click="viewPurchase(purchase)"
+										type="button"
+										class="btn btn-info p-1"
+									>
+										<i class="material-icons">person</i>
+									</button>
+									<button
+										v-if="purchase.status == 0"
+										type="button"
+										class="btn btn-success p-1"
+									>
+										<i class="material-icons">edit</i>
+									</button>
 								</td>
 								<!-- <td>{{ purchase.due_amount ?? "" }}</td>
 								<td>{{ purchase.payment_type.name ?? "" }}</td>
@@ -242,11 +256,11 @@ export default {
 		},
 		badgeState(status) {
 			if (status == "Due") {
-				return "badge-danger";
+				return "text-danger";
 			} else if (status == "Paid") {
-				return "badge-success";
+				return "";
 			} else {
-				return "badge-warning";
+				return "text-warning";
 			}
 		},
 		viewPurchase(data) {
@@ -298,5 +312,13 @@ tbody {
 }
 .modal tr {
 	padding: 5px 0px;
+}
+.dataTable > thead > tr > th,
+.dataTable > tbody > tr > th,
+.dataTable > tfoot > tr > th,
+.dataTable > thead > tr > td,
+.dataTable > tbody > tr > td,
+.dataTable > tfoot > tr > td {
+	padding: 1px 5px !important;
 }
 </style>

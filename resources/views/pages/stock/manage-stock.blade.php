@@ -2,7 +2,7 @@
 
 @section('content')
 @push('css')
-    <link rel="stylesheet" href="{{ asset('material') }}/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 @endpush
 <div class="content pt-0" id="app">
     <div class="container-fluid">
@@ -26,6 +26,9 @@
 		</div>
 	</div>
 </div>
+
+
+
 <script src="{{ asset('js/app.js') }}"></script>
 @endsection
 
@@ -33,6 +36,7 @@
 <script>
     $(document).ready(function() {
 	    $("#example").DataTable({
+            scrollX: true
         //    dom: 'Bfrtip',
         //     buttons: [
         //     'colvis',

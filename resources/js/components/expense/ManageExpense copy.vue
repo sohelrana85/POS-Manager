@@ -16,209 +16,41 @@
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
+						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
-					<div class="row justify-content-center">
-						<div class="col-md-12">
-							<div class="card mt-0">
-								<div class="card-body">
-									<table
-										id="example"
-										class="cell-border hover stripe nowrap"
-										style="width: 100%"
-									>
-										<thead>
-											<tr class="text-center">
-												<th>id</th>
-												<th>Date</th>
-												<th>Expense Type</th>
-												<th>Status</th>
-												<th>Paid</th>
-												<th>Due</th>
-												<th>Pay. Type</th>
-												<th>Bank</th>
-												<th>Remarks</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr
-												v-for="(expense, index) in AllExpenses"
-												:key="index"
-												:class="expense.status == 1 ? 'stockadded' : ''"
-											>
-												<td>{{ ++index }}</td>
-												<td>{{ expense.date }}</td>
-												<td>{{ expense.expense.expense_type }}</td>
-												<td>{{ expense.payment_status }}</td>
-												<td class="text-end">{{ expense.paid_amount }}</td>
-												<td class="text-end">{{ expense.due_amount }}</td>
-												<td>{{ expense.p_type ? expense.p_type.name : "" }}</td>
-												<td>{{ expense.b_account ? expense.b_account.bank_name : "" }}</td>
-												<td>{{ expense.remarks }}</td>
-												<td class="text-center">
-													<button type="button" class="btn btn-info p-1">
-														<i class="material-icons">person</i>
-													</button>
-													<button type="button" class="btn btn-success p-1">
-														<i class="material-icons">edit</i>
-													</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-
-						<!-- View Purchase -->
-						<!-- <div v-if="viewState">
-			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content px-3 py-0">
-						<div class="modal-header bg-primary">
-							<h5 class="modal-title text-light fw-bold fs-4">View Purchase</h5>
-						</div>
-						<div class="modal-body">
-							<div class="row">
-								<div class="col-md-6">
-									<table>
-										<tr>
-											<th>Memo No</th>
-											<td>: {{ PurchaseData.memo_no }}</td>
-										</tr>
-										<tr>
-											<th>Memo Date</th>
-											<td>: {{ PurchaseData.memo_date }}</td>
-										</tr>
-										<tr>
-											<th>Ware House</th>
-											<td>: {{ PurchaseData.warehouse.name }}</td>
-										</tr>
-									</table>
-								</div>
-								<div class="col-md-6">
-									<table>
-										<tr>
-											<th>Supplier</th>
-											<td>: {{ PurchaseData.supplier.business_name }}</td>
-										</tr>
-										<tr>
-											<th>Purchase Status</th>
-											<td>: {{ PurchaseData.purchase_status.name }}</td>
-										</tr>
-										<tr>
-											<th>Product Name</th>
-											<td>: {{ PurchaseData.product.product_name }}</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="row mt-4">
-								<div class="col-md-6">
-									<table>
-										<tr>
-											<th>Product Qty</th>
-											<td>: {{ PurchaseData.product_qty }}</td>
-										</tr>
-										<tr>
-											<th>Free Qty</th>
-											<td>: {{ PurchaseData.free_qty }}</td>
-										</tr>
-										<tr>
-											<th>Unit Price</th>
-											<td>: {{ PurchaseData.unit_price }}</td>
-										</tr>
-									</table>
-								</div>
-								<div class="col-md-6">
-									<table>
-										<tr>
-											<th>Order Tax</th>
-											<td>: {{ PurchaseData.order_tax }}</td>
-										</tr>
-										<tr>
-											<th>Order Discount</th>
-											<td>: {{ PurchaseData.order_discount }}</td>
-										</tr>
-										<tr>
-											<th>Shipping Cost</th>
-											<td>: {{ PurchaseData.shipping_cost }}</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="row mt-4">
-								<div class="col-md-6">
-									<tr>
-										<th>Paid Amount</th>
-										<td>
-											: {{ PurchaseData.paid_amount ? PurchaseData.paid_amount : "0" }}
-										</td>
-									</tr>
-									<tr>
-										<th>Due Amount</th>
-										<td>
-											: {{ PurchaseData.due_amount ? PurchaseData.due_amount : "0" }}
-										</td>
-									</tr>
-								</div>
-								<div class="col-md-6">
-									<tr>
-										<th>Payment Type</th>
-										<td>
-											:
-											{{ PurchaseData.payment_type ? PurchaseData.payment_type.name : "" }}
-										</td>
-									</tr>
-									<tr>
-										<th>Account</th>
-										<td>
-											:
-											{{
-												PurchaseData.bank_account ? PurchaseData.bank_account.bank_name : ""
-											}}
-										</td>
-									</tr>
-								</div>
-							</div>
-							<div class="row mt-4 fw-bold">
-								<div class="col-md-6">
-									<tr>
-										<th>Total Amount</th>
-										<td>: {{ PurchaseData.total_price }}</td>
-									</tr>
-								</div>
-								<div class="col-md-6">
-									<tr>
-										<th>Payment Status</th>
-										<td>: {{ PurchaseData.payment_status }}</td>
-									</tr>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-danger" @click="viewState = false">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
+					<div class="card-body">
+						<table id="myTable" class="cell-border hover">
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>Date</th>
+									<th>Expense Type</th>
+									<th>Status</th>
+									<th>Paid</th>
+									<th>Due</th>
+									<th>Pay. Type</th>
+									<th>Bank</th>
+									<th>Remarks</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- Add Expense model -->
+		<!-- Add Type model -->
 		<div v-if="addModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
-				<div class="modal-dialog modal-dialog-scrollable modal-lg">
+				<div class="modal-dialog modal-lg">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
 							<h5 class="modal-title">Add Expense</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="addExpense">
-								<div class="form-row mb-3">
+								<div class="form-row mb-3 pt-4">
 									<div class="form-group col-md-6">
 										<label for="date">Date *</label>
 										<input
@@ -229,13 +61,17 @@
 										/>
 										<HasError :form="form" field="date" />
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-6" style="margin-top: -12px">
 										<label
 											for="expense_type"
 											style="margin-bottom: 0px; padding-left: 0px"
 											>Expense Type *</label
 										>
-										<select class="form-control" v-model="form.expense_type">
+										<select
+											class="form-control"
+											v-model="form.expense_type"
+											style="margin-top: -9px"
+										>
 											<option value="">Select</option>
 											<option
 												v-for="expenseType in ExpenseTypes"
@@ -249,13 +85,17 @@
 									</div>
 								</div>
 								<div class="form-row mb-3">
-									<div class="form-group col-md-4">
+									<div class="form-group col-md-4" style="margin-top: -12px">
 										<label
 											for="payment_status"
 											style="margin-bottom: 0px; padding-left: 0px"
 											>Payment Status *</label
 										>
-										<select class="form-control" v-model="form.payment_status">
+										<select
+											class="form-control"
+											v-model="form.payment_status"
+											style="margin-top: -9px"
+										>
 											<option value="">Select</option>
 											<option value="Paid">Paid</option>
 											<option value="Partial">Partial</option>
@@ -366,12 +206,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- End Add Expense model -->
+
+		<!-- Edit Type model -->
 	</div>
 </template>
 <script>
 import axios from "axios";
 export default {
+	name: "ManageExpense",
 	data: () => ({
 		form: new Form({
 			id: "",
@@ -388,45 +230,52 @@ export default {
 		isDue: false,
 		isPaid: false,
 
-		AllExpenses: "",
 		ExpenseTypes: "",
 		PaymentTypes: "",
 		Accounts: ""
 	}),
-	computed: {},
+	created() {
+		$(document).ready(function() {
+			$.noConflict();
+			$("#myTable").DataTable({
+				// scrollX: true,
+				processing: true,
+				serverSide: true,
+				ajax: "Expense",
+				columns: [
+					{ data: "id" },
+					{ data: "date" },
+					{ data: "expense.expense_type", className: "dt-body-left" },
+					{ data: "payment_status" },
+					{ data: "paid_amount", className: "dt-body-right" },
+					{ data: "due_amount", className: "dt-body-right" },
+					{ data: "p_type.name", defaultContent: "", className: "dt-body-left" },
+					{
+						data: "b_account.bank_name",
+						defaultContent: "",
+						className: "dt-body-left"
+					},
+					{ data: "remarks", className: "dt-body-left", type: "select" }
+				]
+			});
+		});
+	},
 	mounted() {
-		this.allExpenseData();
 		this.loadExpenseTypes();
 		this.loadPaymentTypes();
 		this.loadAccounts();
 	},
 	methods: {
-		allExpenseData() {
-			axios.get("Expense").then(res => {
-				this.AllExpenses = res.data.expenses;
-			});
-		},
 		addExpense() {
 			this.form.post("Expense").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
-					// this.allExpenseData();
+					this.$options.created[0]();
 				} else {
 					toastr.error(res.data.message);
 				}
 			});
-		},
-		clearForm() {
-			this.form.id = "";
-			this.form.date = "";
-			this.form.expense_type = "";
-			this.form.payment_status = "";
-			this.form.paid_amount = "";
-			this.form.due_amount = "";
-			this.form.payment_type = "";
-			this.form.bank_account = "";
-			this.form.remarks = "";
 		},
 		loadExpenseTypes() {
 			axios.get("/getExpenseType").then(res => {
@@ -442,6 +291,17 @@ export default {
 			axios.get("/getBankAccounts").then(res => {
 				this.Accounts = res.data.bank_accounts;
 			});
+		},
+		clearForm() {
+			this.form.id = "";
+			this.form.date = "";
+			this.form.expense_type = "";
+			this.form.payment_status = "";
+			this.form.paid_amount = "";
+			this.form.due_amount = "";
+			this.form.payment_type = "";
+			this.form.bank_account = "";
+			this.form.remarks = "";
 		},
 		clearErrors() {
 			this.form.errors.errors = "";
@@ -471,24 +331,15 @@ export default {
 	}
 };
 </script>
-
 <style scoped>
+table {
+	text-align: center;
+}
 tbody {
 	font-weight: 400;
 }
-.modal th {
-	font-weight: 500;
-	width: 110px;
-}
-.modal tr {
-	padding: 5px 0px;
-}
-.dataTable > thead > tr > th,
-.dataTable > tbody > tr > th,
-.dataTable > tfoot > tr > th,
-.dataTable > thead > tr > td,
-.dataTable > tbody > tr > td,
-.dataTable > tfoot > tr > td {
-	padding: 1px 5px !important;
+thead {
+	background: #0072ff;
+	color: white;
 }
 </style>

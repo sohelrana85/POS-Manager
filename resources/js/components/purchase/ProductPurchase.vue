@@ -15,13 +15,9 @@
 								<input type="date" class="form-control" v-model="form.memo_date" />
 								<HasError :form="form" field="memo_date" />
 							</div>
-							<div class="form-group col-md-4" style="margin-top: -12px">
-								<label for="warehouse" style="margin-bottom: 0px">Warehouse *</label>
-								<select
-									class="form-control"
-									v-model="form.warehouse"
-									style="margin-top: -9px"
-								>
+							<div class="form-group col-md-4">
+								<label for="warehouse">Warehouse *</label>
+								<select class="form-control" v-model="form.warehouse">
 									<option value="">Select</option>
 									<option
 										v-for="warehouse in Warehouses"
@@ -102,20 +98,6 @@
 								</select>
 								<HasError :form="form" field="product_name" />
 							</div>
-							<!-- <div class="form-group col-md-6">
-								<label for="product_code">Product Code *</label>
-								<select class="form-control" v-model="form.product_code">
-									<option value="">Select</option>
-									<option
-										v-for="product in Products"
-										:key="product.id"
-										value="product.id"
-									>
-										{{ product.product_code }}
-									</option>
-								</select>
-								<HasError :form="form" field="product_code" />
-							</div> -->
 						</div>
 
 						<div class="form-row mt-3">
@@ -182,15 +164,9 @@
 								<input type="text" class="form-control" v-model="form.shipping_cost" />
 								<HasError :form="form" field="shipping_cost" />
 							</div>
-							<div class="form-group col-md-3" style="margin-top: -12px">
-								<label for="payment_status" style="margin-bottom: 0px"
-									>Payment Status *</label
-								>
-								<select
-									class="form-control"
-									v-model="form.payment_status"
-									style="margin-top: -9px"
-								>
+							<div class="form-group col-md-3">
+								<label for="payment_status">Payment Status *</label>
+								<select class="form-control" v-model="form.payment_status">
 									<option value="">Select</option>
 									<option value="Paid">Paid</option>
 									<option value="Partial">Partial</option>
@@ -221,15 +197,12 @@
 								/>
 								<HasError :form="form" field="due_amount" />
 							</div>
-							<div class="form-group col-md-3" style="margin-top: -12px">
-								<label for="payment_type" style="margin-bottom: 0px"
-									>Payment Type *</label
-								>
+							<div class="form-group col-md-3">
+								<label for="payment_type">Payment Type *</label>
 								<select
 									class="form-control"
 									v-model="form.payment_type"
 									:disabled="isDue"
-									style="margin-top: -9px"
 								>
 									<option value="">Select</option>
 									<option
@@ -242,14 +215,9 @@
 								</select>
 								<HasError :form="form" field="payment_type" />
 							</div>
-							<div class="form-group col-md-3" style="margin-top: -12px">
-								<label for="account" style="margin-bottom: 0px">Account *</label>
-								<select
-									class="form-control"
-									v-model="form.account"
-									:disabled="isDue"
-									style="margin-top: -9px"
-								>
+							<div class="form-group col-md-3">
+								<label for="account">Account *</label>
+								<select class="form-control" v-model="form.account" :disabled="isDue">
 									<option value="">Select</option>
 									<option
 										v-for="account in Accounts"
@@ -464,3 +432,8 @@ export default {
 	}
 };
 </script>
+<style scoped>
+select.form-control:not([size]):not([multiple]) {
+	height: calc(2.3rem);
+}
+</style>

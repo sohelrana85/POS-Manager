@@ -15,25 +15,6 @@
 
             <hr>
 
-            <li class="nav-item {{ ($activePage == '') ? ' active' : '' }}">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#business" aria-expanded="false">
-                    <i class="fa fa-briefcase"></i>
-                    <p>Business Setting
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse {{ $activePage == '' ? ' show' : '' }}" id="business">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == '' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Comming Soon</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
             <li class="nav-item {{ ($activePage == 'customer') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#customer" aria-expanded="false">
                     <i class="fa fa-user-plus"></i>
@@ -85,14 +66,14 @@
                 </div>
             </li>
 
-            <li class="nav-item {{ ($activePage == 'add-product' || $activePage == 'manage-product') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'add-product' || $activePage == 'manage-product' || $activePage == 'print-barcode' || $activePage == 'unitType' || $activePage == 'PackageSize' || $activePage == 'Category' || $activePage == 'Brand') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#product" aria-expanded="false">
                     <i class="fas fa-database"></i>
                     <p>product
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'add-product' || $activePage == 'manage-product' || $activePage == 'print-barcode')  ? ' show' : '' }}" id="product">
+                <div class="collapse {{ ($activePage == 'add-product' || $activePage == 'manage-product' || $activePage == 'print-barcode' || $activePage == 'unitType' || $activePage == 'PackageSize' || $activePage == 'Category' || $activePage == 'Brand')  ? ' show' : '' }}" id="product">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'add-product' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('add.product') }}">
@@ -112,11 +93,39 @@
                                 <span class="sidebar-normal">Print Barcode</span>
                             </a>
                         </li>
+
+                        <li class="nav-item{{ $activePage == 'unitType' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('unit.type') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Unit Type</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item{{ $activePage == 'PackageSize' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('package.size') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Package Size</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'Category' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('category') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Category</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'Brand' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('brand') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Brand</span>
+                            </a>
+                        </li>
+
+
                     </ul>
                 </div>
             </li>
 
-            <li class="nav-item {{ ($activePage == 'manage-product' || $activePage == 'manage-purchase' || $activePage == 'manage-stock' || $activePage == 'product-purchase') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'manage-purchase' || $activePage == 'product-purchase') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#purchase" aria-expanded="false">
                     <i class="fa fa-cart-plus"></i>
                     <p>Purchase
@@ -240,9 +249,9 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
-            <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
+            {{-- <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#report" aria-expanded="false">
                     <i class="far fa-list-alt"></i>
                     <p>Report
@@ -287,26 +296,25 @@
 
             <hr>
 
-            <li class="nav-item {{ ($activePage == 'unitType' || $activePage == 'PackageSize' || $activePage == 'PaymentType' || $activePage == 'Category' || $activePage == 'Brand') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType') ? 'active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#setting" aria-expanded="false">
                     <i class="fas fa-cogs"></i>
                     <p>Setting
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'unitType' || $activePage == 'PackageSize' || $activePage == 'PaymentType' || $activePage == 'Category' || $activePage == 'Brand')  ? ' show' : '' }}" id="setting">
+                <div class="collapse {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType')  ? 'show' : '' }}" id="setting">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'unitType' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('unit.type') }}">
+                        <li class="nav-item{{ $activePage == 'BusinessSetting' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Unit Type</span>
+                                <span class="sidebar-normal">Business Setting</span>
                             </a>
                         </li>
-
-                        <li class="nav-item{{ $activePage == 'PackageSize' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('package.size') }}">
+                        <li class="nav-item{{ $activePage == 'InvoiceSetting' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Package Size</span>
+                                <span class="sidebar-normal">Invoice Setting</span>
                             </a>
                         </li>
                         <li class="nav-item{{ $activePage == 'PaymentType' ? ' active' : '' }}">
@@ -315,27 +323,9 @@
                                 <span class="sidebar-normal">Payment Type</span>
                             </a>
                         </li>
-                        <li class="nav-item{{ $activePage == 'Category' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('category') }}">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Category</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'Brand' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('brand') }}">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Brand</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>
-            {{-- <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('table') }}">
-                <i class="material-icons">content_paste</i>
-                <p>{{ __('Table List') }}</p>
-            </a>
-            </li> --}}
 
         </ul>
     </div>

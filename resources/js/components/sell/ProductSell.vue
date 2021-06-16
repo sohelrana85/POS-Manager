@@ -6,14 +6,9 @@
 					<form @submit.prevent="saveSale">
 						<div class="top mb-4 px-4">
 							<div class="form-row">
-								<div class="form-group col-md-6 me-auto" style="margin-top: -21px">
-									<label
-										for="customer"
-										style="margin-bottom: 0px; margin-top: 16px; padding-left: 0px"
-										>Customer Name *</label
-									>
+								<div class="form-group col-md-6 me-auto">
+									<label for="customer">Customer Name *</label>
 									<select
-										style="padding: 0px; margin-top: -14px"
 										name="customer"
 										id="customer"
 										class="form-control"
@@ -55,14 +50,9 @@
 
 						<div class="product mb-4">
 							<div class="form-row mb-3">
-								<div class="form-group col-md-6" style="margin-top: -21px">
-									<label
-										for="product_name"
-										style="margin-bottom: 0px; margin-top: 16px; padding-left: 0px"
-										>Product Name *</label
-									>
+								<div class="form-group col-md-6">
+									<label for="product_name">Product Name *</label>
 									<select
-										style="padding: 0px; margin-top: -14px"
 										name="product_name"
 										id="product_name"
 										class="form-control"
@@ -183,15 +173,12 @@
 									/>
 									<HasError :form="form" field="due_amount" />
 								</div>
-								<div class="form-group col-md-3" style="margin-top: -12px">
-									<label for="payment_type" style="margin-bottom: 0px; padding-left: 0px"
-										>Payment Type</label
-									>
+								<div class="form-group col-md-3">
+									<label for="payment_type">Payment Type</label>
 									<select
 										class="form-control"
 										v-model="form.payment_type"
 										:disabled="isDue"
-										style="margin-top: -9px"
 									>
 										<option value="">Select</option>
 										<option
@@ -204,16 +191,9 @@
 									</select>
 									<HasError :form="form" field="payment_type" />
 								</div>
-								<div class="form-group col-md-3" style="margin-top: -12px">
-									<label for="account" style="margin-bottom: 0px; padding-left: 0px"
-										>Account</label
-									>
-									<select
-										class="form-control"
-										v-model="form.account"
-										:disabled="isDue"
-										style="margin-top: -9px"
-									>
+								<div class="form-group col-md-3">
+									<label for="account">Account</label>
+									<select class="form-control" v-model="form.account" :disabled="isDue">
 										<option value="">Select</option>
 										<option
 											v-for="account in Accounts"
@@ -450,5 +430,8 @@ div.payment,
 div.product {
 	padding: 20px;
 	border: 1px solid #cecece;
+}
+select.form-control:not([size]):not([multiple]) {
+	height: calc(2.3rem);
 }
 </style>

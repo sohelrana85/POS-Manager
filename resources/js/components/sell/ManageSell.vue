@@ -9,7 +9,7 @@
 						style="width: 100%"
 					>
 						<thead>
-							<tr style="background: #016dc8; color: white">
+							<tr style="text-center">
 								<th>sl</th>
 								<th>Invoice No</th>
 								<th>Invoice Date</th>
@@ -44,11 +44,17 @@
 								<td>{{ sell.payment_type }}</td>
 								<td>{{ sell.account_name }}</td>
 								<td class="text-center">
-									<i
+									<!-- <i
 										class="btn btn-sm btn-warning fa fa-edit"
 										style="padding: 3px 11px"
 									></i>
-									<i class="btn btn-sm btn-info fa fa-eye" style="padding: 3px 11px"></i>
+									<i class="btn btn-sm btn-info fa fa-eye" style="padding: 3px 11px"></i> -->
+									<button type="button" class="btn btn-info p-1">
+										<i class="material-icons">person</i>
+									</button>
+									<button type="button" class="btn btn-success p-1">
+										<i class="material-icons">edit</i>
+									</button>
 								</td>
 								<!-- <td>{{ purchase.due_amount ?? "" }}</td>
 								<td>{{ purchase.payment_type.name ?? "" }}</td>
@@ -279,5 +285,13 @@ tbody {
 }
 .modal tr {
 	padding: 5px 0px;
+}
+.dataTable > thead > tr > th,
+.dataTable > tbody > tr > th,
+.dataTable > tfoot > tr > th,
+.dataTable > thead > tr > td,
+.dataTable > tbody > tr > td,
+.dataTable > tfoot > tr > td {
+	padding: 1px 5px !important;
 }
 </style>

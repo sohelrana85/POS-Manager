@@ -74,21 +74,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     #Setting
     Route::prefix('Setting')->group(function(){
-        Route::get('Unit-Type', function(){ return view('pages.setting.manage-unit-type'); })->name('unit.type');
-        Route::resource('Unit-Types', UnitTypeController::class)->except('create','show','edit');
+        // Route::get('Unit-Type', function(){ return view('pages.setting.manage-unit-type'); })->name('unit.type');
+        // Route::resource('Unit-Types', UnitTypeController::class)->except('create','show','edit');
 
-        Route::get('Unit-Type-Names', [UnitTypeController::class, 'Unit_Type_Names']); //get unit type name
-        Route::get('Package-Size', function(){ return view('pages.setting.manage-package-size'); })->name('package.size');
-        Route::resource('Package-Sizes', PackageSizeController::class)->except('create','show','edit');
+        // Route::get('Unit-Type-Names', [UnitTypeController::class, 'Unit_Type_Names']); //get unit type name
+        // Route::get('Package-Size', function(){ return view('pages.setting.manage-package-size'); })->name('package.size');
+        // Route::resource('Package-Sizes', PackageSizeController::class)->except('create','show','edit');
 
         Route::get('Payment-Type', function(){ return view('pages.setting.manage-payment-type'); })->name('payment.type');
         Route::resource('Purchase-Types', PurchaseTypeController::class)->except('create','show','edit');
 
-        Route::get('Category', function(){ return view('pages.setting.manage-category'); })->name('category');
-        Route::resource('Categories', CategoryController::class)->except('create','show','edit');
+        // Route::get('Category', function(){ return view('pages.setting.manage-category'); })->name('category');
+        // Route::resource('Categories', CategoryController::class)->except('create','show','edit');
 
-        Route::get('Brand', function(){ return view('pages.setting.manage-brand'); })->name('brand');
-        Route::resource('Brands', BrandController::class)->except('create','show','edit');
+        // Route::get('Brand', function(){ return view('pages.setting.manage-brand'); })->name('brand');
+        // Route::resource('Brands', BrandController::class)->except('create','show','edit');
     });
     #Supplier
     Route::prefix('Supplier')->group(function(){
@@ -106,6 +106,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('Manage', function(){ return view('pages.product.manage-product'); })->name('product.manage');
         Route::get('/loadProducts', [ProductController::class,'index']);
         Route::delete('/Products/{id}', [ProductController::class,'delete']);
+
+        Route::get('Unit-Type', function(){ return view('pages.product.unit-type'); })->name('unit.type');
+        Route::resource('Unit-Types', UnitTypeController::class)->except('create','show','edit');
+
+        Route::get('Unit-Type-Names', [UnitTypeController::class, 'Unit_Type_Names']); //get unit type name
+        Route::get('Package-Size', function(){ return view('pages.product.package-size'); })->name('package.size');
+        Route::resource('Package-Sizes', PackageSizeController::class)->except('create','show','edit');
+
+        Route::get('Category', function(){ return view('pages.product.category'); })->name('category');
+        Route::resource('Categories', CategoryController::class)->except('create','show','edit');
+
+        Route::get('Brand', function(){ return view('pages.product.brand'); })->name('brand');
+        Route::resource('Brands', BrandController::class)->except('create','show','edit');
 
     });
     #Purchase

@@ -3,7 +3,11 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-body">
-					<table id="example" class="cell-border hover stripe" style="width: 100%">
+					<table
+						id="example"
+						class="cell-border hover stripe nowrap"
+						style="width: 100%"
+					>
 						<thead>
 							<tr>
 								<th>sl</th>
@@ -18,17 +22,17 @@
 								<td>{{ ++index }}</td>
 								<td>{{ stock.product.product_name }}</td>
 								<td>{{ stock.product.product_code }}</td>
-								<td class="text-right">{{ stock.stock_qty }}</td>
+								<td>{{ stock.stock_qty }}</td>
 								<td class="text-right">{{ stock.stock_value }}</td>
 							</tr>
 						</tbody>
-						<tfoot border>
-							<tr class="text-end">
-								<th colspan="3">Total =</th>
+						<!-- <tfoot border>
+							<tr>
+								<th class="text-end" colspan="3">Total =</th>
 								<th>{{ sumTotalQty }}</th>
-								<th>{{ nFormate(sumTotalValue) }}</th>
+								<th class="text-end">{{ nFormate(sumTotalValue) }}</th>
 							</tr>
-						</tfoot>
+						</tfoot> -->
 					</table>
 				</div>
 			</div>
@@ -74,12 +78,12 @@ export default {
 </script>
 
 <style scoped>
-thead tr {
+/* thead tr {
 	background: #016dc8;
 	color: white;
 	text-align: center;
-}
-tbody tr td {
+} */
+table {
 	text-align: center;
 }
 tbody {
@@ -92,5 +96,13 @@ table.dataTable tfoot th {
 }
 table.dataTable tfoot th:nth-child(1) {
 	border-left: 1px solid #ccc6c6;
+}
+.dataTable > thead > tr > th,
+.dataTable > tbody > tr > th,
+.dataTable > tfoot > tr > th,
+.dataTable > thead > tr > td,
+.dataTable > tbody > tr > td,
+.dataTable > tfoot > tr > td {
+	padding: 1px 5px !important;
 }
 </style>

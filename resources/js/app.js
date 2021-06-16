@@ -32,17 +32,17 @@ Vue.component(
     require("./components/customer/Customer.vue").default
 );
 
-Vue.component("UnitType", require("./components/setting/UnitType.vue").default);
+Vue.component("UnitType", require("./components/product/UnitType.vue").default);
 Vue.component(
     "PackageSize",
-    require("./components/setting/PackageSize.vue").default
+    require("./components/product/PackageSize.vue").default
 );
 Vue.component(
     "PaymentType",
     require("./components/setting/PaymentType.vue").default
 );
-Vue.component("Category", require("./components/setting/Category.vue").default);
-Vue.component("Brand", require("./components/setting/Brand.vue").default);
+Vue.component("Category", require("./components/product/Category.vue").default);
+Vue.component("Brand", require("./components/product/Brand.vue").default);
 
 Vue.component(
     "ManageSupplier",

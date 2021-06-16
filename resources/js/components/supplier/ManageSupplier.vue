@@ -4,7 +4,12 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div
-						class="card-header card-header-primary d-flex justify-content-between py-1"
+						class="
+							card-header card-header-primary
+							d-flex
+							justify-content-between
+							py-1
+						"
 					>
 						<h4 class="card-title m-0 pt-2">Manage Supplier</h4>
 						<button @click="addModal = true" class="btn btn-info px-3">
@@ -14,30 +19,30 @@
 						<!-- <p class="card-category">Manage supplier page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table">
+						<table class="table table-bordered table-striped table-hover">
 							<thead>
-								<tr class="">
-									<th class="text-center">#</th>
+								<tr>
+									<th>#</th>
 									<th>Business Name</th>
 									<th>Name</th>
 									<th>Phone</th>
 									<th>Email</th>
 									<th>status</th>
-									<th class="text-right">Actions</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr v-for="(supplier, index) in allSuppliers.data" :key="index">
-									<td class="text-center">{{ supplier.id }}</td>
+									<td>{{ supplier.id }}</td>
 									<td>{{ supplier.business_name }}</td>
 									<td>{{ supplier.name }}</td>
 									<td>{{ supplier.phone }}</td>
 									<td>{{ supplier.email }}</td>
 									<td>{{ supplier.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions text-right">
-										<button type="button" class="btn btn-info">
+									<td class="td-actions">
+										<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
-										</button>
+										</button> -->
 										<button
 											type="button"
 											class="btn btn-success"
@@ -395,3 +400,20 @@ export default {
 	}
 };
 </script>
+<style scoped>
+thead tr th {
+	padding: 5px;
+}
+tbody tr td {
+	padding: 3px;
+}
+table {
+	text-align: center;
+	font-weight: normal;
+}
+thead {
+	background: #0088ff;
+	color: white;
+	/* font-weight: 600; */
+}
+</style>

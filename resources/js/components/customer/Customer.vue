@@ -19,28 +19,28 @@
 						<!-- <p class="card-category">Manage customer page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table">
+						<table class="table table-bordered table-striped table-hover">
 							<thead>
-								<tr class="">
-									<th class="text-center">#</th>
+								<tr>
+									<th>#</th>
 									<th>Name</th>
 									<th>Phone</th>
 									<th>Email</th>
 									<th>status</th>
-									<th class="text-right">Actions</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr v-for="(customer, index) in allcustomers.data" :key="index">
-									<td class="text-center">{{ customer.id }}</td>
+									<td>{{ customer.id }}</td>
 									<td>{{ customer.name }}</td>
 									<td>{{ customer.phone }}</td>
 									<td>{{ customer.email }}</td>
 									<td>{{ customer.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions text-right">
-										<button type="button" class="btn btn-info">
+									<td class="td-actions">
+										<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
-										</button>
+										</button> -->
 										<button
 											type="button"
 											class="btn btn-success"
@@ -376,3 +376,20 @@ export default {
 	}
 };
 </script>
+<style scoped>
+thead tr th {
+	padding: 5px;
+}
+tbody tr td {
+	padding: 3px;
+}
+table {
+	text-align: center;
+	font-weight: normal;
+}
+thead {
+	background: #0088ff;
+	color: white;
+	/* font-weight: 600; */
+}
+</style>
