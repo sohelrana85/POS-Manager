@@ -184,9 +184,14 @@ export default {
 		// PurchaseData: ""
 	}),
 	computed: {},
+	created() {
+		$(document).ready(function() {
+			$("#example").DataTable();
+		});
+	},
 	mounted() {
 		this.allPurchaseData();
-		this.jqeuryrun();
+		// this.jqeuryrun();
 	},
 	methods: {
 		allPurchaseData() {
@@ -218,11 +223,6 @@ export default {
 						}
 					});
 				}
-			});
-		},
-		jqeuryrun() {
-			$(document).ready(function() {
-				$("#example").DataTable();
 			});
 		}
 	}

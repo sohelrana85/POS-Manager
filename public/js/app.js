@@ -8549,6 +8549,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -9041,6 +9065,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
 //
 //
 //
@@ -10009,9 +10037,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {},
+  created: function created() {
+    $(document).ready(function () {
+      $("#example").DataTable();
+    });
+  },
   mounted: function mounted() {
-    this.allPurchaseData();
-    this.jqeuryrun();
+    this.allPurchaseData(); // this.jqeuryrun();
   },
   methods: {
     allPurchaseData: function allPurchaseData() {
@@ -10047,11 +10079,6 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         }
-      });
-    },
-    jqeuryrun: function jqeuryrun() {
-      $(document).ready(function () {
-        $("#example").DataTable();
       });
     }
   }
@@ -16006,7 +16033,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.payment[data-v-4a273462],\ndiv.product[data-v-4a273462] {\n\tpadding: 20px;\n\tborder: 1px solid #cecece;\n}\nselect.form-control[data-v-4a273462]:not([size]):not([multiple]) {\n\theight: calc(2.3rem);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.payment[data-v-4a273462],\ndiv.product[data-v-4a273462] {\n\tpadding: 20px;\n\tborder: 1px solid #cecece;\n}\n/* select.form-control:not([size]):not([multiple]) {\n\theight: calc(2.3rem);\n} */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -59627,7 +59654,7 @@ var render = function() {
               }
             },
             [
-              _c("div", { staticClass: "form-row" }, [
+              _c("div", { staticClass: "form-row mb-3" }, [
                 _c(
                   "div",
                   { staticClass: "form-group col-md-4" },
@@ -59704,11 +59731,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-4" },
+                  {
+                    staticClass: "form-group col-md-4",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "warehouse" } }, [
-                      _vm._v("Warehouse *")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "warehouse" } },
+                      [_vm._v("Warehouse *")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -59722,6 +59754,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -59778,11 +59811,16 @@ var render = function() {
               _c("div", { staticClass: "form-row" }, [
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-6" },
+                  {
+                    staticClass: "form-group col-md-6",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "supplier" } }, [
-                      _vm._v("Supplier Name*")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "supplier" } },
+                      [_vm._v("Supplier Name*")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -59796,6 +59834,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         attrs: { id: "supplier" },
                         on: {
                           change: function($event) {
@@ -59851,11 +59890,19 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-6" },
+                  {
+                    staticClass: "form-group col-md-6",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "purchase_status" } }, [
-                      _vm._v("Purchase Status*")
-                    ]),
+                    _c(
+                      "label",
+                      {
+                        staticClass: "ps-0",
+                        attrs: { for: "purchase_status" }
+                      },
+                      [_vm._v("Purchase Status*")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -59869,6 +59916,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         attrs: { id: "purchase_status" },
                         on: {
                           change: function($event) {
@@ -59926,11 +59974,16 @@ var render = function() {
               _c("div", { staticClass: "form-row mt-3" }, [
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-6" },
+                  {
+                    staticClass: "form-group col-md-6",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "product_name" } }, [
-                      _vm._v("Product Name *")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "product_name" } },
+                      [_vm._v("Product Name *")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -59944,6 +59997,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -60282,11 +60336,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-3" },
+                  {
+                    staticClass: "form-group col-md-3",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "payment_status" } }, [
-                      _vm._v("Payment Status *")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "payment_status" } },
+                      [_vm._v("Payment Status *")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -60300,6 +60359,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -60424,11 +60484,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-3" },
+                  {
+                    staticClass: "form-group col-md-3",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "payment_type" } }, [
-                      _vm._v("Payment Type *")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "payment_type" } },
+                      [_vm._v("Payment Type *")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -60442,6 +60507,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         attrs: { disabled: _vm.isDue },
                         on: {
                           change: function($event) {
@@ -60497,11 +60563,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "form-group col-md-3" },
+                  {
+                    staticClass: "form-group col-md-3",
+                    staticStyle: { "margin-top": "-7px" }
+                  },
                   [
-                    _c("label", { attrs: { for: "account" } }, [
-                      _vm._v("Account *")
-                    ]),
+                    _c(
+                      "label",
+                      { staticClass: "ps-0", attrs: { for: "account" } },
+                      [_vm._v("Account *")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -60515,6 +60586,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        staticStyle: { "margin-top": "-15px" },
                         attrs: { disabled: _vm.isDue },
                         on: {
                           change: function($event) {
@@ -60772,11 +60844,16 @@ var render = function() {
                 _c("div", { staticClass: "form-row" }, [
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-6 me-auto" },
+                    {
+                      staticClass: "form-group col-md-6 me-auto",
+                      staticStyle: { "margin-top": "-7px" }
+                    },
                     [
-                      _c("label", { attrs: { for: "customer" } }, [
-                        _vm._v("Customer Name *")
-                      ]),
+                      _c(
+                        "label",
+                        { staticClass: "ps-0", attrs: { for: "customer" } },
+                        [_vm._v("Customer Name *")]
+                      ),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -60790,6 +60867,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
+                          staticStyle: { "margin-top": "-15px" },
                           attrs: { name: "customer", id: "customer" },
                           on: {
                             change: function($event) {
@@ -60924,11 +61002,16 @@ var render = function() {
                 _c("div", { staticClass: "form-row mb-3" }, [
                   _c(
                     "div",
-                    { staticClass: "form-group col-md-6" },
+                    {
+                      staticClass: "form-group col-md-6",
+                      staticStyle: { "margin-top": "-7px" }
+                    },
                     [
-                      _c("label", { attrs: { for: "product_name" } }, [
-                        _vm._v("Product Name *")
-                      ]),
+                      _c(
+                        "label",
+                        { staticClass: "ps-0", attrs: { for: "product_name" } },
+                        [_vm._v("Product Name *")]
+                      ),
                       _vm._v(" "),
                       _c(
                         "select",
@@ -60942,6 +61025,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
+                          staticStyle: { "margin-top": "-15px" },
                           attrs: { name: "product_name", id: "product_name" },
                           on: {
                             change: function($event) {
@@ -61208,16 +61292,13 @@ var render = function() {
                     "div",
                     {
                       staticClass: "form-group col-md-12 mb-3",
-                      staticStyle: { "margin-top": "-12px" }
+                      staticStyle: { "margin-top": "-7px" }
                     },
                     [
                       _c(
                         "label",
                         {
-                          staticStyle: {
-                            "margin-bottom": "0px",
-                            "padding-left": "0px"
-                          },
+                          staticClass: "ps-0",
                           attrs: { for: "payment_status" }
                         },
                         [_vm._v("Payment Status *")]
@@ -61235,7 +61316,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control col-md-3",
-                          staticStyle: { "margin-top": "-9px" },
+                          staticStyle: { "margin-top": "-15px" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -61377,11 +61458,19 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "form-group col-md-3" },
+                        {
+                          staticClass: "form-group col-md-3",
+                          staticStyle: { "margin-top": "-7px" }
+                        },
                         [
-                          _c("label", { attrs: { for: "payment_type" } }, [
-                            _vm._v("Payment Type")
-                          ]),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "ps-0",
+                              attrs: { for: "payment_type" }
+                            },
+                            [_vm._v("Payment Type")]
+                          ),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -61395,6 +61484,7 @@ var render = function() {
                                 }
                               ],
                               staticClass: "form-control",
+                              staticStyle: { "margin-top": "-15px" },
                               attrs: { disabled: _vm.isDue },
                               on: {
                                 change: function($event) {
@@ -61451,11 +61541,16 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "form-group col-md-3" },
+                        {
+                          staticClass: "form-group col-md-3",
+                          staticStyle: { "margin-top": "-7px" }
+                        },
                         [
-                          _c("label", { attrs: { for: "account" } }, [
-                            _vm._v("Account")
-                          ]),
+                          _c(
+                            "label",
+                            { staticClass: "ps-0", attrs: { for: "account" } },
+                            [_vm._v("Account")]
+                          ),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -61469,6 +61564,7 @@ var render = function() {
                                 }
                               ],
                               staticClass: "form-control",
+                              staticStyle: { "margin-top": "-15px" },
                               attrs: { disabled: _vm.isDue },
                               on: {
                                 change: function($event) {
