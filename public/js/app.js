@@ -9739,7 +9739,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "unitType",
+  name: "PaymentType",
   data: function data() {
     return {
       form: new Form({
@@ -61782,8 +61782,8 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("pagination", {
-                attrs: { align: "right", limit: 2, data: _vm.allUnitType },
-                on: { "pagination-change-page": _vm.getUnitTypes }
+                attrs: { align: "right", limit: 2, data: _vm.allPaymentType },
+                on: { "pagination-change-page": _vm.getPaymentTypes }
               })
             ],
             1

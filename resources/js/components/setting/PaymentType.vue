@@ -61,8 +61,8 @@
 						<pagination
 							align="right"
 							:limit="2"
-							:data="allUnitType"
-							@pagination-change-page="getUnitTypes"
+							:data="allPaymentType"
+							@pagination-change-page="getPaymentTypes"
 						></pagination>
 					</div>
 				</div>
@@ -213,7 +213,7 @@
 
 <script>
 export default {
-	name: "unitType",
+	name: "PaymentType",
 	data: () => ({
 		form: new Form({
 			id: "",
