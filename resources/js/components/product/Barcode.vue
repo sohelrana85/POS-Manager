@@ -20,7 +20,7 @@
 					</div>
 					<div class="card-body mt-4">
 						<form @submit.prevent="printBarcode">
-							<div class="form-row">
+							<div class="form-row justify-content-center">
 								<div class="col-md-3 form-group">
 									<label for="">Product Code</label>
 									<input type="text" class="form-control" v-model="form.value" />
@@ -29,7 +29,7 @@
 									<label for="">Number of Barcode</label>
 									<input type="text" class="form-control" v-model="form.number" />
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-2 text-center">
 									<button class="btn btn-primary btn-sm ms-2">Generate</button>
 								</div>
 							</div>

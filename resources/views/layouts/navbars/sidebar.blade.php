@@ -233,24 +233,24 @@
                 </div>
             </li>
 
-            {{-- <li class="nav-item {{ ($activePage == 'bank-account') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'manage-bank') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#bank" aria-expanded="false">
                     <i class="fas fa-university"></i>
                     <p>Bank
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'bank-account')  ? ' show' : '' }}" id="bank">
+                <div class="collapse {{ ($activePage == 'manage-bank')  ? ' show' : '' }}" id="bank">
                     <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'bank-account' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
+                        <li class="nav-item{{ $activePage == 'manage-bank' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('manage.bank') }}">
                                 <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Bank Account</span>
+                                <span class="sidebar-normal">Manage Bank</span>
                             </a>
                         </li>
                     </ul>
                 </div>
-            </li> --}}
+            </li>
 
             {{-- <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#report" aria-expanded="false">
@@ -297,14 +297,14 @@
 
             <hr>
 
-            <li class="nav-item {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType') ? 'active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType' || $activePage == 'Account') ? 'active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#setting" aria-expanded="false">
                     <i class="fas fa-cogs"></i>
                     <p>Setting
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType')  ? 'show' : '' }}" id="setting">
+                <div class="collapse {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType' || $activePage == 'Account')  ? 'show' : '' }}" id="setting">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'BusinessSetting' ? ' active' : '' }}">
                             <a class="nav-link" href="{{route('business.setting')}}">

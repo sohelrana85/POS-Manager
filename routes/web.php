@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\CategoryController;
@@ -143,6 +144,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('Expense', ExpenseController::class);
         Route::get('Expense-Statement', function(){ return view('pages.expense.expense-statement'); })->name('expense.statement');
 
+    });
+    Route::prefix('Bank')->group(function(){
+        Route::get('Manage-Bank', function(){ return view('pages.bank.manage-bank'); })->name('manage.bank');
+        Route::resource('Account', BankAccountController::class)->except('create','show','edit');
     });
 
     #Helper

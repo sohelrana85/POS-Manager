@@ -95,6 +95,12 @@ Vue.component(
     require("./components/expense/ManageExpense.vue").default
 );
 
+//Bank
+Vue.component(
+    "ManageBank",
+    require("./components/bank/ManageBank.vue").default
+);
+
 const app = new Vue({
     el: "#app",
     store,
