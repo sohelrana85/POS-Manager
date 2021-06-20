@@ -41,6 +41,10 @@ Vue.component(
     "PaymentType",
     require("./components/setting/PaymentType.vue").default
 );
+Vue.component(
+    "BusinessSetting",
+    require("./components/setting/BusinessSetting.vue").default
+);
 Vue.component("Category", require("./components/product/Category.vue").default);
 Vue.component("Brand", require("./components/product/Brand.vue").default);
 

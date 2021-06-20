@@ -1,4 +1,5 @@
 <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-1.jpg">
+
     <div class="logo">
         <a href="{{ route('home') }}" class="simple-text logo-normal">
             {{ __('POS Manager') }}
@@ -306,7 +307,7 @@
                 <div class="collapse {{ ($activePage == 'BusinessSetting' || $activePage == 'InvoiceSetting' || $activePage == 'PaymentType')  ? 'show' : '' }}" id="setting">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'BusinessSetting' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{route('business.setting')}}">
                                 <i class="fas fa-minus"></i>
                                 <span class="sidebar-normal">Business Setting</span>
                             </a>

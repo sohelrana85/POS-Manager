@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExpenseController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\PurchaseTypeController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitTypeController;
+use App\Models\BusinessSetting;
 use App\Models\ExpenseType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,7 @@ Route::redirect('/', '/login', 301);
 Auth::routes();
 
 Route::get('/home', [HomeController::class,'index'])->name('home')->middleware('auth');
+Route::get('/dailySale', [HomeController::class,'seven_days_sale'])->name('seven.days.sale')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('table-list', function () {
@@ -69,6 +72,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     #Setting
     Route::prefix('Setting')->group(function(){
+        Route::get('Business-Setting', function(){ return view('pages.setting.business-setting'); })->name('business.setting');
+        Route::get('Get-Business-Setting', [BusinessSettingController::class, 'index']);
+        Route::post('Save-Business-Setting', [BusinessSettingController::class, 'store']);
+        Route::post('Update-Business-Setting', [BusinessSettingController::class, 'update']);
         Route::get('Payment-Type', function(){ return view('pages.setting.payment-type'); })->name('payment.type');
         Route::resource('pType', PaymentTypeController::class)->except('create','show','edit');
     });

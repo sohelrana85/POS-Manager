@@ -85,7 +85,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Daily Sales</h4>
                         <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                            {{-- <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p> --}}
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -100,12 +100,12 @@
                         <div class="ct-chart" id="websiteViewsChart"></div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Email Subscriptions</h4>
-                        <p class="card-category">Last Campaign Performance</p>
+                        <h4 class="card-title">Daily Purchase</h4>
+                        {{-- <p class="card-category">Last Campaign Performance</p> --}}
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> updated 4 minutes ago
                         </div>
                     </div>
                 </div>
@@ -116,12 +116,12 @@
                         <div class="ct-chart" id="completedTasksChart"></div>
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Completed Tasks</h4>
-                        <p class="card-category">Last Campaign Performance</p>
+                        <h4 class="card-title">Total Stocks</h4>
+                        {{-- <p class="card-category">Last Campaign Performance</p> --}}
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> updated 4 minutes ago
                         </div>
                     </div>
                 </div>
@@ -425,8 +425,19 @@
 @push('js')
 <script>
     $(document).ready(function() {
+        $.ajax({
+                url: "/dailySale",
+                method: "get",
+                data: "",
+                success: function(res) {
+                    console.log(res);
+                    // this.name(res);
+                    md.initDashboardPageCharts(res);
+                }
+            });
+
       // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+    //   md.initDashboardPageCharts();
     });
 </script>
 @endpush
