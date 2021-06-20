@@ -23,6 +23,9 @@ window.Swal = Swal;
 import toastr from "toastr";
 window.toastr = toastr;
 
+//barcode
+import VueBarcode from "vue-barcode";
+
 //globally import pagination
 Vue.component("pagination", require("laravel-vue-pagination"));
 
@@ -61,6 +64,7 @@ Vue.component(
     "ManageProduct",
     require("./components/product/ManageProduct.vue").default
 );
+Vue.component("Barcode", require("./components/product/Barcode.vue").default);
 Vue.component(
     "ProductPurchase",
     require("./components/purchase/ProductPurchase.vue").default
@@ -95,6 +99,7 @@ const app = new Vue({
     el: "#app",
     store,
     component: {
-        customer
+        customer,
+        barcode: VueBarcode
     }
 });
