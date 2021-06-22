@@ -15,6 +15,7 @@ use App\Models\PaymentType;
 use App\Models\Product;
 use App\Models\ProductSell;
 use App\Models\PurchaseStatus;
+use App\Models\Stock;
 use App\Models\Supplier;
 use App\Models\UnitType;
 use App\Models\Warehouse;
@@ -85,6 +86,12 @@ class HelperController extends Controller
     // }
     public function get_products(){
         $products = Product::all();
+        return response()->json([
+            'products' => $products
+        ]);
+    }
+    public function get_products_from_sell(){
+        $products = Stock::with('product_name')->select('id','product_name','stock_qty')->get();
         return response()->json([
             'products' => $products
         ]);

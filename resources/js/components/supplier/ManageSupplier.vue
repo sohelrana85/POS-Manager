@@ -19,51 +19,53 @@
 						<!-- <p class="card-category">Manage supplier page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Business Name</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Email</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(supplier, index) in allSuppliers.data" :key="index">
-									<td>{{ supplier.id }}</td>
-									<td>{{ supplier.business_name }}</td>
-									<td>{{ supplier.name }}</td>
-									<td>{{ supplier.phone }}</td>
-									<td>{{ supplier.email }}</td>
-									<td>{{ supplier.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Business Name</th>
+										<th>Name</th>
+										<th>Phone</th>
+										<th>Email</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(supplier, index) in allSuppliers.data" :key="index">
+										<td>{{ supplier.id }}</td>
+										<td>{{ supplier.business_name }}</td>
+										<td>{{ supplier.name }}</td>
+										<td>{{ supplier.phone }}</td>
+										<td>{{ supplier.email }}</td>
+										<td>{{ supplier.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editSupplier(supplier);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteSupplier(supplier.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editSupplier(supplier);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteSupplier(supplier.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -81,7 +83,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Supplier</h5>
+							<h5 class="modal-title fw-bold">Add Supplier</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveSupplier" class="m-0">
@@ -179,7 +181,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save supplier
+										Save
 									</button>
 								</div>
 							</form>
@@ -195,7 +197,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update supplier</h5>
+							<h5 class="modal-title fw-bold">Update supplier</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateSupplier" class="m-0">
@@ -294,7 +296,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

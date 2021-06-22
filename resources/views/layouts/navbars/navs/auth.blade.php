@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
             <a class="navbar-brand" href="#">{{ $titlePage }}</a>
@@ -62,19 +62,4 @@
             </ul>
         </div>
     </div>
-
 </nav>
-
-@push('js')
-<script>
-    // $('#navbarDropdownProfile').click(function(){
-    //     $('#prob').toggleClass('show');
-    //     $('#alert').removeClass('show');
-    // })
-    // $('#navbarDropdownMenuLink').click(function(){
-    //     $('#alert').toggleClass('show');
-    //     $('#prob').removeClass('show');
-    // })
-</script>
-
-@endpush

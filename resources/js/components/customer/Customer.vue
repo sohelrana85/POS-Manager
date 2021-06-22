@@ -19,49 +19,51 @@
 						<!-- <p class="card-category">Manage customer page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Name</th>
-									<th>Phone</th>
-									<th>Email</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(customer, index) in allcustomers.data" :key="index">
-									<td>{{ customer.id }}</td>
-									<td>{{ customer.name }}</td>
-									<td>{{ customer.phone }}</td>
-									<td>{{ customer.email }}</td>
-									<td>{{ customer.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Name</th>
+										<th>Phone</th>
+										<th>Email</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(customer, index) in allcustomers.data" :key="index">
+										<td>{{ customer.id }}</td>
+										<td>{{ customer.name }}</td>
+										<td>{{ customer.phone }}</td>
+										<td>{{ customer.email }}</td>
+										<td>{{ customer.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editCustomer(customer);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteCustomer(customer.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editCustomer(customer);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteCustomer(customer.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -79,7 +81,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Customer</h5>
+							<h5 class="modal-title fw-bold">Add Customer</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveCustomer" class="m-0">
@@ -166,7 +168,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save Customer
+										Save
 									</button>
 								</div>
 							</form>
@@ -182,7 +184,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Customer</h5>
+							<h5 class="modal-title fw-bold">Update Customer</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateCustomer" class="m-0">
@@ -270,7 +272,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>
@@ -298,9 +300,6 @@ export default {
 		updateModal: false,
 		allcustomers: {}
 	}),
-	computed: {
-		customers() {}
-	},
 	mounted() {
 		this.getCustomers();
 	},

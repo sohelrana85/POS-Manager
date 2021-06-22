@@ -1,42 +1,36 @@
 <template>
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-					<table
-						id="example"
-						class="cell-border hover stripe nowrap"
-						style="width: 100%"
-					>
-						<thead>
-							<tr>
-								<th>sl</th>
-								<th>Product Name</th>
-								<th>Product Code</th>
-								<th>Stock Qty</th>
-								<th>Stock Value</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr v-for="(stock, index) in allStocks" :key="index">
-								<td>{{ ++index }}</td>
-								<td>{{ stock.product.product_name }}</td>
-								<td>{{ stock.product.product_code }}</td>
-								<td>{{ stock.stock_qty }}</td>
-								<td class="text-right">{{ stock.stock_value }}</td>
-							</tr>
-						</tbody>
-						<!-- <tfoot border>
+	<div class="card-body">
+		<table
+			id="example"
+			class="cell-border hover stripe nowrap"
+			style="width: 100%"
+		>
+			<thead>
+				<tr>
+					<th>sl</th>
+					<th>Product Name</th>
+					<th>Product Code</th>
+					<th>Stock Qty</th>
+					<th>Stock Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(stock, index) in allStocks" :key="index">
+					<td>{{ ++index }}</td>
+					<td>{{ stock.product.product_name }}</td>
+					<td>{{ stock.product.product_code }}</td>
+					<td>{{ stock.stock_qty }}</td>
+					<td class="text-right">{{ stock.stock_value }}</td>
+				</tr>
+			</tbody>
+			<!-- <tfoot border>
 							<tr>
 								<th class="text-end" colspan="3">Total =</th>
 								<th>{{ sumTotalQty }}</th>
 								<th class="text-end">{{ nFormate(sumTotalValue) }}</th>
 							</tr>
 						</tfoot> -->
-					</table>
-				</div>
-			</div>
-		</div>
+		</table>
 	</div>
 </template>
 <script>

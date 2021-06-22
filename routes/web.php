@@ -170,6 +170,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getPaymentType', [HelperController::class, 'get_payment_type']);
     Route::get('/getPurchaseType', [HelperController::class, 'get_purchase_type']);
     Route::get('/getProducts', [HelperController::class, 'get_products']);
+    Route::get('/getProductsFromSell', [HelperController::class, 'get_products_from_sell']);
     Route::get('/getBankAccounts', [HelperController::class, 'get_bank_account']);
     #sell product
     Route::get('/Get-Last-Invoice-No', [HelperController::class, 'get_last_invoice_no']);

@@ -6,7 +6,7 @@
 @endpush
 
 @section('content')
-<div class="content pt-0" id="app">
+<div class="content" id="app">
     <manage-expense />
 </div>
 

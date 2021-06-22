@@ -29,8 +29,8 @@
 									<label for="">Number of Barcode</label>
 									<input type="text" class="form-control" v-model="form.number" />
 								</div>
-								<div class="col-md-2 text-center">
-									<button class="btn btn-primary btn-sm ms-2">Generate</button>
+								<div class="form-group d-flex align-items-end">
+									<button class="btn btn-primary btn-sm">Generate</button>
 								</div>
 							</div>
 						</form>

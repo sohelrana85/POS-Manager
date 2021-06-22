@@ -11,9 +11,9 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Business Setting</h4>
+						<h4 class="card-title m-0 p-2">Business Setting</h4>
 					</div>
-					<div class="card-body mt-3">
+					<div class="card-body">
 						<form v-if="!isUploaded" @submit.prevent="saveBusiness">
 							<div class="form-row">
 								<div class="form-group col-md-5">
@@ -31,7 +31,7 @@
 									<HasError :form="form" field="business_address" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="country">Country *</label>
 									<input type="text" class="form-control" v-model="form.country" />
@@ -48,7 +48,7 @@
 									<HasError :form="form" field="mobile" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="email">Email</label>
 									<input type="text" class="form-control" v-model="form.email" />
@@ -60,19 +60,15 @@
 									<HasError :form="form" field="website" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="start_date">Start Date *</label>
 									<input type="date" class="form-control" v-model="form.start_date" />
 									<HasError :form="form" field="start_date" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="currency" class="ps-0">Currency *</label>
-									<select
-										class="form-control"
-										v-model="form.currency"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.currency">
 										<option value="">Select</option>
 										<option value="bdt">BDT</option>
 										<option value="usd">USD</option>
@@ -80,13 +76,9 @@
 									</select>
 									<HasError :form="form" field="currency" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="currency_symbol" class="ps-0">Currency Symbol *</label>
-									<select
-										class="form-control"
-										v-model="form.currency_symbol"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.currency_symbol">
 										<option value="">Select</option>
 										<option value="sign">&#2547;</option>
 										<option value="bdt">BDT</option>
@@ -95,11 +87,8 @@
 								</div>
 							</div>
 							<div class="form-row mt-3">
-								<div
-									class="form-group form-file-upload form-file-multiple col-md-4"
-									style="margin-top: -16px"
-								>
-									<label for="upload_logo" class="mb-0"
+								<div class="form-group form-file-upload form-file-multiple col-md-4">
+									<label for="upload_logo"
 										>Upload Logo (<small>min: w 260 x h 70</small>) *</label
 									>
 									<input
@@ -111,13 +100,9 @@
 									/>
 									<HasError :form="form" field="upload_logo" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="date_format" class="ps-0">Date Format *</label>
-									<select
-										class="form-control"
-										v-model="form.date_format"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.date_format">
 										<option value="">Select</option>
 										<option value="yyyy-mm-dd">yyyy-mm-dd</option>
 										<option value="mm-dd-yyyy">mm-dd-yyyy</option>
@@ -125,13 +110,9 @@
 									</select>
 									<HasError :form="form" field="date_format" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="time_format" class="ps-0">Time Format *</label>
-									<select
-										class="form-control"
-										v-model="form.time_format"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.time_format">
 										<option value="">Select</option>
 										<option value="12">12 Hours</option>
 										<option value="24">24 Hours</option>
@@ -164,7 +145,7 @@
 									<HasError :form="form" field="business_address" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="country">Country *</label>
 									<input type="text" class="form-control" v-model="form.country" />
@@ -181,7 +162,7 @@
 									<HasError :form="form" field="mobile" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="email">Email</label>
 									<input type="text" class="form-control" v-model="form.email" />
@@ -193,19 +174,15 @@
 									<HasError :form="form" field="website" />
 								</div>
 							</div>
-							<div class="form-row mt-3">
+							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="start_date">Start Date *</label>
 									<input type="date" class="form-control" v-model="form.start_date" />
 									<HasError :form="form" field="start_date" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="currency" class="ps-0">Currency *</label>
-									<select
-										class="form-control"
-										v-model="form.currency"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.currency">
 										<option value="">Select</option>
 										<option value="bdt">BDT</option>
 										<option value="usd">USD</option>
@@ -213,13 +190,9 @@
 									</select>
 									<HasError :form="form" field="currency" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="currency_symbol" class="ps-0">Currency Symbol *</label>
-									<select
-										class="form-control"
-										v-model="form.currency_symbol"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.currency_symbol">
 										<option value="">Select</option>
 										<option value="sign">&#2547;</option>
 										<option value="bdt">BDT</option>
@@ -228,11 +201,8 @@
 								</div>
 							</div>
 							<div class="form-row mt-3">
-								<div
-									class="form-group form-file-upload form-file-multiple col-md-4"
-									style="margin-top: -16px"
-								>
-									<label for="upload_logo" class="mb-0"
+								<div class="form-group form-file-upload form-file-multiple col-md-4">
+									<label for="upload_logo"
 										>Upload Logo (<small>min: w 260 x h 70</small>) *</label
 									>
 									<input
@@ -244,13 +214,9 @@
 									/>
 									<HasError :form="form" field="upload_logo" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="date_format" class="ps-0">Date Format *</label>
-									<select
-										class="form-control"
-										v-model="form.date_format"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.date_format">
 										<option value="">Select</option>
 										<option value="yyyy-mm-dd">yyyy-mm-dd</option>
 										<option value="mm-dd-yyyy">mm-dd-yyyy</option>
@@ -258,13 +224,9 @@
 									</select>
 									<HasError :form="form" field="date_format" />
 								</div>
-								<div class="form-group col-md-4" style="margin-top: -7px">
+								<div class="form-group col-md-4">
 									<label for="time_format" class="ps-0">Time Format *</label>
-									<select
-										class="form-control"
-										v-model="form.time_format"
-										style="margin-top: -15px"
-									>
+									<select class="form-control" v-model="form.time_format">
 										<option value="">Select</option>
 										<option value="12">12 Hours</option>
 										<option value="24">24 Hours</option>
@@ -276,7 +238,7 @@
 							<div class="text-right pt-3">
 								<button type="reset" class="btn btn-warning">Clear</button>
 								<button type="submit" class="btn btn-info" :disabled="form.busy">
-									Update Setting
+									Update
 								</button>
 							</div>
 						</form>

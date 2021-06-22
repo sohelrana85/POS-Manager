@@ -19,45 +19,47 @@
 						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Unit Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(unitType, index) in allUnitType.data" :key="index">
-									<td>{{ unitType.id }}</td>
-									<td>{{ unitType.name }}</td>
-									<td>{{ unitType.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Unit Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(unitType, index) in allUnitType.data" :key="index">
+										<td>{{ unitType.id }}</td>
+										<td>{{ unitType.name }}</td>
+										<td>{{ unitType.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editUnitType(unitType);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteUnitType(unitType.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editUnitType(unitType);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteUnitType(unitType.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -75,12 +77,12 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Unit Type</h5>
+							<h5 class="modal-title fw-bold">Add Unit Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveUnitType" class="m-0">
 								<div class="form-group">
-									<label for="name">Unit Name</label>
+									<label for="name">Unit Type Name</label>
 									<input
 										type="text"
 										class="form-control"
@@ -129,7 +131,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save unitType
+										Save
 									</button>
 								</div>
 							</form>
@@ -145,12 +147,12 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Unit Type</h5>
+							<h5 class="modal-title fw-bold">Update Unit Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateUnitType" class="m-0">
 								<div class="form-group">
-									<label for="name">Unit Name</label>
+									<label for="name">Unit Type Name</label>
 									<input
 										type="text"
 										class="form-control"
@@ -199,7 +201,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

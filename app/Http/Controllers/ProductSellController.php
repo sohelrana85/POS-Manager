@@ -72,6 +72,8 @@ class ProductSellController extends Controller
             'payment_type'     => $request->payment_type,
             'account_name'     => $request->account,
             ]);
+
+
             return response()->json([
                 'status' => '1',
                 'message' => 'Product Sell Success'

@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'BusinessSetting', 'titlePage' => __('Business Setting')])
 
 @section('content')
-<div class="content pt-0" id="app">
+<div class="content" id="app">
 
     <business-setting />
 

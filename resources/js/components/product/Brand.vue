@@ -19,45 +19,47 @@
 						<!-- <p class="card-category">Manage Brand page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr>
-									<th>Sl</th>
-									<th>Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(Brand, index) in allBrands.data" :key="index">
-									<td>{{ Brand.id }}</td>
-									<td>{{ Brand.name }}</td>
-									<td>{{ Brand.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Sl</th>
+										<th>Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(Brand, index) in allBrands.data" :key="index">
+										<td>{{ Brand.id }}</td>
+										<td>{{ Brand.name }}</td>
+										<td>{{ Brand.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editBrand(Brand);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteBrand(Brand.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editBrand(Brand);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteBrand(Brand.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -75,7 +77,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Brand</h5>
+							<h5 class="modal-title fw-bold">Add Brand</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveBrand" class="m-0">
@@ -129,7 +131,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save Brand
+										Save
 									</button>
 								</div>
 							</form>
@@ -145,7 +147,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Brand</h5>
+							<h5 class="modal-title fw-bold">Update Brand</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateBrand" class="m-0">
@@ -199,7 +201,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

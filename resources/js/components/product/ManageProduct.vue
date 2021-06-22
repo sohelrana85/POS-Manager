@@ -1,7 +1,7 @@
 <template>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered table-striped table-hover">
+			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>sl</th>
@@ -23,7 +23,7 @@
 						:key="index"
 						:class="product.status == 1 ? 'disabled' : ''"
 					>
-						<td>{{ ++index }}</td>
+						<td>{{ product.id }}</td>
 						<td>{{ product.product_name }}</td>
 						<td>{{ product.product_code }}</td>
 						<td>{{ product.category.name }}</td>

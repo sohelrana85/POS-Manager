@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'add-product', 'titlePage' => __('Add Product')])
 
 @section('content')
-<div class="content pt-0" id="app">
+<div class="content" id="app">
     <div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-md-12">

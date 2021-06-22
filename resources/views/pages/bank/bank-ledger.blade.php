@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'bank-ledger', 'titlePage' => __('Bank Ledger')])
 
 @section('content')
-<div class="content pt-0" id="app">
+<div class="content" id="app">
 
     <bank-ledger />
 

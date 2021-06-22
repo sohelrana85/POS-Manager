@@ -19,27 +19,33 @@ class BankTransactionController extends Controller
     {
         $request->validate([
             'transaction_date' => 'required|date',
+            'description'      => 'required|string',
             'transaction_type' => 'required|in:debit,credit',
             'bank_name'        => 'required',
             'amount'           => 'required|numeric',
-            'description'      => 'required|string',
         ]);
 
         try {
+
+            $last_balance = BankTransaction::where('bank_name', $request->bank_name)->pluck('balance')->last();
+
             BankTransaction::create([
                 'user_id'          => Auth::id(),
                 'date'             => $request->transaction_date,
+                'description'      => $request->description,
                 'transaction_type' => $request->transaction_type,
                 'bank_name'        => $request->bank_name,
                 'debit'            => $request->transaction_type == 'debit' ? $request->amount : 0,
                 'credit'           => $request->transaction_type == 'credit' ? $request->amount : 0,
-                'description'      => $request->description
+                'balance'          => $request->transaction_type == 'debit' ? $last_balance + $request->amount : $last_balance - $request->amount,
             ]);
+
             return response()->json([
                 'status' => '1',
                 'message' => 'Data save Success.'
             ]);
         } catch (Exception $e) {
+
             return response()->json([
                 'status' => '0',
                 'message' => 'Data save failed.',

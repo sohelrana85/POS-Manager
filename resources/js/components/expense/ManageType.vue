@@ -11,53 +11,54 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Manage Type</h4>
+						<h4 class="card-title m-0 p-2">Manage Type</h4>
 						<button @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
-						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Type Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(expenseType, index) in allExpenseType.data" :key="index">
-									<td>{{ expenseType.id }}</td>
-									<td>{{ expenseType.expense_type }}</td>
-									<td>{{ expenseType.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Type Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(expenseType, index) in allExpenseType.data" :key="index">
+										<td>{{ expenseType.id }}</td>
+										<td>{{ expenseType.expense_type }}</td>
+										<td>{{ expenseType.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editExpenseType(expenseType);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteExpenseType(expenseType.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editExpenseType(expenseType);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteExpenseType(expenseType.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -75,7 +76,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Expense Type</h5>
+							<h5 class="modal-title fw-bold">Add Expense Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="addExpenseType" class="m-0">
@@ -129,7 +130,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save Type
+										Save
 									</button>
 								</div>
 							</form>
@@ -145,7 +146,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Expense Type</h5>
+							<h5 class="modal-title fw-bold">Update Expense Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateExpenseType" class="m-0">
@@ -199,7 +200,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

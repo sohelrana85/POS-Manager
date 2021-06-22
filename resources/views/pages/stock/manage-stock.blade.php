@@ -4,7 +4,7 @@
 @push('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 @endpush
-<div class="content pt-0" id="app">
+<div class="content" id="app">
     <div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
@@ -17,7 +17,7 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Manage Stock</h4>
+						<h4 class="card-title m-0 p-2">Manage Stock</h4>
 					</div>
 
                     <manage-stock />

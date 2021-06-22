@@ -30,32 +30,20 @@ import VueBarcode from "vue-barcode";
 Vue.component("pagination", require("laravel-vue-pagination"));
 
 //globally import components
+
+//Customer
 Vue.component(
     "customer",
     require("./components/customer/Customer.vue").default
 );
 
-Vue.component("UnitType", require("./components/product/UnitType.vue").default);
-Vue.component(
-    "PackageSize",
-    require("./components/product/PackageSize.vue").default
-);
-Vue.component(
-    "PaymentType",
-    require("./components/setting/PaymentType.vue").default
-);
-Vue.component(
-    "BusinessSetting",
-    require("./components/setting/BusinessSetting.vue").default
-);
-Vue.component("Category", require("./components/product/Category.vue").default);
-Vue.component("Brand", require("./components/product/Brand.vue").default);
-
+//Supplier
 Vue.component(
     "ManageSupplier",
     require("./components/supplier/ManageSupplier.vue").default
 );
 
+//Product
 Vue.component(
     "AddProduct",
     require("./components/product/AddProduct.vue").default
@@ -65,6 +53,15 @@ Vue.component(
     require("./components/product/ManageProduct.vue").default
 );
 Vue.component("Barcode", require("./components/product/Barcode.vue").default);
+Vue.component("UnitType", require("./components/product/UnitType.vue").default);
+Vue.component(
+    "PackageSize",
+    require("./components/product/PackageSize.vue").default
+);
+Vue.component("Category", require("./components/product/Category.vue").default);
+Vue.component("Brand", require("./components/product/Brand.vue").default);
+
+//Purchase
 Vue.component(
     "ProductPurchase",
     require("./components/purchase/ProductPurchase.vue").default
@@ -73,11 +70,15 @@ Vue.component(
     "ManagePurchase",
     require("./components/purchase/ManagePurchase.vue").default
 );
+
+//Stock
 Vue.component("AddStock", require("./components/stock/AddStock.vue").default);
 Vue.component(
     "ManageStock",
     require("./components/stock/ManageStock.vue").default
 );
+
+//Sell
 Vue.component(
     "ProductSell",
     require("./components/sell/ProductSell.vue").default
@@ -86,6 +87,8 @@ Vue.component(
     "ManageSell",
     require("./components/sell/ManageSell.vue").default
 );
+
+//Expense
 Vue.component(
     "ManageType",
     require("./components/expense/ManageType.vue").default
@@ -93,6 +96,10 @@ Vue.component(
 Vue.component(
     "ManageExpense",
     require("./components/expense/ManageExpense.vue").default
+);
+Vue.component(
+    "ExpenseStatement",
+    require("./components/expense/ExpenseStatement.vue").default
 );
 
 //Bank
@@ -107,6 +114,16 @@ Vue.component(
 Vue.component(
     "BankLedger",
     require("./components/bank/BankLedger.vue").default
+);
+
+//Setting
+Vue.component(
+    "PaymentType",
+    require("./components/setting/PaymentType.vue").default
+);
+Vue.component(
+    "BusinessSetting",
+    require("./components/setting/BusinessSetting.vue").default
 );
 
 const app = new Vue({

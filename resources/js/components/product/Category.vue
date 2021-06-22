@@ -19,45 +19,47 @@
 						<!-- <p class="card-category">Manage Category page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(Category, index) in allCategory.data" :key="index">
-									<td>{{ Category.id }}</td>
-									<td>{{ Category.name }}</td>
-									<td>{{ Category.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(Category, index) in allCategory.data" :key="index">
+										<td>{{ Category.id }}</td>
+										<td>{{ Category.name }}</td>
+										<td>{{ Category.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editCategory(Category);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteCategory(Category.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editCategory(Category);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteCategory(Category.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -75,7 +77,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Categories</h5>
+							<h5 class="modal-title fw-bold">Add Category</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveCategory" class="m-0">
@@ -129,7 +131,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save Category
+										Save
 									</button>
 								</div>
 							</form>
@@ -145,7 +147,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Categories</h5>
+							<h5 class="modal-title fw-bold">Update Category</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateCategory" class="m-0">
@@ -199,7 +201,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

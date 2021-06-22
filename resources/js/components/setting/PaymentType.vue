@@ -11,53 +11,54 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 pt-2">Manage Payment Type</h4>
+						<h4 class="card-title m-0 p-2">Manage Payment Type</h4>
 						<button @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
-						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Unit Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(pType, index) in allPaymentType.data" :key="index">
-									<td>{{ pType.id }}</td>
-									<td>{{ pType.name }}</td>
-									<td>{{ pType.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Unit Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(pType, index) in allPaymentType.data" :key="index">
+										<td>{{ pType.id }}</td>
+										<td>{{ pType.name }}</td>
+										<td>{{ pType.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editPaymentType(pType);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deletePaymentType(pType.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editPaymentType(pType);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deletePaymentType(pType.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -69,13 +70,13 @@
 			</div>
 		</div>
 
-		<!-- Add unitType model -->
+		<!-- Add Payment model -->
 		<div v-if="addModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Payment Type</h5>
+							<h5 class="modal-title fw-bold">Add Payment Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="savePaymentType" class="m-0">
@@ -129,7 +130,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save Type
+										Save
 									</button>
 								</div>
 							</form>
@@ -139,13 +140,13 @@
 			</div>
 		</div>
 
-		<!-- Edit unitType model -->
+		<!-- Edit Payment Type model -->
 		<div v-if="updateModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Payment Type</h5>
+							<h5 class="modal-title fw-bold">Update Payment Type</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updatePaymentType" class="m-0">
@@ -199,7 +200,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

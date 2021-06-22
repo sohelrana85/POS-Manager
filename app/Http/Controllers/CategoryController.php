@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::paginate(5);
+        return Category::paginate(10);
     }
 
     /**

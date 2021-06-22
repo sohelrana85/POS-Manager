@@ -20,7 +20,7 @@
 								style="border: 1px solid #eee"
 							>
 								<div class="form-group col-md-2">
-									<label for="start_date">Start Data</label>
+									<label for="start_date">Data From</label>
 									<input
 										type="date"
 										id="start_date"
@@ -30,7 +30,7 @@
 									<HasError :form="form" field="start_date" />
 								</div>
 								<div class="form-group col-md-2">
-									<label for="end_date">End Data</label>
+									<label for="end_date">Data To</label>
 									<input
 										type="date"
 										id="end_date"
@@ -39,13 +39,9 @@
 									/>
 									<HasError :form="form" field="end_date" />
 								</div>
-								<div class="form-group col-md-3 ms-0 ms-lg-4" style="margin-top: -7px">
+								<div class="form-group col-md-3 ms-0 ms-lg-4">
 									<label for="bank_id" class="ps-0">Bank Name</label>
-									<select
-										class="form-control"
-										v-model="form.bank_id"
-										style="margin-top: -19px"
-									>
+									<select class="form-control" v-model="form.bank_id">
 										<option value="">Select</option>
 										<option
 											v-for="(bank, index) in allBanks"
@@ -58,41 +54,39 @@
 									</select>
 									<HasError :form="form" field="bank_id" />
 								</div>
-								<div class="form-group col-md-2 text-center">
+
+								<div class="form-group d-flex align-items-end">
 									<button class="btn btn-primary btn-sm">Search</button>
 								</div>
 							</div>
 						</form>
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Date</th>
-									<th>Description</th>
-									<th>Bank Name</th>
-									<th>Debit (+)</th>
-									<th>Credit (-)</th>
-									<th>Balance</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(transaction, index) in allTransactions" :key="index">
-									<td>{{ transaction.date }}</td>
-									<td>{{ transaction.description }}</td>
-									<td>{{ transaction.bank_names.bank_name }}</td>
-									<td class="text-end">{{ transaction.debit }}</td>
-									<td class="text-end">{{ transaction.credit }}</td>
-									<td class="text-end fw-bold">
-										{{ balance(transaction.debit, transaction.credit) }}
-									</td>
-								</tr>
-								{{
-									(totalBalance = null)
-								}}
-								<tr v-if="allTransactions.length == 0">
-									<td colspan="6" class="p-3 fw-bold text-danger">No data Founded</td>
-								</tr>
-							</tbody>
-						</table>
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Date</th>
+										<th>Description</th>
+										<th>Bank Name</th>
+										<th>Debit (+)</th>
+										<th>Credit (-)</th>
+										<th>Balance</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(transaction, index) in allTransactions" :key="index">
+										<td>{{ transaction.date }}</td>
+										<td>{{ transaction.description }}</td>
+										<td>{{ transaction.bank_names.bank_name }}</td>
+										<td class="text-end">{{ transaction.debit }}</td>
+										<td class="text-end">{{ transaction.credit }}</td>
+										<td class="text-end fw-bold">{{ transaction.balance }}</td>
+									</tr>
+									<tr v-if="allTransactions.length == 0">
+										<td colspan="6" class="p-3 fw-bold text-danger">No data Founded</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<!-- <div class="row">
 							<div class="col-md-4">
 								Showing {{ allTransactions.from }} to {{ allTransactions.to }} of
@@ -125,8 +119,7 @@ export default {
 			bank_id: ""
 		}),
 		allTransactions: {},
-		allBanks: "",
-		totalBalance: ""
+		allBanks: ""
 	}),
 	mounted() {
 		// this.getTotalBalance();
@@ -143,12 +136,6 @@ export default {
 			axios.get("/getBankAccounts").then(res => {
 				this.allBanks = res.data.bank_accounts;
 			});
-		},
-		balance(debit, credit) {
-			let sum = 0;
-			sum = Number(debit) - Number(credit);
-			this.totalBalance += Number(sum);
-			return this.totalBalance;
 		}
 	}
 };

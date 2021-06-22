@@ -14,14 +14,11 @@
                     <div class="card-header card-header-primary text-center">
                         <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
                         <div class="social-line">
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                <i class="fa fa-facebook-square"></i>
+                            <a href="https://www.facebook.com/clouditdigital/" class="btn btn-just-icon btn-link btn-white">
+                                <i class="fab fa-facebook-square"></i>
                             </a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                                <i class="fa fa-google-plus"></i>
+                            <a href="https://www.youtube.com/channel/UCnl1enapuY1ZFEWIK9EkmYA" class="btn btn-just-icon btn-link btn-white">
+                                <i class="fab fa-youtube-square"></i>
                             </a>
                         </div>
                     </div>
@@ -67,11 +64,11 @@
                         </div>
                     </div>
                     <div class="card-footer justify-content-center">
-                        <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+                        <button style="color: #037fff !important;" type="submit" class="btn btn-primary btn-link">{{ __('Lets Go') }}</button>
                     </div>
                 </div>
             </form>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-6">
                     @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}" class="text-light">
@@ -84,7 +81,7 @@
                         <small>{{ __('Create new account') }}</small>
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

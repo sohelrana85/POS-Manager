@@ -1,79 +1,84 @@
 <template>
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-body">
-					<form @submit.prevent="savePurchase">
-						<div class="form-row mb-3">
-							<div class="form-group col-md-4">
-								<label for="memo_no">Memo No *</label>
-								<input type="text" class="form-control" v-model="form.memo_no" />
-								<HasError :form="form" field="memo_no" />
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="card">
+					<div
+						class="
+							card-header card-header-primary
+							d-flex
+							justify-content-between
+							py-1
+						"
+					>
+						<h4 class="card-title m-0 p-2">Product Purchase</h4>
+						<!-- <button class="btn btn-info px-3">
+							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
+							Manage Product
+						</button> -->
+					</div>
+					<div class="card-body">
+						<form @submit.prevent="savePurchase">
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="memo_no">Memo No *</label>
+									<input type="text" class="form-control" v-model="form.memo_no" />
+									<HasError :form="form" field="memo_no" />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="memo_date">Memo Date *</label>
+									<input type="date" class="form-control" v-model="form.memo_date" />
+									<HasError :form="form" field="memo_date" />
+								</div>
+								<div class="form-group col-md-4">
+									<label for="warehouse" class="ps-0">Warehouse *</label>
+									<select class="form-control" v-model="form.warehouse">
+										<option value="">Select</option>
+										<option
+											v-for="warehouse in Warehouses"
+											:key="warehouse.id"
+											:value="warehouse.id"
+										>
+											{{ warehouse.name }}
+										</option>
+									</select>
+									<HasError :form="form" field="warehouse" />
+								</div>
 							</div>
-							<div class="form-group col-md-4">
-								<label for="memo_date">Memo Date *</label>
-								<input type="date" class="form-control" v-model="form.memo_date" />
-								<HasError :form="form" field="memo_date" />
-							</div>
-							<div class="form-group col-md-4" style="margin-top: -7px">
-								<label for="warehouse" class="ps-0">Warehouse *</label>
-								<select
-									class="form-control"
-									v-model="form.warehouse"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="warehouse in Warehouses"
-										:key="warehouse.id"
-										:value="warehouse.id"
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="supplier" class="ps-0">Supplier Name*</label>
+									<select id="supplier" class="form-control" v-model="form.supplier">
+										<option value="">Select</option>
+										<option
+											v-for="supplier in Suppliers"
+											:key="supplier.id"
+											:value="supplier.id"
+										>
+											{{ supplier.business_name }}
+										</option>
+									</select>
+									<HasError :form="form" field="supplier" />
+								</div>
+								<div class="form-group col-md-6">
+									<label for="purchase_status" class="ps-0">Purchase Status*</label>
+									<select
+										id="purchase_status"
+										class="form-control"
+										v-model="form.purchase_status"
 									>
-										{{ warehouse.name }}
-									</option>
-								</select>
-								<HasError :form="form" field="warehouse" />
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6" style="margin-top: -7px">
-								<label for="supplier" class="ps-0">Supplier Name*</label>
-								<select
-									id="supplier"
-									class="form-control"
-									v-model="form.supplier"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="supplier in Suppliers"
-										:key="supplier.id"
-										:value="supplier.id"
-									>
-										{{ supplier.business_name }}
-									</option>
-								</select>
-								<HasError :form="form" field="supplier" />
-							</div>
-							<div class="form-group col-md-6" style="margin-top: -7px">
-								<label for="purchase_status" class="ps-0">Purchase Status*</label>
-								<select
-									id="purchase_status"
-									class="form-control"
-									v-model="form.purchase_status"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="purchase_status in PurchaseStatus"
-										:key="purchase_status.id"
-										:value="purchase_status.id"
-									>
-										{{ purchase_status.name }}
-									</option>
-								</select>
-								<HasError :form="form" field="purchase_status" />
-							</div>
-							<!-- <div class="form-group col-md-3">
+										<option value="">Select</option>
+										<option
+											v-for="purchase_status in PurchaseStatus"
+											:key="purchase_status.id"
+											:value="purchase_status.id"
+										>
+											{{ purchase_status.name }}
+										</option>
+									</select>
+									<HasError :form="form" field="purchase_status" />
+								</div>
+								<!-- <div class="form-group col-md-3">
 								<label for="purchase_type">Purchase Type*</label>
 								<select
 									id="purchase_type"
@@ -91,177 +96,168 @@
 								</select>
 								<HasError :form="form" field="purchase_type" />
 							</div> -->
-						</div>
+							</div>
 
-						<div class="form-row mt-3">
-							<div class="form-group col-md-6" style="margin-top: -7px">
-								<label for="product_name" class="ps-0">Product Name *</label>
-								<select
-									class="form-control"
-									v-model="form.product_name"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="product in Products"
-										:key="product.id"
-										:value="product.id"
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="product_name" class="ps-0">Product Name *</label>
+									<select class="form-control" v-model="form.product_name">
+										<option value="">Select</option>
+										<option
+											v-for="product in Products"
+											:key="product.id"
+											:value="product.id"
+										>
+											{{ product.product_name }}
+										</option>
+									</select>
+									<HasError :form="form" field="product_name" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="product_qty">Product Qty *</label>
+									<input
+										type="text"
+										class="form-control"
+										id="product_qty"
+										placeholder=""
+										v-model="form.product_qty"
+									/>
+									<HasError :form="form" field="product_qty" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="free_qty">Free Qty *</label>
+									<input
+										type="text"
+										class="form-control"
+										id="free_qty"
+										placeholder=""
+										v-model="form.free_qty"
+									/>
+									<HasError :form="form" field="free_qty" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="unit_price">Unit Price *</label>
+									<input
+										type="text"
+										class="form-control"
+										id="unit_price"
+										placeholder=""
+										v-model="form.unit_price"
+									/>
+									<HasError :form="form" field="unit_price" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="total_price">Total Price *</label>
+									<input
+										type="text"
+										class="form-control"
+										id="total_price"
+										placeholder=""
+										readonly
+										v-model="form.total_price"
+									/>
+									<HasError :form="form" field="total_price" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="order_tax">Order Tax *</label>
+									<input type="text" class="form-control" v-model="form.order_tax" />
+									<HasError :form="form" field="order_tax" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="order_discount">Order Discount *</label>
+									<input
+										type="text"
+										class="form-control"
+										v-model="form.order_discount"
+									/>
+									<HasError :form="form" field="order_discount" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="shipping_cost">Shipping Cost *</label>
+									<input type="text" class="form-control" v-model="form.shipping_cost" />
+									<HasError :form="form" field="shipping_cost" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="payment_status" class="ps-0">Payment Status *</label>
+									<select class="form-control" v-model="form.payment_status">
+										<option value="">Select</option>
+										<option value="Paid">Paid</option>
+										<option value="Partial">Partial</option>
+										<option value="Due">Due</option>
+									</select>
+									<HasError :form="form" field="payment_status" />
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="paid_amount">Paid Amount *</label>
+									<input
+										type="text"
+										class="form-control"
+										v-model="form.paid_amount"
+										:readonly="isPaidnDue"
+									/>
+									<HasError :form="form" field="paid_amount" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="due_amount">Due Amount *</label>
+									<input
+										type="text"
+										class="form-control"
+										v-model="form.due_amount"
+										:readonly="isPaidnDue"
+									/>
+									<HasError :form="form" field="due_amount" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="payment_type" class="ps-0">Payment Type *</label>
+									<select
+										class="form-control"
+										v-model="form.payment_type"
+										:disabled="isDue"
 									>
-										{{ product.product_name }}
-									</option>
-								</select>
-								<HasError :form="form" field="product_name" />
+										<option value="">Select</option>
+										<option
+											v-for="payment_type in PaymentTypes"
+											:key="payment_type.id"
+											:value="payment_type.id"
+										>
+											{{ payment_type.name }}
+										</option>
+									</select>
+									<HasError :form="form" field="payment_type" />
+								</div>
+								<div class="form-group col-md-3">
+									<label for="account" class="ps-0">Account *</label>
+									<select class="form-control" v-model="form.account" :disabled="isDue">
+										<option value="">Select</option>
+										<option
+											v-for="account in Accounts"
+											:key="account.id"
+											:value="account.id"
+										>
+											{{ account.bank_name }}
+										</option>
+									</select>
+									<HasError :form="form" field="account" />
+								</div>
 							</div>
-						</div>
 
-						<div class="form-row mt-3">
-							<div class="form-group col-md-3">
-								<label for="product_qty">Product Qty *</label>
-								<input
-									type="text"
-									class="form-control"
-									id="product_qty"
-									placeholder=""
-									v-model="form.product_qty"
-								/>
-								<HasError :form="form" field="product_qty" />
+							<div class="text-right mt-4">
+								<button type="reset" class="btn btn-warning">Clear</button>
+								<button type="submit" class="btn btn-info" :disabled="form.busy">
+									Add Purchase
+								</button>
 							</div>
-							<div class="form-group col-md-3">
-								<label for="free_qty">Free Qty *</label>
-								<input
-									type="text"
-									class="form-control"
-									id="free_qty"
-									placeholder=""
-									v-model="form.free_qty"
-								/>
-								<HasError :form="form" field="free_qty" />
-							</div>
-							<div class="form-group col-md-3">
-								<label for="unit_price">Unit Price *</label>
-								<input
-									type="text"
-									class="form-control"
-									id="unit_price"
-									placeholder=""
-									v-model="form.unit_price"
-								/>
-								<HasError :form="form" field="unit_price" />
-							</div>
-							<div class="form-group col-md-3">
-								<label for="total_price">Total Price *</label>
-								<input
-									type="text"
-									class="form-control"
-									id="total_price"
-									placeholder=""
-									readonly
-									v-model="form.total_price"
-								/>
-								<HasError :form="form" field="total_price" />
-							</div>
-						</div>
-
-						<div class="form-row mt-5">
-							<div class="form-group col-md-3">
-								<label for="order_tax">Order Tax *</label>
-								<input type="text" class="form-control" v-model="form.order_tax" />
-								<HasError :form="form" field="order_tax" />
-							</div>
-							<div class="form-group col-md-3">
-								<label for="order_discount">Order Discount *</label>
-								<input type="text" class="form-control" v-model="form.order_discount" />
-								<HasError :form="form" field="order_discount" />
-							</div>
-							<div class="form-group col-md-3">
-								<label for="shipping_cost">Shipping Cost *</label>
-								<input type="text" class="form-control" v-model="form.shipping_cost" />
-								<HasError :form="form" field="shipping_cost" />
-							</div>
-							<div class="form-group col-md-3" style="margin-top: -7px">
-								<label for="payment_status" class="ps-0">Payment Status *</label>
-								<select
-									class="form-control"
-									v-model="form.payment_status"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option value="Paid">Paid</option>
-									<option value="Partial">Partial</option>
-									<option value="Due">Due</option>
-								</select>
-								<HasError :form="form" field="payment_status" />
-							</div>
-						</div>
-
-						<div class="form-row mt-3">
-							<div class="form-group col-md-3">
-								<label for="paid_amount">Paid Amount *</label>
-								<input
-									type="text"
-									class="form-control"
-									v-model="form.paid_amount"
-									:readonly="isPaidnDue"
-								/>
-								<HasError :form="form" field="paid_amount" />
-							</div>
-							<div class="form-group col-md-3">
-								<label for="due_amount">Due Amount *</label>
-								<input
-									type="text"
-									class="form-control"
-									v-model="form.due_amount"
-									:readonly="isPaidnDue"
-								/>
-								<HasError :form="form" field="due_amount" />
-							</div>
-							<div class="form-group col-md-3" style="margin-top: -7px">
-								<label for="payment_type" class="ps-0">Payment Type *</label>
-								<select
-									class="form-control"
-									v-model="form.payment_type"
-									:disabled="isDue"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="payment_type in PaymentTypes"
-										:key="payment_type.id"
-										:value="payment_type.id"
-									>
-										{{ payment_type.name }}
-									</option>
-								</select>
-								<HasError :form="form" field="payment_type" />
-							</div>
-							<div class="form-group col-md-3" style="margin-top: -7px">
-								<label for="account" class="ps-0">Account *</label>
-								<select
-									class="form-control"
-									v-model="form.account"
-									:disabled="isDue"
-									style="margin-top: -15px"
-								>
-									<option value="">Select</option>
-									<option
-										v-for="account in Accounts"
-										:key="account.id"
-										:value="account.id"
-									>
-										{{ account.bank_name }}
-									</option>
-								</select>
-								<HasError :form="form" field="account" />
-							</div>
-						</div>
-
-						<div class="text-right mt-4">
-							<button type="reset" class="btn btn-warning">Clear</button>
-							<button type="submit" class="btn btn-info" :disabled="form.busy">
-								Add Purchase
-							</button>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -457,7 +453,4 @@ export default {
 };
 </script>
 <style scoped>
-select.form-control:not([size]):not([multiple]) {
-	height: calc(2.3rem);
-}
 </style>

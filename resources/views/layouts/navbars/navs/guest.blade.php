@@ -12,11 +12,15 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+                <li class="nav-item" style=" font-size: 14px">
+                <i class="far fa-envelope"></i> info.clouditdigital@gmail.com <span class="px-2">|</span> <i class="fab fa-whatsapp"></i> +8801735333701
+                </li>
+
                 {{-- <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link">
                 <i class="material-icons">dashboard</i> {{ __('Dashboard') }}
                 </a>
-                </li> --}}
+                </li>
                 <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
                     <a href="{{ route('register') }}" class="nav-link">
                         <i class="material-icons">person_add</i> {{ __('Register') }}
@@ -27,7 +31,7 @@
                         <i class="material-icons">fingerprint</i> {{ __('Login') }}
                     </a>
                 </li>
-                {{-- <li class="nav-item ">
+                <li class="nav-item ">
           <a href="{{ route('profile.edit') }}" class="nav-link">
                 <i class="material-icons">face</i> {{ __('Profile') }}
                 </a>

@@ -16,7 +16,7 @@ class PackageSizeController extends Controller
      */
     public function index()
     {
-        return PackageSize::with('unitTypes')->paginate(5);
+        return PackageSize::with('unitTypes')->paginate(10);
     }
 
     /**

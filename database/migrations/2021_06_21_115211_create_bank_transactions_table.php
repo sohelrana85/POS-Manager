@@ -17,11 +17,12 @@ class CreateBankTransactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('date');
+            $table->string('description');
             $table->enum('transaction_type',['debit','credit']);
             $table->unsignedBigInteger('bank_name');
-            $table->decimal('debit',8,2);
-            $table->decimal('credit',8,2);
-            $table->string('description');
+            $table->decimal('debit',8,2)->default(0);
+            $table->decimal('credit',8,2)->default(0);
+            $table->decimal('balance',10,2)->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');

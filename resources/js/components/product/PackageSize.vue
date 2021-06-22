@@ -18,47 +18,49 @@
 						</button>
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Unit Name</th>
-									<th>Package Name</th>
-									<th>status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(packageSize, index) in allPackageSize.data" :key="index">
-									<td>{{ packageSize.id }}</td>
-									<td>{{ packageSize.unit_types.name }}</td>
-									<td>{{ packageSize.name }}</td>
-									<td>{{ packageSize.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Unit Name</th>
+										<th>Package Name</th>
+										<th>status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(packageSize, index) in allPackageSize.data" :key="index">
+										<td>{{ packageSize.id }}</td>
+										<td>{{ packageSize.unit_types.name }}</td>
+										<td>{{ packageSize.name }}</td>
+										<td>{{ packageSize.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editPackageSize(packageSize);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deletePackageSize(packageSize.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editPackageSize(packageSize);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deletePackageSize(packageSize.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -76,7 +78,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Package Size</h5>
+							<h5 class="modal-title fw-bold">Add Package Size</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="savePackageSize" class="m-0">
@@ -144,7 +146,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Save packageSize
+										Save
 									</button>
 								</div>
 							</form>
@@ -160,7 +162,7 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Package Size</h5>
+							<h5 class="modal-title fw-bold">Update Package Size</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updatePackageSize" class="m-0">
@@ -228,7 +230,7 @@
 										Close
 									</button>
 									<button type="submit" class="btn btn-info" :disabled="form.busy">
-										Update Change
+										Update
 									</button>
 								</div>
 							</form>

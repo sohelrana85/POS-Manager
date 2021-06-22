@@ -16,7 +16,7 @@
 /*     brand Colors              */
 
 .card {
-  font-size: .875rem;
+  font-size: .85rem;
 }
 
 *,
@@ -2148,7 +2148,7 @@ pre code {
   padding: 0.4375rem 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #495057;
+  color: #7b7b7b;
   background-color: rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border: 1px solid #d2d2d2;
@@ -2182,7 +2182,7 @@ pre code {
 }
 
 select.form-control:not([size]):not([multiple]) {
-  height: calc(2.4375rem + 2px);
+  /* height: calc(2.4375rem + 2px); */
 }
 
 select.form-control:focus::-ms-value {
@@ -11179,11 +11179,11 @@ form {
 .form-control {
   background: no-repeat center bottom, center calc(100% - 1px);
   background-size: 0 100%, 100% 100%;
-  border: 0;
+  /* border: 0; */
   height: 36px;
   transition: background 0s ease-out;
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 5px;
+  padding-right: 5px;
   border-radius: 0;
   font-size: 14px;
 }
@@ -11365,9 +11365,9 @@ fieldset[disabled] .is-focused .switch label:focus {
   background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-.form-control:read-only {
+/* .form-control:read-only {
   background-image: linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
-}
+} */
 
 fieldset[disabled][disabled] .form-control,
 .form-control.disabled,
@@ -12547,12 +12547,12 @@ fieldset[disabled][disabled] .has-rose .form-control,
   color: #AAAAAA;
 }
 
-.bmd-form-group [class^='bmd-label'],
+/* .bmd-form-group [class^='bmd-label'],
 .bmd-form-group [class*=' bmd-label'] {
   position: absolute;
   pointer-events: none;
   transition: 0.3s ease all;
-}
+} */
 
 .bmd-form-group [class^='bmd-label'].bmd-label-floating,
 .bmd-form-group [class*=' bmd-label'].bmd-label-floating {
@@ -12941,7 +12941,7 @@ select.form-control {
 }
 
 .form-group .bmd-label-static {
-  top: -10px;
+  /* top: -10px; */
 }
 
 textarea {
@@ -13032,7 +13032,7 @@ fieldset[disabled] .form-group .form-control {
   margin-bottom: 20px;
   height: auto !important;
   color: #555;
-  background-color: #fff !important;
+  /* background-color: #fff !important; */
   box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -13283,8 +13283,8 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar.navbar-transparent {
-  background-color: transparent !important;
-  box-shadow: none;
+  /* background-color: transparent !important;
+  box-shadow: none; */
 }
 
 .navbar .notification {
@@ -16167,7 +16167,8 @@ color: white;
 }
 
 .table thead tr th {
-  font-size: 1.063rem;
+    font-size: .85rem;
+    font-weight: 400;
 }
 
 .table .th-description {
@@ -16336,10 +16337,10 @@ a .material-icons {
 .form-check,
 label {
   font-size: 14px;
-  line-height: 1.42857;
+  /* line-height: 1.42857; */
   color: #000;
   font-weight: 400;
-  padding-left: 4px;
+  /* padding-left: 4px; */
 }
 
 /*           Animations              */

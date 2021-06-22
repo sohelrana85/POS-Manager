@@ -19,51 +19,53 @@
 						<!-- <p class="card-category">Manage unitType page</p> -->
 					</div>
 					<div class="card-body">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr class="">
-									<th>Sl</th>
-									<th>Bank Name</th>
-									<th>Account Name</th>
-									<th>Account Number</th>
-									<th>Branch Name</th>
-									<th>Status</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(account, index) in allAccounts.data" :key="index">
-									<td>{{ account.id }}</td>
-									<td>{{ account.bank_name }}</td>
-									<td>{{ account.account_name }}</td>
-									<td>{{ account.account_number }}</td>
-									<td>{{ account.branch_name }}</td>
-									<td>{{ account.status ? "Active" : "Inactive" }}</td>
-									<td class="td-actions">
-										<!-- <button type="button" class="btn btn-info">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr class="">
+										<th>Sl</th>
+										<th>Bank Name</th>
+										<th>Account Name</th>
+										<th>Account Number</th>
+										<th>Branch Name</th>
+										<th>Status</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="(account, index) in allAccounts.data" :key="index">
+										<td>{{ account.id }}</td>
+										<td>{{ account.bank_name }}</td>
+										<td>{{ account.account_name }}</td>
+										<td>{{ account.account_number }}</td>
+										<td>{{ account.branch_name }}</td>
+										<td>{{ account.status ? "Active" : "Inactive" }}</td>
+										<td class="td-actions">
+											<!-- <button type="button" class="btn btn-info">
 											<i class="material-icons">person</i>
 										</button> -->
-										<button
-											type="button"
-											class="btn btn-success"
-											@click="
-												editAccount(account);
-												updateModal = true;
-											"
-										>
-											<i class="material-icons">edit</i>
-										</button>
-										<button
-											type="button"
-											class="btn btn-danger"
-											@click="deleteAccount(account.id)"
-										>
-											<i class="material-icons">close</i>
-										</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+											<button
+												type="button"
+												class="btn btn-success"
+												@click="
+													editAccount(account);
+													updateModal = true;
+												"
+											>
+												<i class="material-icons">edit</i>
+											</button>
+											<button
+												type="button"
+												class="btn btn-danger"
+												@click="deleteAccount(account.id)"
+											>
+												<i class="material-icons">close</i>
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 						<pagination
 							align="right"
 							:limit="2"
@@ -78,10 +80,10 @@
 		<!-- Add Accounts model -->
 		<div v-if="addModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
-				<div class="modal-dialog modal-md">
+				<div class="modal-dialog modal-dialog-scrollable modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Add Account</h5>
+							<h5 class="modal-title fw-bold">Add Bank</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="saveAccount" class="m-0">
@@ -178,10 +180,10 @@
 		<!-- Edit Accounts model -->
 		<div v-if="updateModal">
 			<div class="modal d-block" style="background: rgba(0, 0, 0, 0.5)">
-				<div class="modal-dialog modal-md">
+				<div class="modal-dialog modal-dialog-scrollable modal-md">
 					<div class="modal-content px-3 py-0">
 						<div class="modal-header">
-							<h5 class="modal-title">Update Payment Type</h5>
+							<h5 class="modal-title fw-bold">Update Bank</h5>
 						</div>
 						<div class="modal-body">
 							<form @submit.prevent="updateAccount" class="m-0">
