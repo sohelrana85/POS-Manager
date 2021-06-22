@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Helper;
 
 use App\Http\Controllers\Controller;
 use App\Models\BankAccount;
+use App\Models\BankTransaction;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Customer;
@@ -116,5 +117,16 @@ class HelperController extends Controller
         return response()->json([
             'expense_type' => $expense_type
         ]);
+    }
+
+    //get total bank balance bank wise
+    public function get_total_balance(){
+        // return  $credit =  BankTransaction::pluck('bank_name','credit');
+        // return $credit =  BankTransaction::select('bank_name','credit')->where('bank_name', '1')->sum('credit');
+    //    $data = BankTransaction::select('bank_name','credit','debit')->get();
+
+    //    return $bank_name = BankAccount::pluck('id')->map(function($data){
+    //        $bank_name->credit = $data->sum('credit');
+    //    });
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BankAccountController;
+use App\Http\Controllers\BankTransactionController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\CategoryController;
@@ -148,6 +149,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::prefix('Bank')->group(function(){
         Route::get('Manage-Bank', function(){ return view('pages.bank.manage-bank'); })->name('manage.bank');
         Route::resource('Account', BankAccountController::class)->except('create','show','edit');
+        Route::get('Bank-Transaction', function(){ return view('pages.bank.bank-transaction'); })->name('bank.transaction');
+        Route::get('Bank-Ledger', function(){ return view('pages.bank.bank-ledger'); })->name('bank.ledger');
+        Route::get('Transaction', [BankTransactionController::class,'index']);
+        Route::post('Transaction', [BankTransactionController::class,'store']);
+        Route::delete('Transaction/{id}', [BankTransactionController::class,'destroy']);
+        Route::post('Ledger', [BankTransactionController::class,'search_ledger']);
     });
 
     #Helper
@@ -171,6 +178,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/Product-Search/{value}', [HelperController::class, 'product_search']);
     #Expense
     Route::get('/getExpenseType', [HelperController::class, 'get_expense_type']);
+    #get total balance of bank account
+    Route::get('/getTotalBalance', [HelperController::class, 'get_total_balance']);
 
 });
 

@@ -100,6 +100,14 @@ Vue.component(
     "ManageBank",
     require("./components/bank/ManageBank.vue").default
 );
+Vue.component(
+    "BankTransaction",
+    require("./components/bank/BankTransaction.vue").default
+);
+Vue.component(
+    "BankLedger",
+    require("./components/bank/BankLedger.vue").default
+);
 
 const app = new Vue({
     el: "#app",

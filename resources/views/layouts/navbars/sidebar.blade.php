@@ -233,19 +233,31 @@
                 </div>
             </li>
 
-            <li class="nav-item {{ ($activePage == 'manage-bank') ? ' active' : '' }}">
+            <li class="nav-item {{ ($activePage == 'manage-bank'|| $activePage == 'bank-transaction' || $activePage == 'bank-ledger') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#bank" aria-expanded="false">
                     <i class="fas fa-university"></i>
                     <p>Bank
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'manage-bank')  ? ' show' : '' }}" id="bank">
+                <div class="collapse {{ ($activePage == 'manage-bank' || $activePage == 'bank-transaction' || $activePage == 'bank-ledger')  ? ' show' : '' }}" id="bank">
                     <ul class="nav">
                         <li class="nav-item{{ $activePage == 'manage-bank' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('manage.bank') }}">
                                 <i class="fas fa-minus"></i>
                                 <span class="sidebar-normal">Manage Bank</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'bank-transaction' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('bank.transaction') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Bank Transaction</span>
+                            </a>
+                        </li>
+                        <li class="nav-item{{ $activePage == 'bank-ledger' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('bank.ledger') }}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Bank Ledger</span>
                             </a>
                         </li>
                     </ul>
