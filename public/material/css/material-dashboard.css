@@ -3406,7 +3406,7 @@ tbody.collapse.show {
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 10rem;
+  min-width: 12rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
@@ -4344,10 +4344,16 @@ tbody.collapse.show {
 }
 
 @media (min-width: 992px) {
+  /* .navbar-expand-lg {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  } */
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: flex-start;
-  }
+    width: calc(100% - 260px);
+    margin-left: auto;
+}
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;
   }

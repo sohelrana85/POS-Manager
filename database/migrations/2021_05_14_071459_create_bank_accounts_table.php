@@ -17,7 +17,7 @@ class CreateBankAccountsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user');
             $table->string('bank_name', 50);
-            $table->string('account_name', 50)->unique();
+            $table->string('account_name', 50);
             $table->string('account_number', 30)->unique();
             $table->string('branch_name', 90);
             $table->tinyInteger('status')->default(0);

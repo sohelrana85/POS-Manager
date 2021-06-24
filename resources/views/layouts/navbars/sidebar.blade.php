@@ -265,46 +265,46 @@
             </li>
 
             {{-- <li class="nav-item {{ ($activePage == 'sell-product') ? ' active' : '' }}">
-                <a class="nav-link collapsed" data-toggle="collapse" href="#report" aria-expanded="false">
-                    <i class="far fa-list-alt"></i>
-                    <p>Report
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse {{ ($activePage == 'sell-product')  ? ' show' : '' }}" id="report">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Purchase Report</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Sell Report</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Due Report</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Closing Report</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Expense Report</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <a class="nav-link collapsed" data-toggle="collapse" href="#report" aria-expanded="false">
+                <i class="far fa-list-alt"></i>
+                <p>Report
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse {{ ($activePage == 'sell-product')  ? ' show' : '' }}" id="report">
+                <ul class="nav">
+                    <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Purchase Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Sell Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Due Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Closing Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'sell-product' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Expense Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             </li> --}}
 
             <hr>
@@ -324,22 +324,22 @@
                                 <span class="sidebar-normal">Business Setting</span>
                             </a>
                         </li>
-                        <li class="nav-item{{ $activePage == 'InvoiceSetting' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Invoice Setting</span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'PaymentType' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('payment.type') }}">
-                                <i class="fas fa-minus"></i>
-                                <span class="sidebar-normal">Payment Type</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                        {{-- <li class="nav-item{{ $activePage == 'InvoiceSetting' ? ' active' : '' }}">
+                        <a class="nav-link" href="">
+                            <i class="fas fa-minus"></i>
+                            <span class="sidebar-normal">Invoice Setting</span>
+                        </a>
+            </li> --}}
+            <li class="nav-item{{ $activePage == 'PaymentType' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('payment.type') }}">
+                    <i class="fas fa-minus"></i>
+                    <span class="sidebar-normal">Payment Type</span>
+                </a>
             </li>
-
         </ul>
     </div>
+    </li>
+
+    </ul>
+</div>
 </div>

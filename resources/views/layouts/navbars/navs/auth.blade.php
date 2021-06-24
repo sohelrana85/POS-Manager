@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-absolute fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" style="background: #eee;">
     <div class="container-fluid">
         <div class="navbar-wrapper">
             <a class="navbar-brand" href="#">{{ $titlePage }}</a>
@@ -53,10 +53,13 @@
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" id="prob" aria-labelledby="navbarDropdownProfile">
-                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
-                        <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
+                        <div class="text-center my-2">
+                            <img src="upload_file/pp/{{auth()->user()->profile_pic}}" class="rounded-circle border" alt="Profile Pic" style="width:83px;">
+                        </div>
+                        <a class="dropdown-item py-1" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                        <a class="dropdown-item py-1" href="#">{{ __('Settings') }}</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
+                        <a class="dropdown-item py-1" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Log out') }}</a>
                     </div>
                 </li>
             </ul>

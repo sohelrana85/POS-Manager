@@ -278,7 +278,7 @@ export default {
 	methods: {
 		onFileSelected(event) {
 			this.form.upload_logo = event.target.files[0];
-			console.log(event.target.files[0]);
+			// console.log(event.target.files[0]);
 		},
 		saveBusiness() {
 			this.form.post("Save-Business-Setting").then(res => {
@@ -293,7 +293,7 @@ export default {
 		},
 		updateBusiness() {
 			this.form.post("Update-Business-Setting").then(res => {
-				console.log(res);
+				// console.log(res);
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.getData();
