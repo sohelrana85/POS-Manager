@@ -54,7 +54,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" id="prob" aria-labelledby="navbarDropdownProfile">
                         <div class="text-center my-2">
-                            <img src="upload_file/pp/{{auth()->user()->profile_pic}}" class="rounded-circle border" alt="Profile Pic" style="width:83px;">
+                            <img src="{{asset('upload_file/pp')}}/{{auth()->user()->profile_pic}}" class="rounded-circle border" alt="Profile Pic" style="width:83px;">
                         </div>
                         <a class="dropdown-item py-1" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
                         <a class="dropdown-item py-1" href="#">{{ __('Settings') }}</a>

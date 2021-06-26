@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-center">
-                                        <img src="upload_file/pp/{{auth()->user()->profile_pic}}" class="rounded-circle border" alt="Profile Pic" style="width:83px;">
+                                        <img src="{{asset('upload_file/pp')}}/{{auth()->user()->profile_pic}}" class="rounded-circle border" alt="Profile Pic" style="width:83px;">
                                     </div>
                                     <div class="form-group">
                                         <label for="profile_pic">{{ __('Change Photo') }} <small>[ Example: 100x100 ]</small></label>
