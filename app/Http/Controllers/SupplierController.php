@@ -152,4 +152,13 @@ class SupplierController extends Controller
             'message' => "Supplier Delete Successful"
         ]);
     }
+
+
+    //Extra
+    public function return_item(){
+        return view('pages.supplier.return-item');
+    }
+    public function due_payment(){
+        return view('pages.supplier.due-payment');
+    }
 }

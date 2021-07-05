@@ -20,6 +20,9 @@ use App\Models\Supplier;
 use App\Models\UnitType;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HelperController extends Controller
 {
@@ -135,5 +138,13 @@ class HelperController extends Controller
     //    return $bank_name = BankAccount::pluck('id')->map(function($data){
     //        $bank_name->credit = $data->sum('credit');
     //    });
+    }
+
+
+    //get roal all permissions
+    public function role_all_permissions(){
+        $user = Auth::user();
+        $permissions = $user->getPermissionsViaRoles();
+        return response()->json($permissions);
     }
 }

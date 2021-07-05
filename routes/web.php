@@ -16,9 +16,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSellController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseTypeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitTypeController;
+use App\Http\Controllers\UserController;
 use App\Models\BusinessSetting;
 use App\Models\ExpenseType;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +70,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 
+    #role
+    Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
     #customer
     Route::get('Customer', function(){ return view('pages.customer.manage-customer'); })->name('customer');
     Route::resource('customers', CustomerController::class)->except('create','show','edit');
@@ -86,8 +91,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('Manage-Supplier', function(){ return view('pages.supplier.manage-supplier'); })->name('manage.supplier');
         Route::resource('Manage-Suppliers', SupplierController::class)->except('create','show','edit');
 
-        Route::get('return-item', function(){ return view('pages.supplier.return-item'); })->name('return.item');
-        Route::get('due-payment', function(){ return view('pages.supplier.due-payment'); })->name('due.payment');
+        Route::get('return-item', [SupplierController::class, 'return_item'])->name('return.item');
+        Route::get('due-payment', [SupplierController::class, 'due_payment'])->name('due.payment');
+        // Route::get('return-item', function(){ return view('pages.supplier.return-item'); })->name('return.item');
+        // Route::get('due-payment', function(){ return view('pages.supplier.due-payment'); })->name('due.payment');
 
     });
     #Product
@@ -181,6 +188,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getExpenseType', [HelperController::class, 'get_expense_type']);
     #get total balance of bank account
     Route::get('/getTotalBalance', [HelperController::class, 'get_total_balance']);
+    #role all permissions
+    Route::get('/role-permissions', [HelperController::class, 'role_all_permissions']);
 
 });
 

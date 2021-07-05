@@ -7,15 +7,50 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
+            @if (auth()->user()->can('dashboard.view'))
             <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
                 <a style="padding: 5px 10px;" class="nav-link" href="{{ route('home') }}">
                     <i class="material-icons">dashboard</i>
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
+            @endif
 
             <hr>
+            {{-- //user management --}}
+            @if (auth()->user()->can('role.view') || auth()->user()->can('row.create') || auth()->user()->can('row.edit') || auth()->user()->can('row.delete') || auth()->user()->can('user.view') || auth()->user()->can('user.create') || auth()->user()->can('user.edit') || auth()->user()->can('user.delete'))
+            <li class="nav-item {{ ($activePage == 'roleManager' || $activePage == 'UserManager') ? ' active' : '' }}">
+                <a class="nav-link collapsed" data-toggle="collapse" href="#role" aria-expanded="false">
+                    <i class="fa fa-users"></i>
+                    <p>User Management
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $activePage == 'roleManager' || $activePage == 'UserManager' ? ' show' : '' }}" id="role">
+                    <ul class="nav">
+                        @if (auth()->user()->can('role.view') || auth()->user()->can('row.create') || auth()->user()->can('row.edit') || auth()->user()->can('row.delete'))
+                        <li class="nav-item{{ $activePage == 'roleManager' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{route('role.index')}}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Manage Role</span>
+                            </a>
+                        </li>
+                        @endif
+                        @if (auth()->user()->can('user.view') || auth()->user()->can('user.create') || auth()->user()->can('user.edit') || auth()->user()->can('user.delete'))
+                        <li class="nav-item{{ $activePage == 'UserManager' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{route('user.index')}}">
+                                <i class="fas fa-minus"></i>
+                                <span class="sidebar-normal">Manage User</span>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
+            </li>
+            @endif
 
+            {{-- customer --}}
+            @if (auth()->user()->can('customer.view') || auth()->user()->can('customer.create') || auth()->user()->can('customer.edit') || auth()->user()->can('customer.delete'))
             <li class="nav-item {{ ($activePage == 'customer') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#customer" aria-expanded="false">
                     <i class="fa fa-user-plus"></i>
@@ -34,6 +69,7 @@
                     </ul>
                 </div>
             </li>
+            @endif
 
             <li class="nav-item {{ ($activePage == 'manage-supplier' || $activePage == 'due-payment' || $activePage == 'return-item') ? ' active' : '' }}">
                 <a class="nav-link collapsed" data-toggle="collapse" href="#supplier" aria-expanded="false">

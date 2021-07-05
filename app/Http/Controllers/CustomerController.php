@@ -6,9 +6,21 @@ use App\Models\Customer;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CustomerController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('customer.view')){
+            abort(403, 'sorry! Access Denied');
+        }
         return Customer::paginate(10);
         // $customers = Customer::all();
         // return response()->json([
@@ -41,6 +56,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('customer.create')){
+            abort(403, 'sorry! Access Denied');
+        }
         $this->validate($request, [
             'name'    => 'required|min:4|string',
             'email'   => 'required|email:rfc,dns|unique:customers,email',
@@ -103,6 +121,9 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('customer.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
         $this->validate($request, [
             'name'    => 'required|min:4|string',
             'email'   => 'required|email:rfc,dns|unique:customers,email,' . $id,
@@ -143,6 +164,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('customer.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
         $customer = Customer::find($id);
         if($customer) {
             $customer->delete();
