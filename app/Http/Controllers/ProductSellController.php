@@ -7,9 +7,22 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class ProductSellController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +30,18 @@ class ProductSellController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('sell.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.sell.manage-sell');
+    }
+    public function all_sell()
+    {
+        if(!$this->user->can('sell.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $sells = ProductSell::with('productName','customers')->get();
         return response()->json([
             'sells' => $sells
@@ -30,7 +55,11 @@ class ProductSellController extends Controller
      */
     public function create()
     {
-        //
+        if(!$this->user->can('sell.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.sell.product-sell');
     }
 
     /**
@@ -41,6 +70,10 @@ class ProductSellController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('sell.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'customer'       => 'required',
             'invoice_no'     => 'required',

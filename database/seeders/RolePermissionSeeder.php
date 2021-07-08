@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -129,6 +131,87 @@ class RolePermissionSeeder extends Seeder
                     'purchase.delete',
                 ]
             ],
+            //stock
+            [
+                'group_name' => 'stock',
+                'perm_name' => [
+                    'stock.add',
+                    'stock.view',
+                    // 'stock.edit',
+                    // 'stock.delete',
+                ]
+            ],
+            //sell
+            [
+                'group_name' => 'sell',
+                'perm_name' => [
+                    'sell.view',
+                    'sell.create',
+                    'sell.edit',
+                    'sell.delete',
+                ]
+            ],
+            //expense-type
+            [
+                'group_name' => 'expense-type',
+                'perm_name' => [
+                    'expense-type.view',
+                    'expense-type.create',
+                    'expense-type.edit',
+                    'expense-type.delete',
+                ]
+            ],
+            //expense
+            [
+                'group_name' => 'expense',
+                'perm_name' => [
+                    'expense.view',
+                    'expense.create',
+                    'expense.edit',
+                    'expense.delete',
+                    'expense.statement',
+                ]
+            ],
+            //bank-account
+            [
+                'group_name' => 'bank-account',
+                'perm_name' => [
+                    'bank-account.view',
+                    'bank-account.create',
+                    'bank-account.edit',
+                    'bank-account.delete',
+                ]
+            ],
+            //bank-transaction
+            [
+                'group_name' => 'bank-transaction',
+                'perm_name' => [
+                    'bank-transaction.view',
+                    'bank-transaction.create',
+                    'bank-transaction.edit',
+                    'bank-transaction.delete',
+                    'bank-transaction.ledger',
+                ]
+            ],
+            //business-setting
+            [
+                'group_name' => 'business-setting',
+                'perm_name' => [
+                    'business-setting.view',
+                    'business-setting.create',
+                    // 'business-setting.edit'
+                ]
+            ],
+            //payment-type
+            [
+                'group_name' => 'payment-type',
+                'perm_name' => [
+                    'payment-type.view',
+                    'payment-type.create',
+                    'payment-type.edit',
+                    'payment-type.delete',
+                ]
+            ],
         ];
 
         foreach ($permissions as $data) {
@@ -143,5 +226,8 @@ class RolePermissionSeeder extends Seeder
             }
 
         }
+
+        $user = User::where('id','1')->first();
+        $user->syncRoles($super_admin);
     }
 }

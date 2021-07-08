@@ -6,9 +6,22 @@ use App\Models\ExpenseType;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class ExpenseTypeController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +29,20 @@ class ExpenseTypeController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('expense-type.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.expense.expense-type');
+    }
+
+
+    public function all_expense_type()
+    {
+        if(!$this->user->can('expense-type.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $expense_types = ExpenseType::paginate(10);
         return $expense_types;
     }
@@ -38,6 +65,10 @@ class ExpenseTypeController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('expense-type.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'expense_name' => 'required|string|min:4|unique:expense_types,expense_type',
             'status'       => 'required|in:1,0'
@@ -94,6 +125,10 @@ class ExpenseTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('expense-type.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'expense_name' => 'required|string|min:4|unique:expense_types,expense_type,' .$id,
             'status'       => 'required|in:1,0'
@@ -129,6 +164,10 @@ class ExpenseTypeController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('expense-type.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
        ExpenseType::find($id)->delete();
 
         return response()->json([

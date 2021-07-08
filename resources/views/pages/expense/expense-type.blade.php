@@ -1,8 +1,8 @@
-@extends('layouts.app', ['activePage' => 'manage-type', 'titlePage' => __('Manage Type')])
+@extends('layouts.app', ['activePage' => 'expense-type', 'titlePage' => __('Expense Type')])
 
 @section('content')
 <div class="content" id="app">
-    <manage-type />
+    <expense-type />
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 

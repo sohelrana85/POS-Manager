@@ -14,7 +14,7 @@
 						<h4 class="card-title m-0 p-2">Business Setting</h4>
 					</div>
 					<div class="card-body">
-						<form v-if="!isUploaded" @submit.prevent="saveBusiness">
+						<form @submit.prevent="saveBusiness">
 							<div class="form-row">
 								<div class="form-group col-md-5">
 									<label for="business_name">Business Name *</label>
@@ -122,122 +122,20 @@
 							</div>
 
 							<div class="text-right pt-3">
-								<button type="reset" class="btn btn-warning">Clear</button>
-								<button type="submit" class="btn btn-info" :disabled="form.busy">
+								<button
+									v-if="!isUploaded"
+									type="submit"
+									class="btn btn-info"
+									:disabled="form.busy"
+								>
 									Add Setting
 								</button>
-							</div>
-						</form>
-						<form v-else @submit.prevent="updateBusiness">
-							<div class="form-row">
-								<div class="form-group col-md-5">
-									<label for="business_name">Business Name *</label>
-									<input type="text" class="form-control" v-model="form.business_name" />
-									<HasError :form="form" field="business_name" />
-								</div>
-								<div class="form-group col-md-7">
-									<label for="business_address">Business Address *</label>
-									<input
-										type="text"
-										class="form-control"
-										v-model="form.business_address"
-									/>
-									<HasError :form="form" field="business_address" />
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="country">Country *</label>
-									<input type="text" class="form-control" v-model="form.country" />
-									<HasError :form="form" field="country" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="city">City *</label>
-									<input type="text" class="form-control" v-model="form.city" />
-									<HasError :form="form" field="city" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="mobile">Mobile (11 digit) *</label>
-									<input type="text" class="form-control" v-model="form.mobile" />
-									<HasError :form="form" field="mobile" />
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="email">Email</label>
-									<input type="text" class="form-control" v-model="form.email" />
-									<HasError :form="form" field="email" />
-								</div>
-								<div class="form-group col-md-6">
-									<label for="website">Website</label>
-									<input type="text" class="form-control" v-model="form.website" />
-									<HasError :form="form" field="website" />
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="start_date">Start Date *</label>
-									<input type="date" class="form-control" v-model="form.start_date" />
-									<HasError :form="form" field="start_date" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="currency" class="ps-0">Currency *</label>
-									<select class="form-control" v-model="form.currency">
-										<option value="">Select</option>
-										<option value="bdt">BDT</option>
-										<option value="usd">USD</option>
-										<option value="others">Others</option>
-									</select>
-									<HasError :form="form" field="currency" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="currency_symbol" class="ps-0">Currency Symbol *</label>
-									<select class="form-control" v-model="form.currency_symbol">
-										<option value="">Select</option>
-										<option value="sign">&#2547;</option>
-										<option value="bdt">BDT</option>
-									</select>
-									<HasError :form="form" field="currency_symbol" />
-								</div>
-							</div>
-							<div class="form-row mt-3">
-								<div class="form-group form-file-upload form-file-multiple col-md-4">
-									<label for="upload_logo"
-										>Upload Logo (<small>min: w 260 x h 70</small>) *</label
-									>
-									<input
-										type="file"
-										id="upload_logo"
-										name="upload_logo"
-										class="form-control"
-										@change="onFileSelected"
-									/>
-									<HasError :form="form" field="upload_logo" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="date_format" class="ps-0">Date Format *</label>
-									<select class="form-control" v-model="form.date_format">
-										<option value="">Select</option>
-										<option value="yyyy-mm-dd">yyyy-mm-dd</option>
-										<option value="mm-dd-yyyy">mm-dd-yyyy</option>
-										<option value="mm/dd/yyyy">mm/dd/yyyy</option>
-									</select>
-									<HasError :form="form" field="date_format" />
-								</div>
-								<div class="form-group col-md-4">
-									<label for="time_format" class="ps-0">Time Format *</label>
-									<select class="form-control" v-model="form.time_format">
-										<option value="">Select</option>
-										<option value="12">12 Hours</option>
-										<option value="24">24 Hours</option>
-									</select>
-									<HasError :form="form" field="time_format" />
-								</div>
-							</div>
-
-							<div class="text-right pt-3">
-								<button type="reset" class="btn btn-warning">Clear</button>
-								<button type="submit" class="btn btn-info" :disabled="form.busy">
+								<button
+									v-if="canAdd"
+									type="submit"
+									class="btn btn-info"
+									:disabled="form.busy"
+								>
 									Update
 								</button>
 							</div>
@@ -270,18 +168,29 @@ export default {
 			date_format: "",
 			time_format: ""
 		}),
-		isUploaded: false
+		isUploaded: false,
+		canAdd: false
 	}),
+
 	mounted() {
 		this.getData();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "business-setting.create") {
+						this.canAdd = true;
+					}
+				});
+			});
+		},
 		onFileSelected(event) {
 			this.form.upload_logo = event.target.files[0];
-			// console.log(event.target.files[0]);
 		},
 		saveBusiness() {
-			this.form.post("Save-Business-Setting").then(res => {
+			this.form.post("Business-Setting").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
@@ -291,25 +200,11 @@ export default {
 				}
 			});
 		},
-		updateBusiness() {
-			this.form.post("Update-Business-Setting").then(res => {
-				// console.log(res);
-				if (res.data.status == 1) {
-					toastr.success(res.data.message);
-					this.getData();
-				} else {
-					toastr.error(res.data.message);
-				}
-			});
-		},
 		getData() {
-			axios.get("Get-Business-Setting").then(res => {
-				// console.log(res.data.bs.length);
-				if (res.data.bs.length) {
+			axios.get("Get-Business-Setting-Data").then(res => {
+				if (res.data.length != 0) {
 					this.isUploaded = true;
-					this.loadForm(res.data.bs);
-				} else {
-					console.log("no data have");
+					this.loadForm(res.data);
 				}
 			});
 		},
@@ -329,7 +224,6 @@ export default {
 			this.form.time_format = "";
 		},
 		loadForm(data) {
-			console.log(data);
 			this.form.id = data[0].id;
 			this.form.business_name = data[0].business_name;
 			this.form.business_address = data[0].address;

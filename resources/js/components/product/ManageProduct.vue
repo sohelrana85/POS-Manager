@@ -41,10 +41,11 @@
 							<!-- <button type="button" class="btn btn-info">
 							<i class="material-icons">person</i>
 						</button> -->
-							<button type="button" class="btn btn-success">
+							<button v-if="canEdit" type="button" class="btn btn-success">
 								<i class="material-icons">edit</i>
 							</button>
 							<button
+								v-if="canDelete"
 								type="button"
 								class="btn btn-danger"
 								@click="deleteItem(product.id)"
@@ -84,7 +85,9 @@ export default {
 	data: () => ({
 		form: new Form({}),
 		display: true,
-		Products: {}
+		Products: {},
+		canEdit: false,
+		canDelete: false
 	}),
 	// computed: {
 	// 	Products() {
@@ -93,8 +96,20 @@ export default {
 	// },
 	mounted() {
 		this.loadProducts();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "product.edit") {
+						this.canEdit = true;
+					} else if (element.name == "product.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		length() {
 			if (this.Products.length > 0) {
 				return true;
@@ -103,7 +118,7 @@ export default {
 			}
 		},
 		loadProducts(page = 1) {
-			axios.get("loadProducts?page=" + page).then(res => {
+			axios.get("All-Product?page=" + page).then(res => {
 				this.Products = res.data;
 			});
 		},
@@ -118,7 +133,7 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("Products/" + id).then(res => {
+					axios.delete("Product/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 							this.loadProducts(this.Products.current_page);

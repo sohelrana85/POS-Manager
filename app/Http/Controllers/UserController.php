@@ -167,10 +167,19 @@ class UserController extends Controller
             abort(403, 'sorry! Access Denied');
         }
 
-        User::find($id)->delete();
+        $user = User::find($id);
 
-        session()->flash('type','success');
-        session()->flash('message','A user delete Successful');
-        return redirect()->back();
+        if($user->name == Auth::user()->name){
+            session()->flash('type','danger');
+            session()->flash('message','You cannot delete Yourself');
+            return redirect()->back();
+        } else {
+            $user->delete();
+            session()->flash('type','success');
+            session()->flash('message','A user delete Successful');
+            return redirect()->back();
+        }
+
+
     }
 }

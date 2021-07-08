@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Manage Categories</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -39,6 +39,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -49,6 +50,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteCategory(Category.id)"
@@ -224,14 +226,31 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allCategory: {}
+		allCategory: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getCategorys();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "category.create") {
+						this.canAdd = true;
+					} else if (element.name == "category.edit") {
+						this.canEdit = true;
+					} else if (element.name == "category.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getCategorys(page = 1) {
-			axios.get("Categories?page=" + page).then(response => {
+			axios.get("All-Category?page=" + page).then(response => {
 				this.allCategory = response.data;
 			});
 		},

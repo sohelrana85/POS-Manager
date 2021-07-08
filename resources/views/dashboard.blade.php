@@ -35,7 +35,7 @@
                     <div class="card-footer">
                         <div class="stats">
                             <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
-                            <a href="{{route('manage.sell')}}">View Details</a>
+                            <a href="{{route('manage.purchase')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                     <div class="card-footer">
                         <div class="stats">
                             <i class="fas fa-info-circle" style="font-size: 18px;padding-right:5px"></i>
-                            <a href="{{route('manage.sell')}}">View Details</a>
+                            <a href="{{route('Sell.index')}}">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -231,18 +231,19 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-                url: "/dailySale",
-                method: "get",
-                data: "",
-                success: function(res) {
-                    console.log(res);
-                    // this.name(res);
-                    md.initDashboardPageCharts(res);
-                }
-            });
+            url: "/dailySale"
+            , method: "get"
+            , data: ""
+            , success: function(res) {
+                console.log(res);
+                // this.name(res);
+                md.initDashboardPageCharts(res);
+            }
+        });
 
-      // Javascript method's body can be found in assets/js/demos.js
-    //   md.initDashboardPageCharts();
+        // Javascript method's body can be found in assets/js/demos.js
+        //   md.initDashboardPageCharts();
     });
+
 </script>
 @endpush

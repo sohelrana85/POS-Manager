@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 p-2">Manage Payment Type</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -38,6 +38,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -48,6 +49,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deletePaymentType(pType.id)"
@@ -223,19 +225,36 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allPaymentType: {}
+		allPaymentType: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getPaymentTypes();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "payment-type.create") {
+						this.canAdd = true;
+					} else if (element.name == "payment-type.edit") {
+						this.canEdit = true;
+					} else if (element.name == "payment-type.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getPaymentTypes(page = 1) {
-			axios.get("pType?page=" + page).then(response => {
+			axios.get("All-Payment-Type?page=" + page).then(response => {
 				this.allPaymentType = response.data;
 			});
 		},
 		savePaymentType() {
-			this.form.post("pType").then(res => {
+			this.form.post("Payment-Type").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
@@ -256,7 +275,7 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("pType/" + id).then(res => {
+					axios.delete("Payment-Type/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 							this.getPaymentTypes(this.allPaymentType.current_page);
@@ -273,7 +292,7 @@ export default {
 			this.form.status = data.status;
 		},
 		updatePaymentType() {
-			this.form.put("pType/" + this.form.id).then(res => {
+			this.form.put("Payment-Type/" + this.form.id).then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();

@@ -311,7 +311,7 @@ export default {
 	},
 	methods: {
 		getCustomers(page = 1) {
-			axios.get("customers?page=" + page).then(response => {
+			axios.get("All-Customers?page=" + page).then(response => {
 				this.allcustomers = response.data;
 			});
 		},

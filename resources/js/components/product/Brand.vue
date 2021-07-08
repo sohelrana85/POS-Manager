@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Manage Brand</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -39,6 +39,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -49,6 +50,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteBrand(Brand.id)"
@@ -224,14 +226,31 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allBrands: {}
+		allBrands: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getBrands();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "brand.create") {
+						this.canAdd = true;
+					} else if (element.name == "brand.edit") {
+						this.canEdit = true;
+					} else if (element.name == "brand.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getBrands(page = 1) {
-			axios.get("Brands?page=" + page).then(response => {
+			axios.get("All-Brand?page=" + page).then(response => {
 				this.allBrands = response.data;
 			});
 		},

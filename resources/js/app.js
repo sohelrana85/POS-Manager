@@ -33,7 +33,7 @@ Vue.component("pagination", require("laravel-vue-pagination"));
 
 //Customer
 Vue.component(
-    "customer",
+    "Customer",
     require("./components/customer/Customer.vue").default
 );
 
@@ -90,8 +90,8 @@ Vue.component(
 
 //Expense
 Vue.component(
-    "ManageType",
-    require("./components/expense/ManageType.vue").default
+    "ExpenseType",
+    require("./components/expense/ExpenseType.vue").default
 );
 Vue.component(
     "ManageExpense",
@@ -130,7 +130,6 @@ const app = new Vue({
     el: "#app",
     store,
     component: {
-        customer,
         barcode: VueBarcode
     }
 });

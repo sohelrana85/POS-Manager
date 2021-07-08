@@ -152,10 +152,19 @@ class RoleController extends Controller
             abort(403, 'sorry! Access Denied');
         }
 
+        $myrole = $this->user->roles;
         $role = Role::findById($id);
-        $role->delete();
-        session()->flash('type', 'success');
+
+        if($myrole['0']->name == $role->name) {
+            session()->flash('type', 'danger');
+            session()->flash('message', 'You can not Delete Yourself');
+            return redirect()->back();
+        } else {
+            $role->delete();
+            session()->flash('type', 'success');
             session()->flash('message', 'Role Delete Successfully');
             return redirect()->back();
+        }
+
     }
 }

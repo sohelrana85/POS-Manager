@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\ProductSell;
 use App\Models\Purchase;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class HomeController extends Controller
 {
@@ -13,9 +16,15 @@ class HomeController extends Controller
      *
      * @return void
      */
+    public $user;
+
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            $this->middleware('auth');
+            return $next($request);
+        });
     }
 
     /**
@@ -25,6 +34,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('dashboard.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $purchase_total = Purchase::all()->pluck('total_price')->sum();
         $due_total = Purchase::all()->pluck('due_amount')->sum();
         $sell_total = ProductSell::all()->pluck('total_amount')->sum();
@@ -32,7 +45,12 @@ class HomeController extends Controller
         return view('dashboard', compact('purchase_total','due_total','sell_total','sell_due'));
     }
 
-    public function seven_days_sale(){
+    public function seven_days_sale()
+    {
+        if(!$this->user->can('dashboard.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $day0 =  ProductSell::whereDate('created_at', now()->Today())->pluck('total_amount')->sum();
         $day1 =  ProductSell::whereDate('created_at', now()->subDays(1))->pluck('total_amount')->sum();
         $day2 =  ProductSell::whereDate('created_at', now()->subDays(2))->pluck('total_amount')->sum();

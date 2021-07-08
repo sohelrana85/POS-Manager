@@ -7,9 +7,21 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class ExpenseController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +29,19 @@ class ExpenseController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('expense.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.expense.manage-expense');
+
+    }
+    public function all_expense()
+    {
+        if(!$this->user->can('expense.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         //server side processing
 
         // $expenses = Expense::with('expense','pType','bAccount')->select('id','date','expense_type','payment_status','paid_amount','due_amount','payment_type','bank_account','remarks');
@@ -47,6 +72,10 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('expense.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'date'           => 'required',
             'expense_type'   => 'required',
@@ -125,5 +154,14 @@ class ExpenseController extends Controller
     public function destroy(Expense $expense)
     {
         //
+    }
+
+    public function expense_statement()
+    {
+        if(!$this->user->can('expense.statement')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.expense.expense-statement');
     }
 }

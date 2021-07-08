@@ -6,9 +6,22 @@ use App\Models\PaymentType;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class PaymentTypeController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +29,18 @@ class PaymentTypeController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('payment-type.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.setting.payment-type');
+    }
+    public function all_payment_type()
+    {
+        if(!$this->user->can('payment-type.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return PaymentType::paginate(10);
     }
 
@@ -37,6 +62,10 @@ class PaymentTypeController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('payment-type.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'name'   => 'required|unique:payment_types',
             'status' => 'required|in:1,0',
@@ -91,6 +120,10 @@ class PaymentTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('payment-type.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'name'   => 'required|unique:unit_types,name,' .$id,
             'status' => 'required|in:1,0',
@@ -123,6 +156,10 @@ class PaymentTypeController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('payment-type.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         PaymentType::find($id)->delete();
 
         return response()->json([

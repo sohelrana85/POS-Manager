@@ -6,9 +6,21 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class CategoryController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,20 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('category.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.product.category');
+    }
+
+
+    public function all_category()
+    {
+        if(!$this->user->can('category.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return Category::paginate(10);
     }
 
@@ -37,6 +63,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('category.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $id = $request->id;
         $request->validate([
             'name'   => 'required|unique:categories,name,' .$id,
@@ -92,6 +122,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('category.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'name'   => 'required|unique:categories,name,' .$id,
             'status' => 'required|in:1,0',
@@ -124,6 +158,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('category.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         Category::find($id)->delete();
 
         return response()->json([

@@ -15,14 +15,11 @@ use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductSellController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\PurchaseTypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UnitTypeController;
 use App\Http\Controllers\UserController;
-use App\Models\BusinessSetting;
-use App\Models\ExpenseType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,36 +32,6 @@ Route::get('/home', [HomeController::class,'index'])->name('home')->middleware('
 Route::get('/dailySale', [HomeController::class,'seven_days_sale'])->name('seven.days.sale')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
-
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
-
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
-
-Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
@@ -74,94 +41,72 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
     #customer
-    Route::get('Customer', function(){ return view('pages.customer.manage-customer'); })->name('customer');
-    Route::resource('customers', CustomerController::class)->except('create','show','edit');
+    Route::resource('customers', CustomerController::class);
+    Route::get('All-Customers', [CustomerController::class, 'all_customer']);
 
     #Setting
     Route::prefix('Setting')->group(function(){
-        Route::get('Business-Setting', function(){ return view('pages.setting.business-setting'); })->name('business.setting');
-        Route::get('Get-Business-Setting', [BusinessSettingController::class, 'index']);
-        Route::post('Save-Business-Setting', [BusinessSettingController::class, 'store']);
-        Route::post('Update-Business-Setting', [BusinessSettingController::class, 'update']);
-        Route::get('Payment-Type', function(){ return view('pages.setting.payment-type'); })->name('payment.type');
-        Route::resource('pType', PaymentTypeController::class)->except('create','show','edit');
+        Route::resource('Business-Setting', BusinessSettingController::class);
+        Route::get('Get-Business-Setting-Data', [BusinessSettingController::class, 'get_business_setting_data']);
+        #payment-type
+        Route::resource('Payment-Type', PaymentTypeController::class);
+        Route::get('All-Payment-Type', [PaymentTypeController::class, 'all_payment_type'])->name('payment.type');
     });
     #Supplier
     Route::prefix('Supplier')->group(function(){
-        Route::get('Manage-Supplier', function(){ return view('pages.supplier.manage-supplier'); })->name('manage.supplier');
         Route::resource('Manage-Suppliers', SupplierController::class)->except('create','show','edit');
-
+        Route::get('All-Supplier', [SupplierController::class, 'all_supplier']);
         Route::get('return-item', [SupplierController::class, 'return_item'])->name('return.item');
         Route::get('due-payment', [SupplierController::class, 'due_payment'])->name('due.payment');
-        // Route::get('return-item', function(){ return view('pages.supplier.return-item'); })->name('return.item');
-        // Route::get('due-payment', function(){ return view('pages.supplier.due-payment'); })->name('due.payment');
 
     });
     #Product
     Route::prefix('Product')->group(function(){
-        Route::get('add', function(){ return view('pages.product.add-product'); })->name('add.product');
-        Route::post('/add-product', [ProductController::class, 'store']);
-        Route::get('Manage', function(){ return view('pages.product.manage-product'); })->name('product.manage');
-        Route::get('/loadProducts', [ProductController::class,'index']);
-        Route::delete('/Products/{id}', [ProductController::class,'delete']);
+        Route::resource('Product', ProductController::class);
+        Route::get('All-Product', [ProductController::class,'all_product']);
 
-        Route::get('Unit-Type', function(){ return view('pages.product.unit-type'); })->name('unit.type');
-        Route::resource('Unit-Types', UnitTypeController::class)->except('create','show','edit');
+        Route::get('Print-Barcode', [ProductController::class, 'print_barcode'])->name('print.barcode');
 
-        Route::get('Unit-Type-Names', [UnitTypeController::class, 'Unit_Type_Names']); //get unit type name
-        Route::get('Package-Size', function(){ return view('pages.product.package-size'); })->name('package.size');
+        Route::resource('Unit-Types', UnitTypeController::class);
+        Route::get('All-Unit-Type', [UnitTypeController::class, 'all_unit_type']);
+
         Route::resource('Package-Sizes', PackageSizeController::class)->except('create','show','edit');
+        Route::get('All-Package-Size', [PackageSizeController::class, 'all_package_size']);
 
-        Route::get('Category', function(){ return view('pages.product.category'); })->name('category');
-        Route::resource('Categories', CategoryController::class)->except('create','show','edit');
+        Route::resource('Categories', CategoryController::class);
+        Route::get('All-Category', [CategoryController::class, 'all_category']);
 
-        Route::get('Brand', function(){ return view('pages.product.brand'); })->name('brand');
         Route::resource('Brands', BrandController::class)->except('create','show','edit');
+        Route::get('All-Brand', [BrandController::class, 'all_brand']);
 
     });
     #Purchase
-    Route::prefix('Purchase')->group(function(){
-        Route::get('Product-Purchase', function(){ return view('pages.purchase.product-purchase'); })->name('product.purchase');
-        Route::get('Manage-Purchase', function(){ return view('pages.purchase.manage-purchase'); })->name('manage.purchase');
-        Route::get('print-barcode', function(){ return view('pages.product.print-barcode'); })->name('print.barcode');
-        Route::resource('/Purchase', PurchaseController::class);
-
-    });
+    Route::resource('/Purchase', PurchaseController::class);
+    Route::get('/Load-Purchase', [PurchaseController::class, 'load_purchase_data'])->name('manage.purchase');
     #Stock
-    Route::prefix('Stock')->group(function(){
-        Route::get('Add-Stock', function(){ return view('pages.stock.add-stock'); })->name('add.stock');
-        Route::get('Manage-Stock', function(){ return view('pages.stock.manage-stock'); })->name('manage.stock');
-        Route::get('All-Purchase', [StockController::class, 'all_purchase']);
-        Route::get('Add-To-Stock/{id}', [StockController::class, 'add_to_stock']);
-        Route::get('Get-All-Stock', [StockController::class, 'get_all_stock']);
-    });
-
+    Route::get('Add-To-Stock', [StockController::class, 'add_to_stock_page'])->name('add.stock');
+    Route::get('All-Purchase', [StockController::class, 'all_purchase']);
+    Route::get('Add-To-Stock/{id}', [StockController::class, 'add_to_stock']);
+    Route::get('Manage-Stock', [StockController::class, 'manage_stock_page'])->name('manage.stock');
+    Route::get('Get-All-Stock', [StockController::class, 'get_all_stock']);
     #sell
-    Route::prefix('Product')->group(function(){
-        Route::get('Product-Sell', function(){ return view('pages.sell.product-sell'); })->name('product.sell');
-        Route::get('Manage-Sell', function(){ return view('pages.sell.manage-sell'); })->name('manage.sell');
-        Route::resource('Sell', ProductSellController::class);
-
-    });
+    Route::resource('Sell', ProductSellController::class);
+    Route::get('/all-sell', [ProductSellController::class, 'all_sell'])->name('all.sell');
     #expense
-    Route::prefix('Expense')->group(function(){
-        Route::get('Manage-Type', function(){ return view('pages.expense.manage-type'); })->name('manage.type');
-        Route::resource('Type', ExpenseTypeController::class);
+    Route::resource('Expense-Type', ExpenseTypeController::class);
+    Route::get('All_Expense_Type', [ExpenseTypeController::class, 'all_expense_type'])->name('all-expense.type');
+    Route::resource('Expense', ExpenseController::class);
+    Route::get('All_Expense', [ExpenseController::class, 'all_expense'])->name('all.expense');
+    Route::get('Expense-Statement', [ExpenseController::class, 'expense_statement'])->name('expense.statement');
 
-        Route::get('Manage-Expense', function(){ return view('pages.expense.manage-expense'); })->name('manage.expense');
-        Route::resource('Expense', ExpenseController::class);
-        Route::get('Expense-Statement', function(){ return view('pages.expense.expense-statement'); })->name('expense.statement');
 
-    });
     Route::prefix('Bank')->group(function(){
-        Route::get('Manage-Bank', function(){ return view('pages.bank.manage-bank'); })->name('manage.bank');
-        Route::resource('Account', BankAccountController::class)->except('create','show','edit');
-        Route::get('Bank-Transaction', function(){ return view('pages.bank.bank-transaction'); })->name('bank.transaction');
-        Route::get('Bank-Ledger', function(){ return view('pages.bank.bank-ledger'); })->name('bank.ledger');
-        Route::get('Transaction', [BankTransactionController::class,'index']);
-        Route::post('Transaction', [BankTransactionController::class,'store']);
-        Route::delete('Transaction/{id}', [BankTransactionController::class,'destroy']);
-        Route::post('Ledger', [BankTransactionController::class,'search_ledger']);
+        Route::resource('Bank-Account', BankAccountController::class);
+        Route::get('All-Bank-Account', [BankAccountController::class, 'all_bank_account']);
+        Route::resource('Bank-Transaction', BankTransactionController::class);
+        Route::get('All-Bank-Transaction', [BankTransactionController::class, 'all_bank_transaction']);
+        Route::get('Bank-Ledger', [BankTransactionController::class, 'bank_ledger'])->name('bank.ledger');
+        Route::post('Search-Ledger', [BankTransactionController::class,'search_ledger']);
     });
 
     #Helper
@@ -190,6 +135,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getTotalBalance', [HelperController::class, 'get_total_balance']);
     #role all permissions
     Route::get('/role-permissions', [HelperController::class, 'role_all_permissions']);
-
 });
 

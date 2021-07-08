@@ -68,7 +68,7 @@
 											{{ purchase.payment_status }}
 										</span>
 									</td>
-									<td class="text-center">
+									<td class="text-center" style="width: 80px">
 										<!-- <i
                                             class="btn btn-sm btn-warning fa fa-edit"
                                             v-if="purchase.status == 0"
@@ -87,7 +87,7 @@
 											<i class="material-icons">person</i>
 										</button>
 										<button
-											v-if="purchase.status == 0"
+											v-if="(purchase.status == 0, canEdit)"
 											type="button"
 											class="btn btn-success p-1"
 										>
@@ -253,15 +253,25 @@ export default {
 		form: new Form({}),
 		AllPurchases: "",
 		viewState: false,
-		PurchaseData: ""
+		PurchaseData: "",
+		canEdit: false
 	}),
-	computed: {},
 	mounted() {
 		this.allPurchaseData();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "purchase.edit") {
+						this.canEdit = true;
+					}
+				});
+			});
+		},
 		allPurchaseData() {
-			axios.get("Purchase").then(res => {
+			axios.get("Load-Purchase").then(res => {
 				this.AllPurchases = res.data.product_purchase;
 			});
 		},

@@ -9,10 +9,37 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class StockController extends Controller
 {
-    public function all_purchase(){
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
+    public function add_to_stock_page()
+    {
+        if(!$this->user->can('stock.add')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.stock.add-stock');
+    }
+
+    public function all_purchase()
+    {
+        if(!$this->user->can('stock.add')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $all_purchase = Purchase::with('supplier','product')->where('status','0')->get();
 
             return response()->json([
@@ -21,7 +48,12 @@ class StockController extends Controller
     }
 
 
-    public function add_to_stock($id){
+    public function add_to_stock($id)
+    {
+        if(!$this->user->can('stock.add')){
+            abort(403, 'sorry! Access Denied');
+        }
+
 
         $product = Purchase::find($id);
 
@@ -68,7 +100,20 @@ class StockController extends Controller
         }
     }
 
-    public function get_all_stock(){
+    public function manage_stock_page()
+    {
+        if(!$this->user->can('stock.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.stock.manage-stock');
+    }
+
+    public function get_all_stock()
+    {
+        if(!$this->user->can('stock.view')){
+            abort(403, 'sorry! Access Denied');
+        }
 
         $stock = Stock::all();
         $stock->map(function($stock){
@@ -78,7 +123,7 @@ class StockController extends Controller
         return $stock;
     }
 
-    public function search_data(Request $request){
-        return $request->all();
-    }
+    // public function search_data(Request $request){
+    //     return $request->all();
+    // }
 }

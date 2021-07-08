@@ -186,7 +186,7 @@ export default {
 		// 	});
 		// },
 		addProduct() {
-			this.form.post("add-product").then(res => {
+			this.form.post("/Product/Product").then(res => {
 				// console.log(res);
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);

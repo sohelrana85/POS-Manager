@@ -311,7 +311,7 @@ export default {
 
 	methods: {
 		savePurchase() {
-			this.form.post("Purchase").then(res => {
+			this.form.post("/Purchase").then(res => {
 				// console.log(res);
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);

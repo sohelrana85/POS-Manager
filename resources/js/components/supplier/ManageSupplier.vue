@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Manage Supplier</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -45,6 +45,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -55,6 +56,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteSupplier(supplier.id)"
@@ -323,14 +325,31 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allSuppliers: {}
+		allSuppliers: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getSuppliers();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "supplier.create") {
+						this.canAdd = true;
+					} else if (element.name == "supplier.edit") {
+						this.canEdit = true;
+					} else if (element.name == "supplier.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getSuppliers(page = 1) {
-			axios.get("Manage-Suppliers?page=" + page).then(response => {
+			axios.get("All-Supplier?page=" + page).then(response => {
 				this.allSuppliers = response.data;
 			});
 		},

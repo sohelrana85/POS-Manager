@@ -286,7 +286,7 @@ export default {
 
 	methods: {
 		saveSale() {
-			this.form.post("Sell").then(res => {
+			this.form.post("/Sell").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();

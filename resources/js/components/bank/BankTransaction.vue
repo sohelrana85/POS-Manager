@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Bank Transaction</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -39,6 +39,7 @@
 										<td class="text-end">{{ transaction.credit }}</td>
 										<td class="td-actions">
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -49,6 +50,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteItem(transaction.id)"
@@ -192,7 +194,7 @@
 							<h5 class="modal-title fw-bold">Update Transaction</h5>
 						</div>
 						<div class="modal-body">
-							<form @submit.prevent="saveTransaction" class="my-3">
+							<form @submit.prevent="updateTransaction" class="my-3">
 								<div class="form-group">
 									<label for="transaction_date">Transaction Date</label>
 									<input
@@ -293,16 +295,33 @@ export default {
 		updateModal: false,
 		allTransactions: {},
 		allBanks: "",
-		totalBalance: ""
+		totalBalance: "",
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getTransactions();
 		this.getBankNames();
 		this.getTotalBalance();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "bank-transaction.create") {
+						this.canAdd = true;
+					} else if (element.name == "bank-transaction.edit") {
+						this.canEdit = true;
+					} else if (element.name == "bank-transaction.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getTransactions(page = 1) {
-			axios.get("Transaction?page=" + page).then(response => {
+			axios.get("All-Bank-Transaction?page=" + page).then(response => {
 				this.allTransactions = response.data;
 			});
 		},
@@ -313,7 +332,7 @@ export default {
 		},
 
 		saveTransaction() {
-			this.form.post("Transaction").then(res => {
+			this.form.post("Bank-Transaction").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();

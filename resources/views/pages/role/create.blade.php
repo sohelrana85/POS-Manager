@@ -45,10 +45,10 @@
                                 @foreach ($group_name as $group)
                                 <tr>
                                     <td>
-                                        <input type="checkbox" id="{{$group}}" value="{{$group}}" onclick="selectGroup(this.id)">
-                                        <label for="{{$group}}">{{$group}}</label>
+                                        <input type="checkbox" id="role-{{$group}}" value="{{$group}}" onclick="selectGroup(this.id)">
+                                        <label for="role-{{$group}}">{{$group}}</label>
                                     </td>
-                                    <td class="{{$group}}">
+                                    <td class="role-{{$group}}">
                                         @foreach ($permissions as $item)
                                         @if($group == $item->group_name)
                                         <input type="checkbox" name="permissions[]" id="{{$item->name}}" value="{{ $item->id}}">

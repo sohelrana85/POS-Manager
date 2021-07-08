@@ -31,11 +31,17 @@ class CustomerController extends Controller
         if(!$this->user->can('customer.view')){
             abort(403, 'sorry! Access Denied');
         }
+
+        return view('pages.customer.manage-customer');
+    }
+
+
+    public function all_customer()
+    {
+        if(!$this->user->can('customer.view')){
+            abort(403, 'sorry! Access Denied');
+        }
         return Customer::paginate(10);
-        // $customers = Customer::all();
-        // return response()->json([
-        //     'customers' => $customers
-        // ]);
     }
 
     /**
@@ -167,6 +173,7 @@ class CustomerController extends Controller
         if(!$this->user->can('customer.delete')){
             abort(403, 'sorry! Access Denied');
         }
+
         $customer = Customer::find($id);
         if($customer) {
             $customer->delete();

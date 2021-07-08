@@ -64,7 +64,7 @@
 										<button type="button" class="btn btn-info p-1">
 											<i class="material-icons">person</i>
 										</button>
-										<button type="button" class="btn btn-success p-1">
+										<button v-if="canEdit" type="button" class="btn btn-success p-1">
 											<i class="material-icons">edit</i>
 										</button>
 									</td>
@@ -219,17 +219,28 @@ import axios from "axios";
 export default {
 	data: () => ({
 		form: new Form({}),
-		Sells: ""
+		Sells: "",
+		canEdit: false
 		// viewState: false,
 		// PurchaseData: ""
 	}),
 	computed: {},
 	mounted() {
 		this.allSells();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "sell.edit") {
+						this.canEdit = true;
+					}
+				});
+			});
+		},
 		allSells() {
-			axios.get("Sell").then(res => {
+			axios.get("all-sell").then(res => {
 				this.Sells = res.data.sells;
 			});
 		}

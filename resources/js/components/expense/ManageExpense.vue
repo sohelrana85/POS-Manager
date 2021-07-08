@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 p-2">Manage Expense</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -59,7 +59,7 @@
 													<button type="button" class="btn btn-info p-1">
 														<i class="material-icons">person</i>
 													</button>
-													<button type="button" class="btn btn-success p-1">
+													<button v-if="canEdit" type="button" class="btn btn-success p-1">
 														<i class="material-icons">edit</i>
 													</button>
 												</td>
@@ -235,6 +235,8 @@ export default {
 		addModal: false,
 		isDue: false,
 		isPaid: false,
+		canAdd: false,
+		canEdit: false,
 
 		AllExpenses: "",
 		ExpenseTypes: "",
@@ -247,10 +249,22 @@ export default {
 		this.loadExpenseTypes();
 		this.loadPaymentTypes();
 		this.loadAccounts();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "expense.create") {
+						this.canAdd = true;
+					} else if (element.name == "expense.edit") {
+						this.canEdit = true;
+					}
+				});
+			});
+		},
 		allExpenseData() {
-			axios.get("Expense").then(res => {
+			axios.get("/All_Expense").then(res => {
 				this.AllExpenses = res.data.expenses;
 			});
 		},
@@ -259,7 +273,7 @@ export default {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
-					// this.allExpenseData();
+					this.allExpenseData();
 				} else {
 					toastr.error(res.data.message);
 				}

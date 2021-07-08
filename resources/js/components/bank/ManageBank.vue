@@ -12,7 +12,7 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Manage Bank</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -45,6 +45,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -55,6 +56,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteAccount(account.id)"
@@ -293,19 +295,36 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allAccounts: {}
+		allAccounts: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getAccounts();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "bank-account.create") {
+						this.canAdd = true;
+					} else if (element.name == "bank-account.edit") {
+						this.canEdit = true;
+					} else if (element.name == "bank-account.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getAccounts(page = 1) {
-			axios.get("Account?page=" + page).then(response => {
+			axios.get("All-Bank-Account?page=" + page).then(response => {
 				this.allAccounts = response.data;
 			});
 		},
 		saveAccount() {
-			this.form.post("Account").then(res => {
+			this.form.post("Bank-Account").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
@@ -326,7 +345,7 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("Account/" + id).then(res => {
+					axios.delete("Bank-Account/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 							this.getAccounts(this.allAccounts.current_page);
@@ -346,7 +365,7 @@ export default {
 			this.form.status = data.status;
 		},
 		updateAccount() {
-			this.form.put("Account/" + this.form.id).then(res => {
+			this.form.put("Bank-Account/" + this.form.id).then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();

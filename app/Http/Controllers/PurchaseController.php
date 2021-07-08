@@ -9,9 +9,21 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class PurchaseController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,11 +31,21 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $product_purchase = Purchase::with('warehouse','supplier','purchase_status','product','payment_type','bank_account')->get();
+        if(!$this->user->can('purchase.view')){
+            abort(403, 'sorry! Access Denied');
+        }
 
-        return response()->json([
-            'product_purchase' => $product_purchase
-        ]);
+        return view('pages.purchase.manage-purchase');
+    }
+
+
+    public function create()
+    {
+        if(!$this->user->can('purchase.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.purchase.product-purchase');
     }
 
     /**
@@ -34,6 +56,10 @@ class PurchaseController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('purchase.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'memo_no'         => 'required',
             'memo_date'       => 'required|date',
@@ -136,6 +162,19 @@ class PurchaseController extends Controller
         //
     }
 
+
+    public function load_purchase_data()
+    {
+        if(!$this->user->can('purchase.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        $product_purchase = Purchase::with('warehouse','supplier','purchase_status','product','payment_type','bank_account')->get();
+
+        return response()->json([
+            'product_purchase' => $product_purchase
+        ]);
+    }
 
 
 }

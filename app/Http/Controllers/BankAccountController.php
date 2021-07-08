@@ -6,9 +6,21 @@ use App\Models\BankAccount;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class BankAccountController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,19 @@ class BankAccountController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('bank-account.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.bank.manage-bank');
+    }
+
+    public function all_bank_account()
+    {
+        if(!$this->user->can('bank-account.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return BankAccount::paginate(10);
     }
 
@@ -37,6 +62,10 @@ class BankAccountController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('bank-account.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'bank_name'      => 'required|string',
             'account_name'   => 'required|unique:bank_accounts',
@@ -98,6 +127,10 @@ class BankAccountController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('bank-account.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'bank_name'      => 'required|string',
             'account_name'   => 'required|unique:bank_accounts,id,'.$id,
@@ -138,6 +171,10 @@ class BankAccountController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('bank-account.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         BankAccount::find($id)->delete();
         return response()->json([
             'status' => '1',

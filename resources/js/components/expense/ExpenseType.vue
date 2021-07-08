@@ -11,8 +11,8 @@
 							py-1
 						"
 					>
-						<h4 class="card-title m-0 p-2">Manage Type</h4>
-						<button @click="addModal = true" class="btn btn-info px-3">
+						<h4 class="card-title m-0 p-2">Expense Type</h4>
+						<button v-if="canAdd" @click="addModal = true" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							Add New
 						</button>
@@ -23,7 +23,7 @@
 								<thead>
 									<tr class="">
 										<th>Sl</th>
-										<th>Type Name</th>
+										<th>Expense Type</th>
 										<th>status</th>
 										<th>Actions</th>
 									</tr>
@@ -38,6 +38,7 @@
 											<i class="material-icons">person</i>
 										</button> -->
 											<button
+												v-if="canEdit"
 												type="button"
 												class="btn btn-success"
 												@click="
@@ -48,6 +49,7 @@
 												<i class="material-icons">edit</i>
 											</button>
 											<button
+												v-if="canDelete"
 												type="button"
 												class="btn btn-danger"
 												@click="deleteExpenseType(expenseType.id)"
@@ -214,7 +216,7 @@
 
 <script>
 export default {
-	name: "ManageType",
+	name: "ExpenseType",
 	data: () => ({
 		form: new Form({
 			id: "",
@@ -223,19 +225,36 @@ export default {
 		}),
 		addModal: false,
 		updateModal: false,
-		allExpenseType: {}
+		allExpenseType: {},
+		canAdd: false,
+		canEdit: false,
+		canDelete: false
 	}),
 	mounted() {
 		this.getExpenseTypes();
+		this.rolePermission();
 	},
 	methods: {
+		rolePermission() {
+			axios.get("/role-permissions").then(response => {
+				response.data.forEach(element => {
+					if (element.name == "expense-type.create") {
+						this.canAdd = true;
+					} else if (element.name == "expense-type.edit") {
+						this.canEdit = true;
+					} else if (element.name == "expense-type.delete") {
+						this.canDelete = true;
+					}
+				});
+			});
+		},
 		getExpenseTypes(page = 1) {
-			axios.get("Type?page=" + page).then(response => {
+			axios.get("/All_Expense_Type?page=" + page).then(response => {
 				this.allExpenseType = response.data;
 			});
 		},
 		addExpenseType() {
-			this.form.post("Type").then(res => {
+			this.form.post("Expense-Type").then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();
@@ -256,7 +275,7 @@ export default {
 				confirmButtonText: "Yes, delete it!"
 			}).then(result => {
 				if (result.value == true) {
-					axios.delete("Type/" + id).then(res => {
+					axios.delete("Expense-Type/" + id).then(res => {
 						if (res.data.status == 1) {
 							Swal.fire("Deleted!", "Your file has been deleted.", "success");
 							this.getExpenseTypes(this.allExpenseType.current_page);
@@ -273,7 +292,7 @@ export default {
 			this.form.status = expenseType.status;
 		},
 		updateExpenseType() {
-			this.form.put("Type/" + this.form.id).then(res => {
+			this.form.put("Expense-Type/" + this.form.id).then(res => {
 				if (res.data.status == 1) {
 					toastr.success(res.data.message);
 					this.clearForm();

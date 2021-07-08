@@ -46,5 +46,13 @@ class BankAccountSeeder extends Seeder
             'branch_name' => 'Mirpur 1',
             'status' => '1',
         ]);
+        BankAccount::create([
+            'user' => '1',
+            'bank_name' => 'Cash Payment',
+            'account_name' => 'Cloud It Digital',
+            'account_number' => '01721850242',
+            'branch_name' => 'Mirpur 1',
+            'status' => '1',
+        ]);
     }
 }

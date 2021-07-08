@@ -7,16 +7,46 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class BankTransactionController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
     public function index()
     {
+        if(!$this->user->can('bank-transaction.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.bank.bank-transaction');
+    }
+
+    public function all_bank_transaction()
+    {
+        if(!$this->user->can('bank-transaction.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return BankTransaction::with('bank_names')->orderBy('date','desc')->paginate(10);
     }
 
     public function store(Request $request)
     {
+        if(!$this->user->can('bank-transaction.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'transaction_date' => 'required|date',
             'description'      => 'required|string',
@@ -61,6 +91,10 @@ class BankTransactionController extends Controller
 
     public function destroy($id)
     {
+        if(!$this->user->can('bank-transaction.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         BankTransaction::find($id)->delete();
 
         return response()->json([
@@ -70,9 +104,22 @@ class BankTransactionController extends Controller
     }
 
 
+
+    public function bank_ledger()
+    {
+        if(!$this->user->can('bank-transaction.ledger')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.bank.bank-ledger');
+    }
+
     //Ledger
     public function search_ledger(Request $request)
     {
+        if(!$this->user->can('bank-transaction.ledger')){
+            abort(403, 'sorry! Access Denied');
+        }
 
         $request->validate([
             'start_date' => 'required',

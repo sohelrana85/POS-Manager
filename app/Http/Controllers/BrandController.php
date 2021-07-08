@@ -6,9 +6,22 @@ use App\Models\Brand;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class BrandController extends Controller
 {
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +29,20 @@ class BrandController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('brand.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.product.brand');
+    }
+
+
+    public function all_brand()
+    {
+        if(!$this->user->can('brand.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return Brand::paginate(10);
     }
 
@@ -37,6 +64,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('brand.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $id = $request->id;
         $request->validate([
             'name'   => 'required|unique:brands,name,' .$id,
@@ -92,6 +123,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('brand.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'name'   => 'required|unique:brands,name,' .$id,
             'status' => 'required|in:1,0',
@@ -124,6 +159,10 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('brand.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         Brand::find($id)->delete();
 
         return response()->json([

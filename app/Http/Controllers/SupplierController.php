@@ -6,9 +6,21 @@ use App\Models\Supplier;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class SupplierController extends Controller
 {
+
+    public $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +28,20 @@ class SupplierController extends Controller
      */
     public function index()
     {
+        if(!$this->user->can('supplier.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
+        return view('pages.supplier.manage-supplier');
+    }
+
+
+    public function all_supplier()
+    {
+        if(!$this->user->can('supplier.view')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return Supplier::paginate(10);
     }
 
@@ -37,6 +63,10 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->user->can('supplier.create')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $id = $request->id;
 
         $request->validate([
@@ -103,6 +133,10 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->user->can('supplier.edit')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         $request->validate([
             'business_name' => 'required|string|unique:suppliers,business_name,' . $id,
             's_name'        => 'required|string|min:4',
@@ -145,6 +179,10 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->user->can('supplier.delete')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         Supplier::find($id)->delete();
 
         return response()->json([
@@ -155,10 +193,20 @@ class SupplierController extends Controller
 
 
     //Extra
-    public function return_item(){
+    public function return_item()
+    {
+        if(!$this->user->can('supplier.return')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return view('pages.supplier.return-item');
     }
-    public function due_payment(){
+    public function due_payment()
+    {
+        if(!$this->user->can('supplier.due-payment')){
+            abort(403, 'sorry! Access Denied');
+        }
+
         return view('pages.supplier.due-payment');
     }
 }

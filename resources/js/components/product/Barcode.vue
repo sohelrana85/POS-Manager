@@ -12,10 +12,10 @@
 						"
 					>
 						<h4 class="card-title m-0 pt-2">Print Barcode</h4>
-						<a href="" class="btn btn-info px-3">
+						<!-- <a href="" class="btn btn-info px-3">
 							<i class="fa fa-plus pr-1 font-weight-lighter"></i>
 							List Barcode
-						</a>
+						</a> -->
 						<!-- <p class="card-category">Manage customer page</p> -->
 					</div>
 					<div class="card-body mt-4">
